@@ -1,0 +1,13 @@
+/* #rules\:\:rulesParentList--fe\:\:table\:\:rulesParent\:\:LineItem\:\:C\:\:CustomColumn\:\:Rulestoggle-innerColumn, */
+  
+.sapUiTableCell.sapUiTableCellLast[id*="rulesParentList"],
+.stickyclass{
+    position: sticky;
+    right: 0;
+    border-left: ridge;
+    background: aliceblue;
+}
+
+#rules\:\:rulesParentList--fe\:\:table\:\:rulesParent\:\:LineItem\:\:C\:\:CustomColumn\:\:Rulestoggle-innerColumn{
+     background: white;
+    }

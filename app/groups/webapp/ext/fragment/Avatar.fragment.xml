@@ -1,0 +1,4 @@
+<core:FragmentDefinition xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Avatar id="_IDGenAvatar1" displaySize="S" displayShape="Circle"></Avatar>
+	
+</core:FragmentDefinition>

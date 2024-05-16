@@ -1,0 +1,9 @@
+#assignrole\:\:assignRoleList--fe\:\:table\:\:assignRole\:\:LineItem-settings{
+display: none;
+}
+#CreateDialog\:\:assignRole-title::before {
+    content: "enter user Email Id." !important;
+}
+#CreateDialog\:\:assignRole-title-inner{
+display: none;
+}

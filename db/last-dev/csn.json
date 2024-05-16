@@ -1,0 +1,39 @@
+{
+  "namespace": "elipodb",
+  "definitions": {
+    "elipodb.conditionsSh": {
+      "kind": "entity",
+      "@cds.persistence.journal": true,
+      "elements": {
+        "uuid": {
+          "key": true,
+          "type": "cds.String",
+          "length": 36,
+          "@cds.persistence.name": "UUID"
+        },
+        "relatedTo": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "RELATEDTO"
+        },
+        "sh": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "SH"
+        },
+        "description": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "DESCRIPTION"
+        }
+      },
+      "@cds.persistence.name": "ELIPODB_CONDITIONSSH"
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v4.9.0",
+    "build": "CDS Build v7.9.0"
+  },
+  "$version": "2.0"
+}

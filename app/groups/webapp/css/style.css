@@ -1,0 +1,9 @@
+.pointerDisable{
+    pointer-events: none;
+}
+#CreateDialog\:\:groups-title-inner{
+    display: none;
+}
+#CreateDialog\:\:groups-title::before{
+    content: "Please Enter New Group Name.";
+}

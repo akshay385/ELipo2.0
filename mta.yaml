@@ -1,0 +1,179 @@
+_schema-version: "3.1"
+ID: elipo3
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: elipo3-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: elipo3-db
+  - name: uaa_elipo3
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    readiness-health-check-http-endpoint: /health
+    readiness-health-check-type: http
+  build-parameters:
+    builder: npm
+- name: elipo3-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: elipo3-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: elipo3-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: elipo3-destination-service
+    parameters:
+      content-target: true
+  - name: elipo3_html_repo_host
+    parameters:
+      service-key:
+        name: elipo3_html_repo_host-key
+  - name: uaa_elipo3
+    parameters:
+      service-key:
+        name: uaa_elipo3-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: elipo3approut_elipo3_html_repo_host
+          ServiceInstanceName: elipo3-html5-app-host-service
+          ServiceKeyName: elipo3_html_repo_host-key
+          sap.cloud.service: elipo3approut
+        - Authentication: OAuth2UserTokenExchange
+          Name: elipo3approut_uaa_elipo3
+          ServiceInstanceName: elipo3-xsuaa-service
+          ServiceKeyName: uaa_elipo3-key
+          sap.cloud.service: elipo3approut
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: elipo3-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: elipo3_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - elipoapp3.zip
+      name: elipoapp3
+      target-path: resources/
+    - artifacts:
+      - assignrole.zip
+      name: assignrole
+      target-path: resources/
+    - artifacts:
+      - groups.zip
+      name: groups
+      target-path: resources/
+    - artifacts:
+      - rules.zip
+      name: rules
+      target-path: resources/
+- name: elipoapp3
+  type: html5
+  path: app/elipoapp3
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: assignrole
+  type: html5
+  path: app/assignrole
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: groups
+  type: html5
+  path: app/groups
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: rules
+  type: html5
+  path: app/rules
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: elipo3-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: elipo3-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: elipo3-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: elipo3-destination-service
+    service-plan: lite
+  requires:
+  - name: srv-api
+- name: elipo3_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: elipo3-html5-app-host-service
+    service-plan: app-host
+- name: uaa_elipo3
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: elipo3-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production

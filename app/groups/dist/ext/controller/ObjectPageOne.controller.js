@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension"],function(e){"use strict";return e.extend("groups.ext.controller.ObjectPageOne",{override:{onInit:function(){var e=this.base.getExtensionAPI().getModel()},onAfterRendering:function(){debugger},editFlow:{onBeforeSave:function(e){debugger},onAfterSave:function(e){debugger}}}})});
