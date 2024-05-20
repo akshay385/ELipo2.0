@@ -8,7 +8,7 @@
       
         <tnt:SideNavigation id="sidnav" itemSelect="onNavPress">    
         <tnt:NavigationList id="_IDGenNavigationList1" selectedItem="_IDGenNavigationListItem2" >
-          <tnt:NavigationListItem id="_IDGenNavigationListItem1" icon="sap-icon://expand" select="onCollapseExpandPress"/>
+          <tnt:NavigationListItem id="collapseexpand" icon="sap-icon://expand" select="onCollapseExpandPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem2" text="Overview"  icon="sap-icon://customer-view" select="onNavPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem3" text="Master"  icon="sap-icon://master-task-triangle"/>
           <tnt:NavigationListItem id="Groups" text="Groups"  icon="sap-icon://group"/>

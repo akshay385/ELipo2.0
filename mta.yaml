@@ -82,6 +82,10 @@ modules:
       - rules.zip
       name: rules
       target-path: resources/
+    - artifacts:
+      - invoicecockpit.zip
+      name: invoicecockpit
+      target-path: resources/
 - name: elipoapp3
   type: html5
   path: app/elipoapp3
@@ -115,6 +119,16 @@ modules:
 - name: rules
   type: html5
   path: app/rules
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: invoicecockpit
+  type: html5
+  path: app/invoicecockpit
   build-parameters:
     build-result: dist
     builder: custom

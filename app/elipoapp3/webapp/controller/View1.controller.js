@@ -46,6 +46,7 @@ sap.ui.define([
                 let regex = /--([^-\s]+)$/;
                 let match = sideKey.match(regex);
                 let extractedString = match ? match[1] : null;
+                if(extractedString != "collapseexpand"){
                 if (this.byId("invoiceCockpit").getComponentInstance())
                     this.byId("invoiceCockpit").getComponentInstance().destroy();
 
@@ -54,7 +55,7 @@ sap.ui.define([
                 });
 
                 await this.byId("invoiceCockpit").setComponent(ocustomerDetailContainer);
-
+            }
 
             }
         });

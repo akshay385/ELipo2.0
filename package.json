@@ -27,12 +27,13 @@
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
         "watch-assignrole": "cds watch --open assignrole/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-groups": "cds watch --open groups/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-rules": "cds watch --open rules/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-rules": "cds watch --open rules/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-invoicecockpit": "cds watch --open invoicecockpit/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "fiori": {
             "bypass_draft": true
-          },
+        },
         "requires": {
             "db": "hana",
             "auth": "dummy"
@@ -41,6 +42,7 @@
     "sapux": [
         "app/assignrole",
         "app/groups",
-        "app/rules"
+        "app/rules",
+        "app/invoicecockpit"
     ]
 }

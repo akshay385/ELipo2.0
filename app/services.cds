@@ -6,3 +6,5 @@ using from './assignrole/annotations';
 using from './groups/annotations';
 
 using from './rules/annotations';
+
+using from './invoicecockpit/annotations';

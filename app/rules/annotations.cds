@@ -326,3 +326,176 @@ annotate service.rulesParent with {
         },
         Common.ValueListWithFixedValues : true
 )};
+annotate service.rulesParent with @(
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : 'All Rules',
+    }
+);
+annotate service.emailNotification with @(
+    UI.LineItem #tableView : [
+        {
+            $Type : 'UI.DataField',
+            Value : status,
+            Label : 'Status',
+        },{
+            $Type : 'UI.DataField',
+            Value : emailtocc.emailId,
+            Label : 'CC.',
+        },{
+            $Type : 'UI.DataField',
+            Value : mailSubject,
+            Label : 'Mail Subject',
+        },{
+            $Type : 'UI.DataField',
+            Value : mailBody,
+            Label : 'Mail Body',
+        },],
+    UI.SelectionPresentationVariant #tableView : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView',
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+            ],
+        },
+        Text : 'Email Notification',
+    }
+);
+annotate service.emailNotification with @(
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Email Notification',
+            ID : 'EmailNotification',
+            Target : '@UI.FieldGroup#EmailNotification',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : ' ',
+            ID : '_',
+            Target : '@UI.FieldGroup#_',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Mail Body',
+            ID : '_2',
+            Target : '@UI.FieldGroup#_2',
+        },
+    ],
+    UI.FieldGroup #EmailNotification : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : status,
+                Label : 'Status',
+            },{
+                $Type : 'UI.DataField',
+                Value : emailtocc.emailId,
+                Label : 'CC.',
+            },
+          ],
+    }
+);
+annotate service.emailNotification with @(
+    UI.FieldGroup #_ : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : mailSubject,
+                Label : 'Mail Subject',
+            },],
+    }
+);
+annotate service.emailNotification with @(
+    UI.FieldGroup #_1 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+        ],
+    }
+);
+annotate service.emailNotification with @(
+    UI.FieldGroup #_2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : mailBody,
+                Label : 'Mail Body',
+            },],
+    }
+);
+annotate service.emailNotification with {
+    mailBody @UI.MultiLineText : true
+};
+annotate service.emailNotification with {
+    status @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'statusSh',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : status,
+                    ValueListProperty : 'status',
+                },
+            ],
+            Label : 'Status',
+        },
+        Common.ValueListWithFixedValues : true
+)};
+annotate service.emailNotification with @(
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : status,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+    }
+);
+
+annotate service.cc with {
+    emailId @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'assignRole',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : emailId,
+                    ValueListProperty : 'emailId',
+                },
+                {
+                    $Type : 'Common.ValueListParameterOut',
+                    ValueListProperty : 'name',
+                    LocalDataProperty : name,
+                },
+            ],
+            Label : 'cc.',
+        },
+        Common.ValueListWithFixedValues : true
+)};
+
+annotate service.emailNotification with {
+    mailSubject @Common.FieldControl : #Mandatory
+};
+annotate service.emailNotification with {
+    mailBody @Common.FieldControl : #Mandatory
+};

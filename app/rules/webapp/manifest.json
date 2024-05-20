@@ -110,6 +110,14 @@
                         "rulesParentList",
                         "rulesParentObjectPage"
                     ]
+                },
+                {
+                    "pattern": "emailNotification({key}):?query:",
+                    "name": "emailNotificationObjectPage",
+                    "target": [
+                        "rulesParentList",
+                        "emailNotificationObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -125,6 +133,11 @@
                                 "rulesParent": {
                                     "detail": {
                                         "route": "rulesParentObjectPage"
+                                    }
+                                },
+                                "emailNotification": {
+                                    "detail": {
+                                        "route": "emailNotificationObjectPage"
                                     }
                                 }
                             },
@@ -143,10 +156,28 @@
                                             "template": "rules.ext.fragment.Rulestoggle"
                                         }
                                     }
+                                },
+                                "/emailNotification/@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
                                 }
                             },
                             "initialLoad": "Enabled",
-                            "hideFilterBar": true
+                            "hideFilterBar": true,
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+                                    },
+                                    {
+                                        "key": "tableView1",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                                        "entitySet": "emailNotification"
+                                    }
+                                ]
+                            }
                         }
                     },
                     "controlAggregation": "beginColumnPages",
@@ -177,6 +208,25 @@
                     },
                     "controlAggregation": "midColumnPages",
                     "contextPattern": "/rulesParent({key})"
+                },
+                "emailNotificationObjectPage": {
+                    "type": "Component",
+                    "id": "emailNotificationObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/emailNotification",
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": false,
+                                    "visible": true
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/emailNotification({key})"
                 }
             }
         },
@@ -203,5 +253,11 @@
     "sap.cloud": {
         "public": true,
         "service": "elipo3approut"
+    },
+    "undefined": {
+        "position": {
+            "anchor": "DataField::comments",
+            "placement": "After"
+        }
     }
 }

@@ -11,3 +11,10 @@
 #rules\:\:rulesParentList--fe\:\:table\:\:rulesParent\:\:LineItem\:\:C\:\:CustomColumn\:\:Rulestoggle-innerColumn{
      background: white;
     }
+
+#CreateDialog\:\:emailNotification-title-inner{
+display: none;
+    }
+    #CreateDialog\:\:emailNotification-title::before{
+ content:"Please Select Status."
+    }

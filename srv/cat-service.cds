@@ -1,6 +1,22 @@
 using elipodb as my from '../db/data-model';
 
 service CatalogService {
+     entity Files as projection on my.Files;
+     entity internalOrderSh as projection on my.internalOrderSh;
+     entity costCenterSh as projection on my.costCenterSh;
+     entity glAccountSh as projection on my.glAccountSh;
+     entity companyCodeSh as projection on my.companyCodeSh;
+     entity currencySh as projection on my.currencySh;
+     entity paymentMethodSh as projection on my.paymentMethodSh;
+     entity vendorCodeSh as projection on my.vendorCodeSh;
+     entity paymrntTermsSh as projection on my.paymrntTermsSh;
+     entity invoiceCockpitItems as projection on my.invoiceCockpitItems;
+     @odata.draft.enabled
+     entity invoiceCockpit as projection on my.invoiceCockpit;
+     entity statusSh as projection on my.statusSh;
+     entity cc as projection on my.cc;
+     @odata.draft.enabled
+     entity emailNotification as projection on my.emailNotification;
      entity approvalTypeSh as projection on my.approvalTypeSh;
      entity criteriaSh as projection on my.criteriaSh;
      entity conditionsSh as projection on my.conditionsSh;
