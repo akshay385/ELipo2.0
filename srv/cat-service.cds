@@ -1,6 +1,13 @@
 using elipodb as my from '../db/data-model';
 
 service CatalogService {
+    entity approvalWorkFlow as projection on my.approvalWorkFlow;
+    entity supplierFiles as projection on my.supplierFiles;
+    entity supplierItems as projection on my.supplierItems;
+    @odata.draft.enabled
+    entity supplier as projection on my.supplier;
+     @cds.redirection.target
+     entity trackInvoice as projection on my.invoiceCockpit;
      entity Files as projection on my.Files;
      entity internalOrderSh as projection on my.internalOrderSh;
      entity costCenterSh as projection on my.costCenterSh;
@@ -34,4 +41,7 @@ service CatalogService {
      @odata.draft.enabled
      entity assignRole as projection on my.assignRole;
      entity Books as projection on my.Books;
+
+
+         function postattach(p:String) returns String;
 }

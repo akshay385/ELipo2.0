@@ -192,6 +192,9 @@
                 "sap.ui.controllerExtensions": {
                     "sap.fe.templates.ObjectPage.ObjectPageController#groups::groupsObjectPage": {
                         "controllerName": "groups.ext.controller.ObjectPageOne"
+                    },
+                    "sap.fe.templates.ListReport.ListReportController#groups::groupsList": {
+                        "controllerName": "groups.ext.controller.Listpagecontroller"
                     }
                 }
             }

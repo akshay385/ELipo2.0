@@ -1,0 +1,233 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "supplier",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.13.4",
+            "toolsId": "0d075d7a-a994-4c02-9963-668518f96f45"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "odata/v4/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "supplier-display": {
+                    "semanticObject": "supplier",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.124.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "supplier.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "supplierList",
+                    "target": "supplierList"
+                },
+                {
+                    "pattern": "supplier({key}):?query:",
+                    "name": "supplierObjectPage",
+                    "target": "supplierObjectPage"
+                }
+            ],
+            "targets": {
+                "supplierList": {
+                    "type": "Component",
+                    "id": "supplierList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/supplier",
+                            "variantManagement": "None",
+                            "navigation": {
+                                "supplier": {
+                                    "detail": {
+                                        "route": "supplierObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "selectionMode": "None"
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                                    "tableSettings": {
+                                        "selectionMode": "None"
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.LineItem#tableView1": {
+                                    "tableSettings": {
+                                        "selectionMode": "None"
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.LineItem#tableView2": {
+                                    "tableSettings": {
+                                        "selectionMode": "None"
+                                    }
+                                }
+                            },
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+                                    },
+                                    {
+                                        "key": "tableView1",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView1"
+                                    },
+                                    {
+                                        "key": "tableView2",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
+                                    },
+                                    {
+                                        "key": "tableView3",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView3"
+                                    }
+                                ],
+                                "showCounts": true
+                            },
+                            "initialLoad": "Enabled",
+                            "hideFilterBar": true
+                        }
+                    }
+                },
+                "supplierObjectPage": {
+                    "type": "Component",
+                    "id": "supplierObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/supplier",
+                            "navigation": {},
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "Attachments": {
+                                            "template": "supplier.ext.fragment.Attachments",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "Items1"
+                                            },
+                                            "title": "Attachments",
+                                            "type": "XMLFragment"
+                                        }
+                                    }
+                                },
+                                "footer": {
+                                    "actions": {
+                                        "sendforapproval": {
+                                            "press": "supplier.ext.controller.Sendforapproval.send",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Send for Approval"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#supplier::supplierObjectPage": {
+                        "controllerName": "supplier.ext.controller.Objectpagecontroller"
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "elipo3approut"
+    }
+}

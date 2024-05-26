@@ -28,7 +28,10 @@
         "watch-assignrole": "cds watch --open assignrole/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-groups": "cds watch --open groups/webapp/index.html?sap-ui-xx-viewCache=false",
         "watch-rules": "cds watch --open rules/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-invoicecockpit": "cds watch --open invoicecockpit/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-invoicecockpit": "cds watch --open invoicecockpit/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-trackinvoice": "cds watch --open trackinvoice/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-trackinvoices2": "cds watch --open trackinvoices2/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-supplier": "cds watch --open supplier/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "fiori": {
@@ -43,6 +46,8 @@
         "app/assignrole",
         "app/groups",
         "app/rules",
-        "app/invoicecockpit"
+        "app/invoicecockpit",
+        "app/trackinvoices2",
+        "app/supplier"
     ]
 }

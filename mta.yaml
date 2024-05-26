@@ -86,6 +86,14 @@ modules:
       - invoicecockpit.zip
       name: invoicecockpit
       target-path: resources/
+    - artifacts:
+      - trackinvoices2.zip
+      name: trackinvoices2
+      target-path: resources/
+    - artifacts:
+      - supplier.zip
+      name: supplier
+      target-path: resources/
 - name: elipoapp3
   type: html5
   path: app/elipoapp3
@@ -129,6 +137,26 @@ modules:
 - name: invoicecockpit
   type: html5
   path: app/invoicecockpit
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: trackinvoices2
+  type: html5
+  path: app/trackinvoices2
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: supplier
+  type: html5
+  path: app/supplier
   build-parameters:
     build-result: dist
     builder: custom

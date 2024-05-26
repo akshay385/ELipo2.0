@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension"],function(e){"use strict";return e.extend("groups.ext.controller.Listpagecontroller",{override:{onInit:function(){var e=this.base.getExtensionAPI().getModel()},onAfterRendering:function(){sap.ui.getCore().byId("groups::groupsList--fe::table::groups::LineItem::StandardAction::Create").setText("Add Group")}}})});

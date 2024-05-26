@@ -42,3 +42,39 @@ server:
             src: ../groups/webapp
           - path: /resources/groups
             src: ../groups/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: invoicecockpit
+        paths:
+          - path: /resources/invoicecockpit
+            src: ../invoicecockpit/webapp
+          - path: /resources/invoicecockpit
+            src: ../invoicecockpit/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: rules
+        paths:
+          - path: /resources/rules
+            src: ../rules/webapp
+          - path: /resources/rules
+            src: ../rules/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: 
+        paths:
+          - path: /resources/supplier
+            src: ../supplier/webapp
+          - path: /resources/supplier
+            src: ../supplier/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: trackinvoices2
+        paths:
+          - path: /resources/trackinvoices2
+            src: ../trackinvoices2/webapp
+          - path: /resources/trackinvoices2
+            src: ../trackinvoices2/webapp

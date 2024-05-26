@@ -8,29 +8,29 @@
       
         <tnt:SideNavigation id="sidnav" itemSelect="onNavPress">    
         <tnt:NavigationList id="_IDGenNavigationList1" selectedItem="_IDGenNavigationListItem2" >
-          <tnt:NavigationListItem id="_IDGenNavigationListItem1" icon="sap-icon://expand" select="onCollapseExpandPress"/>
+          <tnt:NavigationListItem id="collapseexpand" icon="sap-icon://expand" select="onCollapseExpandPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem2" text="Overview"  icon="sap-icon://customer-view" select="onNavPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem3" text="Master"  icon="sap-icon://master-task-triangle"/>
           <tnt:NavigationListItem id="Groups" text="Groups"  icon="sap-icon://group"/>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem5" text="Rules"  icon="sap-icon://validate">
-            <tnt:NavigationListItem id="_IDGenNavigationListItem6" text="View All Rules / Notification"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem7" text="Assignment Rules"/>
+          <tnt:NavigationListItem id="_IDGenNavigationListItem5" enabled="false" text="Rules"  icon="sap-icon://validate">
+            <tnt:NavigationListItem id="rules" text="View All Rules / Notification"/>
+            <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem7" text="Assignment Rules"/>
             <tnt:NavigationListItem id="_IDGenNavigationListItem8" text="Approved Rules"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem9" text="Notification Rules"/>
+            <tnt:NavigationListItem id="_IDGenNavigationListItem9" text="Notification Rules"/> -->
           </tnt:NavigationListItem>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem10" text="Invoice" icon="sap-icon://receipt">
+          <tnt:NavigationListItem id="_IDGenNavigationListItem10" select="false" text="Invoice" icon="sap-icon://receipt">
             <tnt:NavigationListItem id="_IDGenNavigationListItem11" text="Email"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem12" text="Create Invoice"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem13" text="Invoice Cockpit"/>
+            <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem12" text="Create Invoice"/> -->
+            <tnt:NavigationListItem id="invoicecockpit" text="Invoice Cockpit"/>
             <tnt:NavigationListItem id="_IDGenNavigationListItem14" text="My Inbox"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem15" text="Track Invoices"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem16" text="Comments Template"/>
+            <tnt:NavigationListItem id="trackInvoices2" text="Track Invoices"/>
+            <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem16" text="Comments Template"/>
             <tnt:NavigationListItem id="_IDGenNavigationListItem17" text="Supplier Enquires"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem18" text="Invoice Assignment"/>
+            <tnt:NavigationListItem id="_IDGenNavigationListItem18" text="Invoice Assignment"/> -->
           </tnt:NavigationListItem>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem19" text="Purchase Order" icon="sap-icon://my-sales-order">
-          </tnt:NavigationListItem>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem20" text="Supplier" icon="sap-icon://supplier">
+          <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem19" text="Purchase Order" icon="sap-icon://my-sales-order">
+          </tnt:NavigationListItem> -->
+          <tnt:NavigationListItem id="supplier" text="Supplier" icon="sap-icon://supplier">
           </tnt:NavigationListItem>
           <tnt:NavigationListItem id="_IDGenNavigationListItem21" text="Reports" icon="sap-icon://trip-report">
           </tnt:NavigationListItem>

@@ -1,12 +1,14 @@
 {
-  "manifest.json": 1715710756736,
-  "i18n/i18n.properties": 1715683640043,
-  "ext/controller/ObjectPageOne.controller.js": 1715709647845,
-  "Component.js": 1715683640039,
-  "Component-preload.js": 1715710757013,
-  "Component-dbg.js": 1715683640039,
-  "ext/controller/ObjectPageOne-dbg.controller.js": 1715709647845,
-  "ext/fragment/Avatar.fragment.xml": 1715705169912,
-  "css/style.css": 1715707522766,
-  "index.html": 1715683640039
+  "index.html": 1716355052821,
+  "ext/controller/ObjectPageOne.controller.js": 1716355052821,
+  "manifest.json": 1716716627143,
+  "ext/controller/Listpagecontroller.controller.js": 1716355052821,
+  "Component.js": 1716355052821,
+  "Component-preload.js": 1716716627429,
+  "Component-dbg.js": 1716355052821,
+  "ext/controller/Listpagecontroller-dbg.controller.js": 1716355052821,
+  "ext/controller/ObjectPageOne-dbg.controller.js": 1716355052821,
+  "ext/fragment/Avatar.fragment.xml": 1716355052821,
+  "css/style.css": 1716355052821,
+  "i18n/i18n.properties": 1716355052821
 }

@@ -117,7 +117,7 @@
           "options": {
             "settings": {
               "contextPath": "/invoiceCockpit",
-              "variantManagement": "Page",
+              "variantManagement": "None",
               "navigation": {
                 "invoiceCockpit": {
                   "detail": {
@@ -127,6 +127,26 @@
               },
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView1": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView2": {
+                  "tableSettings": {
+                    "type": "GridTable"
+                  }
+                },
+                "@com.sap.vocabularies.UI.v1.LineItem#tableView3": {
                   "tableSettings": {
                     "type": "GridTable"
                   }
@@ -142,9 +162,23 @@
                   {
                     "key": "tableView1",
                     "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView1"
+                  },
+                  {
+                    "key": "tableView2",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView2"
+                  },
+                  {
+                    "key": "tableView3",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView3"
+                  },
+                  {
+                    "key": "tableView4",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView4"
                   }
-                ]
-              }
+                ],
+                "showCounts": true
+              },
+              "hideFilterBar": true
             }
           }
         },
@@ -189,6 +223,15 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#invoicecockpit::invoiceCockpitObjectPage": {
+            "controllerName": "invoicecockpit.ext.controller.Objectpagecontroller"
           }
         }
       }

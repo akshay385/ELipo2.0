@@ -15,7 +15,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			},
 			onAfterRendering:function(){
 				debugger
-				
+				sap.ui.getCore().byId("groups::groupsObjectPage--fe::table::grptomem::LineItem::Members::StandardAction::Create").setIcon("sap-icon://add-employee");
+				sap.ui.getCore().byId("groups::groupsObjectPage--fe::table::grptomem::LineItem::Members::StandardAction::Create").setText(" ");
+				sap.ui.getCore().byId("groups::groupsObjectPage--fe::table::grptomem::LineItem::Members::StandardAction::Create").setTooltip("Add Members");
 			},
 			editFlow :{
 				onBeforeSave: function (mParameters) {

@@ -3,6 +3,108 @@ using { managed } from '@sap/cds/common';
 
 
 // @cds.persistence.journal
+entity supplierFiles : managed{
+    key id : UUID;
+    fkey : UUID;
+    @Core.MediaType: mediaType
+    content: LargeBinary;
+    @Core.IsMediaType: true
+    mediaType: String;
+    fileName: String;
+    size: Integer;
+    url: String;
+    filtoinv :Association to one supplier on filtoinv.uuid = fkey;
+}
+entity supplierItems {
+    key Itemid : UUID;
+    invoiceNo:UUID;
+    invoiceNoS : String;
+    Item : String;
+    Item_No : String;
+    Material : String;
+    HSN_Code : String;
+    Qty : String;
+    qc:Boolean;
+    Unit_Price : String;
+    GL_Acc : String;
+    Plant : String;
+    Cost_Center : String;
+    Disc_Per : String;
+    GST_Per : String;	
+    Taxable_Amt : String;
+    Tax_Amt : String;
+    Total_Amt : String;	
+    itemstoinv:Association to one supplier on itemstoinv.uuid = invoiceNo;
+}
+entity supplier : managed{
+    key uuid:UUID;
+   invoiceNo : String default ' ';
+    RefInvoiceNo : String;
+    supplierName : String;
+    status:String;
+    editable:Boolean;
+    comments:LargeString;
+    
+    supplieruserid:String;
+    section:String;
+    criticality:Int16;
+    @Core.MediaType: mediaType
+    content: LargeBinary;
+    @Core.IsMediaType: true
+    mediaType: String;
+    fileName: String;
+    size: Integer;
+    url: String;
+    irn : String;
+    refPoNum : String;
+    gstin : String;
+    DocumentType : String;
+    RefInvoiceNo1 : String;
+    invoiceDate : Date;
+    postingDate : Date;
+    baselineDate : Date;
+    VendorCode : String;
+    paymentTerms : String;
+    paymentMethod : String;
+    companyCode : String;
+    currency : String;
+    departmentName : String;
+    glAccount : String;
+    costCenter : String;
+    internalOrder : String;
+    taxableAmount : String;
+    adjustment : String;
+     amount : String;
+     invoiceNoN:Int32;
+    tcs : String;
+    tdsPer : String;
+    tdsTotAmt : String;
+    discountPer : String;
+    totalDiscountAmount : String;
+    vatPer : String;
+    fileLink : LargeString;
+    value1 : Boolean;
+    value : Integer;
+     bool : Boolean;
+    GstPerc  : String;
+    IGST : Boolean;
+     IGSTVal : String;
+    CGST : String;
+    SGST : String;
+    invtoitems : Composition of many supplierItems on invtoitems.itemstoinv = $self;
+    invtofil : Composition of many supplierFiles on invtofil.filtoinv = $self;
+}
+entity approvalWorkFlow :managed{
+    key uuid:UUID;
+    invoiceuuid:UUID;
+    invoiceNo:String;
+    level:String;
+    status:String;
+    approversmails:String;
+    members:String;
+    groups:String;
+
+}
 entity Files : managed{
     key id : UUID;
     fkey : UUID;
@@ -14,6 +116,7 @@ entity Files : managed{
     size: Integer;
     url: String;
     filtoinv :Association to one invoiceCockpit on filtoinv.uuid = fkey;
+    filtosup :Association to one supplier on filtosup.uuid = fkey;
 }
 entity internalOrderSh {
     key internalOrder:String;
@@ -67,6 +170,7 @@ entity invoiceCockpitItems {
     Tax_Amt : String;
     Total_Amt : String;	
     itemstoinv:Association to one invoiceCockpit on itemstoinv.uuid = invoiceNo;
+    itemstosup:Association to one supplier on itemstosup.uuid = invoiceNo;
 }
 entity invoiceCockpit : managed{
     key uuid:UUID;
@@ -74,7 +178,12 @@ entity invoiceCockpit : managed{
     RefInvoiceNo : String;
     supplierName : String;
     status:String;
-
+    editable:Boolean;
+    comments:LargeString;
+    
+    supplieruserid:String;
+    section:String;
+    criticality:Int16;
     @Core.MediaType: mediaType
     content: LargeBinary;
     @Core.IsMediaType: true
@@ -102,6 +211,7 @@ entity invoiceCockpit : managed{
     taxableAmount : String;
     adjustment : String;
      amount : String;
+     invoiceNoN:Int32;
     tcs : String;
     tdsPer : String;
     tdsTotAmt : String;

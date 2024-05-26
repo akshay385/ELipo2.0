@@ -118,6 +118,12 @@ annotate service.invoiceCockpit with @(
             ID : 'Items',
             Target : 'invtoitems/@UI.LineItem#Items',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Comments (Optional)',
+            ID : 'CommentsOptional',
+            Target : '@UI.FieldGroup#CommentsOptional',
+        },
     ],
     UI.LineItem : [
         {
@@ -380,6 +386,13 @@ annotate service.invoiceCockpit with @(
             Visualizations : [
                 '@UI.LineItem',
             ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : invoiceNoN,
+                    Descending : true,
+                },
+            ],
         },
         SelectionVariant : {
             $Type : 'UI.SelectionVariantType',
@@ -396,13 +409,38 @@ annotate service.invoiceCockpit with @(
                     ],
                 },],
         },
-        Text : 'Table View',
+        Text : 'New',
     },
     UI.LineItem #tableView : [
+         {
+            $Type : 'UI.DataField',
+            Label : 'Invoice No.',
+            Value : invoiceNo,
+        },
         {
             $Type : 'UI.DataField',
-            Value : invoiceNo,
-            Label : 'invoiceNo',
+            Value : RefInvoiceNo,
+            Label : 'Ref-Invoice No.',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : supplierName,
+            Label : 'Supplier Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : createdAt,
+            Label : 'Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedBy,
+            Label : 'Modified By',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedAt,
+            Label : 'Modified Date-Time',
         },],
     UI.SelectionPresentationVariant #tableView1 : {
         $Type : 'UI.SelectionPresentationVariantType',
@@ -410,6 +448,13 @@ annotate service.invoiceCockpit with @(
             $Type : 'UI.PresentationVariantType',
             Visualizations : [
                 '@UI.LineItem#tableView',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : invoiceNoN,
+                    Descending : true,
+                },
             ],
         },
         SelectionVariant : {
@@ -427,6 +472,216 @@ annotate service.invoiceCockpit with @(
                     ],
                 },],
         },
-        Text : 'Table View 1',
+        Text : 'Draft',
     }
 );
+annotate service.invoiceCockpit with @(
+    UI.LineItem #tableView1 : [
+         {
+            $Type : 'UI.DataField',
+            Label : 'Invoice No.',
+            Value : invoiceNo,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RefInvoiceNo,
+            Label : 'Ref-Invoice No.',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : supplierName,
+            Label : 'Supplier Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : createdAt,
+            Label : 'Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedBy,
+            Label : 'Modified By',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedAt,
+            Label : 'Modified Date-Time',
+        },],
+    UI.SelectionPresentationVariant #tableView2 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView1',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : invoiceNoN,
+                    Descending : true,
+                },
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Rejected',
+                        },
+                    ],
+                },],
+        },
+        Text : 'Rejected',
+    }
+);
+annotate service.invoiceCockpit with @(
+    UI.LineItem #tableView2 : [
+         {
+            $Type : 'UI.DataField',
+            Label : 'Invoice No.',
+            Value : invoiceNo,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RefInvoiceNo,
+            Label : 'Ref-Invoice No.',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : supplierName,
+            Label : 'Supplier Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : createdAt,
+            Label : 'Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedBy,
+            Label : 'Modified By',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedAt,
+            Label : 'Modified Date-Time',
+        },],
+    UI.SelectionPresentationVariant #tableView3 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView2',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : invoiceNoN,
+                    Descending : true,
+                },
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'In Approval',
+                        },
+                    ],
+                },],
+        },
+        Text : 'In Approval',
+    }
+);
+annotate service.invoiceCockpit with @(
+    UI.LineItem #tableView3 : [
+         {
+            $Type : 'UI.DataField',
+            Label : 'Invoice No.',
+            Value : invoiceNo,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RefInvoiceNo,
+            Label : 'Ref-Invoice No.',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : supplierName,
+            Label : 'Supplier Name',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : createdAt,
+            Label : 'Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedBy,
+            Label : 'Modified By',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : modifiedAt,
+            Label : 'Modified Date-Time',
+        },],
+    UI.SelectionPresentationVariant #tableView4 : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : {
+            $Type : 'UI.PresentationVariantType',
+            Visualizations : [
+                '@UI.LineItem#tableView3',
+            ],
+            SortOrder : [
+                {
+                    $Type : 'Common.SortOrderType',
+                    Property : invoiceNoN,
+                    Descending : true,
+                },
+            ],
+        },
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Submitted to ERP',
+                        },
+                    ],
+                },],
+        },
+        Text : 'Submitted to ERP',
+    }
+);
+annotate service.invoiceCockpit with @(
+    UI.DeleteHidden : true,
+    UI.UpdateHidden:{$value: editable}
+);
+annotate service.invoiceCockpit with @(
+    UI.FieldGroup #CommentsOptional : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : comments,
+            },],
+    }
+);
+

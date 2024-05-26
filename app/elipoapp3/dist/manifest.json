@@ -75,6 +75,18 @@
                 },
                 "groups": {
                     "lazy": false
+                },
+                "invoicecockpit": {
+                    "lazy": false
+                },
+                "rules": {
+                    "lazy": false
+                },
+                "supplier": {
+                    "lazy": false
+                },
+                "trackinvoices2": {
+                    "lazy": false
                 }
             }
         },
@@ -85,6 +97,22 @@
             },
             "Groups": {
                 "name": "groups",
+                "settings": {}
+            },
+            "invoicecockpit": {
+                "name": "invoicecockpit",
+                "settings": {}
+            },
+            "rules": {
+                "name": "rules",
+                "settings": {}
+            },
+            "supplier": {
+                "name": "supplier",
+                "settings": {}
+            },
+            "trackInvoices2": {
+                "name": "trackinvoices2",
                 "settings": {}
             }
         },

@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension"],function(e){"use strict";return e.extend("rules.ext.controller.ObjpageController",{override:{onInit:function(){var e=this.base.getExtensionAPI().getModel()},editFlow:{onBeforeSave:function(e){debugger}}}})});

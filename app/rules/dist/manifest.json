@@ -1,0 +1,263 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "rules",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.13.4",
+            "toolsId": "078ea935-62ac-4bbb-88ec-a70dbf3180d7"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "odata/v4/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.123.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "rules.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "rulesParentList",
+                    "target": [
+                        "rulesParentList"
+                    ]
+                },
+                {
+                    "pattern": "rulesParent({key}):?query:",
+                    "name": "rulesParentObjectPage",
+                    "target": [
+                        "rulesParentList",
+                        "rulesParentObjectPage"
+                    ]
+                },
+                {
+                    "pattern": "emailNotification({key}):?query:",
+                    "name": "emailNotificationObjectPage",
+                    "target": [
+                        "rulesParentList",
+                        "emailNotificationObjectPage"
+                    ]
+                }
+            ],
+            "targets": {
+                "rulesParentList": {
+                    "type": "Component",
+                    "id": "rulesParentList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/rulesParent",
+                            "variantManagement": "None",
+                            "navigation": {
+                                "rulesParent": {
+                                    "detail": {
+                                        "route": "rulesParentObjectPage"
+                                    }
+                                },
+                                "emailNotification": {
+                                    "detail": {
+                                        "route": "emailNotificationObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable"
+                                    },
+                                    "columns": {
+                                        "Rulestoggle": {
+                                            "header": "Active",
+                                            "position": {
+                                                "anchor": "DataField::comments",
+                                                "placement": "After"
+                                            },
+                                            "template": "rules.ext.fragment.Rulestoggle"
+                                        }
+                                    }
+                                },
+                                "/emailNotification/@com.sap.vocabularies.UI.v1.LineItem#tableView": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled",
+                            "hideFilterBar": true,
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+                                    },
+                                    {
+                                        "key": "tableView1",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                                        "entitySet": "emailNotification"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
+                },
+                "rulesParentObjectPage": {
+                    "type": "Component",
+                    "id": "rulesParentObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/rulesParent",
+                            "controlConfiguration": {
+                                "rulptorul/@com.sap.vocabularies.UI.v1.LineItem#Rules": {
+                                    "tableSettings": {
+                                        "type": "GridTable"
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "visible": true,
+                                    "anchorBarVisible": false
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/rulesParent({key})"
+                },
+                "emailNotificationObjectPage": {
+                    "type": "Component",
+                    "id": "emailNotificationObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/emailNotification",
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": false,
+                                    "visible": true
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/emailNotification({key})"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#rules::rulesParentObjectPage": {
+                        "controllerName": "rules.ext.controller.ObjpageController"
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "elipo3approut"
+    },
+    "undefined": {
+        "position": {
+            "anchor": "DataField::comments",
+            "placement": "After"
+        }
+    }
+}
