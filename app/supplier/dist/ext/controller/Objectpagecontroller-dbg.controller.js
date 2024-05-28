@@ -12,7 +12,20 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			onInit: function () {
 				// you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
 				var oModel = this.base.getExtensionAPI().getModel();
-			},
+			},editFlow:{
+				
+				onBeforeDiscard:async function (oEvent) {
+					debugger
+					let extractedNumber=oEvent.context.sPath
+					let funcname = 'postattach';
+				let oFunction =oEvent.context.getModel().bindContext(`/${funcname}(...)`);
+				console.log();
+				oFunction.setParameter('p',extractedNumber);
+				await oFunction.execute();
+				const oContext = oFunction.getBoundContext();
+				var result = oContext.getValue();
+				}
+		},
 			routing:{
 				onAfterBinding:async function(mParamaters){
 					debugger

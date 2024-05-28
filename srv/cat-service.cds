@@ -1,6 +1,12 @@
 using elipodb as my from '../db/data-model';
 
 service CatalogService {
+       entity invoice_overview as select from my.invoiceCockpit {
+        cast(sum(case when status = 'Draft' then 1 else 0 end) as Decimal(15,2)) as draft,
+        cast(sum(case when status = 'New' then 1 else 0 end) as Decimal(15,2)) as new,
+        cast(sum(case when status = 'Rejected' then 1 else 0 end) as Decimal(15,2)) as Rejected,
+        cast(sum(case when status = 'Approved' then 1 else 0 end) as Decimal(15,2)) as Approved,
+    };
     entity approvalWorkFlow as projection on my.approvalWorkFlow;
     entity supplierFiles as projection on my.supplierFiles;
     entity supplierItems as projection on my.supplierItems;
@@ -44,4 +50,6 @@ service CatalogService {
 
 
          function postattach(p:String) returns String;
+         function deleteDrafts(p:String) returns String;
+
 }

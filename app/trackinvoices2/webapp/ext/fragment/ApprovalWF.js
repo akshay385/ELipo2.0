@@ -6,6 +6,7 @@ sap.ui.define([
     return {
         onPress:async function(oEvent) {
             debugger
+            var baseUrl = oEvent.oSource.getModel().getServiceUrl();
             let oButton = oEvent.getSource();
             if(sap.ui.getCore().byId("popover1"))
             sap.ui.getCore().byId("popover1").destroy();
@@ -17,7 +18,7 @@ sap.ui.define([
             }else{
             var invoiceNo = sap.ui.getCore().byId(oEvent.oSource.oParent.sId).getCells()[0].getText();
             var data;
-            var url = `/odata/v4/catalog/approvalWorkFlow?$filter=(invoiceNo eq '${invoiceNo}')`;
+            var url = baseUrl+`approvalWorkFlow?$filter=(invoiceNo eq '${invoiceNo}')`;
            await $.ajax({url: url,method:"GET", success: function(res) {
                 debugger
                 data = res.value;

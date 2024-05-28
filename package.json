@@ -1,53 +1,53 @@
 {
-    "name": "elipo3",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "<Add your repository here>",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "^7",
-        "@sap/cds-hana": "^2",
-        "@sap/xsenv": "^5.1.0",
-        "@sap/xssec": "^3.6.1",
-        "express": "^4",
-        "passport": "^0.7.0"
+  "name": "elipo3",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/xsenv": "^5.1.0",
+    "@sap/xssec": "^3.6.1",
+    "express": "^4",
+    "passport": "^0.7.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.10",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-elipoapp3": "cds watch --open elipoapp3/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy elipo3 --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-assignrole": "cds watch --open assignrole/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-groups": "cds watch --open groups/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-rules": "cds watch --open rules/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-invoicecockpit": "cds watch --open invoicecockpit/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-trackinvoice": "cds watch --open trackinvoice/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-trackinvoices2": "cds watch --open trackinvoices2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-supplier": "cds watch --open supplier/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "fiori": {
+      "bypass_draft": true
     },
-    "devDependencies": {
-        "@cap-js/sqlite": "^1",
-        "@sap/cds-dk": "^7",
-        "@sap/ux-specification": "^1.120.10",
-        "rimraf": "^3.0.2"
-    },
-    "scripts": {
-        "start": "cds-serve",
-        "watch-elipoapp3": "cds watch --open elipoapp3/webapp/index.html?sap-ui-xx-viewCache=false",
-        "undeploy": "cf undeploy elipo3 --delete-services --delete-service-keys --delete-service-brokers",
-        "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-assignrole": "cds watch --open assignrole/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-groups": "cds watch --open groups/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-rules": "cds watch --open rules/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-invoicecockpit": "cds watch --open invoicecockpit/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-trackinvoice": "cds watch --open trackinvoice/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-trackinvoices2": "cds watch --open trackinvoices2/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-supplier": "cds watch --open supplier/webapp/index.html?sap-ui-xx-viewCache=false"
-    },
-    "cds": {
-        "fiori": {
-            "bypass_draft": true
-        },
-        "requires": {
-            "db": "hana",
-            "auth": "dummy"
-        }
-    },
-    "sapux": [
-        "app/assignrole",
-        "app/groups",
-        "app/rules",
-        "app/invoicecockpit",
-        "app/trackinvoices2",
-        "app/supplier"
-    ]
+    "requires": {
+      "db": "hana",
+      "auth": "dummy"
+    }
+  },
+  "sapux": [
+    "app/assignrole",
+    "app/groups",
+    "app/rules",
+    "app/invoicecockpit",
+    "app/trackinvoices2",
+    "app/supplier"
+  ]
 }

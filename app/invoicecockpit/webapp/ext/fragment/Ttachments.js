@@ -10,6 +10,7 @@ sap.ui.define([
 
     return {
         onAfterItemAdded: function (oEvent) {
+            var baseUrl = oEvent.oSource.getModel().getServiceUrl();
             debugger;
             var item = oEvent.getParameter("item");
             var par_id = window.location.href;
@@ -32,7 +33,7 @@ sap.ui.define([
                 debugger
               
                 var settings = {
-                    url: `/odata/v4/catalog/invoiceCockpit(uuid=${extractedNumber},IsActiveEntity=false)/invtofil`,
+                    url: baseUrl+`invoiceCockpit(uuid=${extractedNumber},IsActiveEntity=false)/invtofil`,
                     method: "POST",
                     headers: {
                         "Content-type": "application/json"
@@ -57,7 +58,7 @@ sap.ui.define([
             _createEntity(item)
                 .then((id) => {
                     debugger
-                    var url = `/odata/v4/catalog/Files(id=${iddd},IsActiveEntity=false)/content`;
+                    var url = baseUrl+`Files(id=${iddd},IsActiveEntity=false)/content`;
                     iddd = null;
                     item.setUploadUrl(url);
                     item.setUrl(url)
@@ -69,6 +70,15 @@ sap.ui.define([
                     console.log(err);
                 });
         },
+        onOpenPressed: function (oEvent) {
+            debugger
+            var baseUrl = oEvent.oSource.getModel().getServiceUrl();
+            
+            let fileurl = baseUrl+oEvent.oSource.mProperties.url.substring(1);
+            // let fileurl = oEvent.oSource.mProperties.url;
+            oEvent.oSource.mProperties.url = fileurl;
+            // oEvent.oSource.setUploadUrl(fileurl)
+        },
 
         onUploadCompleted: function (oEvent) {
             debugger
@@ -77,13 +87,14 @@ sap.ui.define([
             
         },
         afterItemRemoved: function (oEvent) {
+            var baseUrl = oEvent.oSource.getModel().getServiceUrl()
             debugger
             const regex = /^(.*?),IsActiveEntity=/;
 
 let match = oEvent.mParameters.item.mProperties.url.match(regex);
 let urll = match[1]+",IsActiveEntity=false)";
 $.ajax({ 
-    url:urll,
+    url:baseUrl+urll,
     method: "DELETE"
   
 })

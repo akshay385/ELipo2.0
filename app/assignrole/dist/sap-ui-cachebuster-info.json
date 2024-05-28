@@ -1,11 +1,11 @@
 {
-  "Component-dbg.js": 1716355052817,
-  "manifest.json": 1716716622848,
+  "i18n/i18n.properties": 1716355052817,
+  "manifest.json": 1716795159531,
   "ext/controller/ListpageController.controller.js": 1716355052817,
   "Component.js": 1716355052817,
-  "Component-preload.js": 1716716623131,
+  "Component-preload.js": 1716795159826,
   "ext/controller/ListpageController-dbg.controller.js": 1716355052817,
-  "i18n/i18n.properties": 1716355052817,
+  "Component-dbg.js": 1716355052817,
   "css/style.css": 1716355052817,
   "index.html": 1716355052817
 }

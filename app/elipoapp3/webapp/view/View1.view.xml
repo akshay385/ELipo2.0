@@ -12,7 +12,7 @@
           <tnt:NavigationListItem id="_IDGenNavigationListItem2" text="Overview"  icon="sap-icon://customer-view" select="onNavPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem3" text="Master"  icon="sap-icon://master-task-triangle"/>
           <tnt:NavigationListItem id="Groups" text="Groups"  icon="sap-icon://group"/>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem5" enabled="false" text="Rules"  icon="sap-icon://validate">
+          <tnt:NavigationListItem id="_IDGenNavigationListItem5" select="false" text="Rules"  icon="sap-icon://validate">
             <tnt:NavigationListItem id="rules" text="View All Rules / Notification"/>
             <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem7" text="Assignment Rules"/>
             <tnt:NavigationListItem id="_IDGenNavigationListItem8" text="Approved Rules"/>
