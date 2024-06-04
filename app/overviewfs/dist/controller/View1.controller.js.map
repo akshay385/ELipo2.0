@@ -1,0 +1,1 @@
+{"version":3,"file":"View1.controller.js","names":["sap","ui","define","Controller","data","extend","onTilePress","oEvent"],"sources":["View1-dbg.controller.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACV,8BAEA,SAAUC,GACN,aAEA,IAAIC,EAAO,GAEX,OAAOD,EAAWE,OAAO,8BAA+B,CACpDC,YAAa,SAAUC,GACnB,QACJ,GAMR","ignoreList":[]}

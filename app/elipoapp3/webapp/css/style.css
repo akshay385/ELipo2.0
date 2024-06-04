@@ -1,6 +1,153 @@
+
+/* overview css */
+/*   F7F5EB DEF5E5 */
+/*     */
+#container-overviewfs---View1--_IDGenGenericTile1{
+    background:#F8E8EE !important;
+}
+#container-overviewfs---View1--_IDGenGenericTile12{
+    background: beige !important;
+}
+#container-overviewfs---View1--_IDGenGenericTile13{
+    background: #1ebaff29 !important;
+}
+#container-overviewfs---View1--_IDGenGenericTile14{
+    background:honeydew !important;
+}
+#container-overviewfs---View1--_IDGenGenericTile15{
+    background: blanchedalmond !important;
+}
+#container-overviewfs---View1--page-cont{
+    padding-top: 20px !important;
+}
+.sapMHBox{
+    column-gap: 10px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-bottom: 20px !important;
+}
+.sapSuiteIDCChart{
+    width: unset !important;
+    padding-right: unset !important;
+}
+.sapMPanel{
+    border-style: outset !important;
+}
+.sapSuiteIDCLegendSegment:first-child.sapSuiteIDCLegendMarker{
+    border-color:red !important;
+}
+.sapSuiteIDCChart{
+    width: 40% !important;
+}
+.sapSuiteIDC,
+.sapMFlexBoxAlignItemsStart,
+.sapMFlexItem{
+    width: 100% !important;
+}
+.sapSuiteIDCChartSegmentGhostHighlight[data-sap-ui-idc-selection-index="0"]{
+    fill: #FFB84D !important;
+    stroke: #FF8C00 !important;
+}
+
+.sapSuiteIDCChartSegment[data-sap-ui-idc-selection-index="0"] {
+    fill: #FFA500 !important; /* Use !important to override inline styles if necessary */
+    stroke: none !important;
+}
+
+.sapSuiteIDCChartSegmentGhostHighlight[data-sap-ui-idc-selection-index="1"] {
+    fill: #63B8FF !important;
+    stroke: #1C86EE !important;
+}
+.sapSuiteIDCChartSegment[data-sap-ui-idc-selection-index="1"] {
+    fill: #1E90FF !important;
+    stroke: none !important;
+}
+
+.sapSuiteIDCChartSegmentGhostHighlight[data-sap-ui-idc-selection-index="2"]{
+    fill: #FF6347 !important;
+    stroke: #CD3700 !important;
+}
+.sapSuiteIDCChartSegment[data-sap-ui-idc-selection-index="2"] {
+    fill: #FF4500 !important; /* Use !important to override inline styles if necessary */
+    stroke: none !important;
+}
+
+.sapSuiteIDCChartSegmentGhostHighlight[data-sap-ui-idc-selection-index="3"]{
+    fill: #7CFC00 !important;
+    stroke: #228B22 !important;
+}
+.sapSuiteIDCChartSegment[data-sap-ui-idc-selection-index="3"] {
+    fill: #32CD32 !important; /* Use !important to override inline styles if necessary */
+    stroke: none !important;
+}
+
+.sapSuiteIDCChartSegmentGhostHighlight[data-sap-ui-idc-selection-index="4"]{
+    fill: #BA55D3 !important;
+    stroke: #8A2BE2 !important;
+}
+.sapSuiteIDCChartSegment[data-sap-ui-idc-selection-index="4"] {
+    fill: #9400D3 !important; /* Use !important to override inline styles if necessary */
+    stroke: none !important;
+}
+/* overview css */
+
+/* other app colors */
+.sapUiMdcTable ,
+.sapMColumnHeader,
+.sapUiTableRowActionHeaderCell,
+.sapUiTableVSbHeader,
+.sapUiTableRowSelectionHeaderCell,
+.sapUiTableHeaderDataCell{
+    background-color: gainsboro !important;
+}
+
+.sapUiFormCLElement{
+    background-color: whitesmoke !important;
+    border-radius: 10px !important;
+    margin: 1px !important;
+}
+
+.sapUxAPObjectPageFloatingFooter{
+    background-color: gainsboro !important;
+}
+
+.sapUxAPObjectPageLayout .sapUxAPObjectPageFooter .sapUxAPObjectPageFloatingFooter,
+.sapUxAPObjectPageNavigation,
+.sapUxAPAnchorBar,
+.sapFDynamicPageTitle,
+.sapMITH,
+.sapFDynamicPageTitle{
+    background-color:#00b6add4 !important;
+} 
+
+/* other app colors */
+.sapTntNL li, .sapTntNLI
+{
+    background-color: unset !important;
+}
+
 #application-elipo3-display-component---View1--_IDGenToolPage1-aside{
-    z-index: 1;
+    z-index: 1 !important;
 }
 #CreateDialog\:\:assignRole\:\:emailId-inner-inner\:\:placeholder {
     color: #999; /* Placeholder text color */
+}
+.sapTntSideNavigationSeparator{
+    background-color: white;
+}
+.sapTntNLPopover,
+.sapTntNL,
+.sapUiMnu,
+.sapTntNLI{
+    background: inherit;
+    
+}
+
+.sapUiSizeCompact .sapMMenu.sapUiMnu,
+.sapTntSideNavigation{
+    background: #92e4e0a3 !important;
+}
+
+.sapUiSizeCompact .sapMTB{
+    background-color: inherit !important;
 }

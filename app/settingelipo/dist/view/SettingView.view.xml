@@ -1,0 +1,200 @@
+<mvc:View controllerName="settingelipo.controller.SettingView"
+xmlns:unified="sap.ui.unified"
+     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+     <Page id="page" title="Parameters">
+
+        <content >
+            <VBox class="titleVbox">
+                <Title text="Customise Parameters"/>
+            </VBox>
+            <VBox id="contentVbox" class="vboxWithBorder">
+                <items>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO USE SAP AS YOUR ERP BACK END OR ZOHO?" />
+                        <Select selectedKey="{sap_or_zoho}" change="onBackEndSelect" width="180px">
+                            <items>
+                                <core:Item key="SAP" text="SAP" />
+                                <core:Item key="ZOHO" text="ZOHO" />
+                            </items>
+                        </Select>
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="URL TO POST INVOICE" />
+                        <Input editable="false" value="{/Setting(123e4567-e89b-12d3-a456-426614174000)/url_to_post_invoice}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="URL TO FETCH PO DETAIL" />
+                        <Input editable="false" value="{url_to_fetch_po_detail}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="URL TO FETCH PAYMENT STATUS" />
+                        <Input editable="false" value="{url_to_fetch_payment_status}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="LOGIN ID" />
+                        <Input editable="false" value="{login_id}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="LOGIN PASSWORD" />
+                        <Input editable="false" value="{login_password}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE INTEGRATION FOR INVOICE POSTING?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_invoice_posting_integration}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE INTEGRATION FOR PO VALIDATION?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_po_validation_integration}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE PO VALIDATION AGAINST ERP FOR 3-WAY MATCH?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{/Setting(123e4567-e89b-12d3-a456-426614174000)/enable_po_validation_3way_match}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO SEND ATTACHMENTS TO ERP ?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{send_attachments_to_erp}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="WHERE DO YOU WANT TO POST NPO INVOICE?" />
+                        <Select id="post_npo_invoice_to" change="onSelectChangeFun" selectedKey="{post_npo_invoice_to}" width="180px">
+                            <items>
+                                <core:Item key="MIRO" text="MIRO"></core:Item>
+                                <core:Item key="FB60" text="FB60"></core:Item>
+                            </items>
+                        </Select>
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE SUPPLIER ENQUIRIES?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_supplier_enquiries}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE ASSIGNMENT RULES?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_assignment_rules}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE VERSION CONTROL FOR REVISED INVOICES?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_version_control_revised_invoices}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT ENABLE APPROVAL RULES ?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_approval_rules}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="ENABLE MANUAL QC CHECK?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_manual_qc_check}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO SET TOLERANCE LIMIT FOR DEPARTMENTAL BUDGETS VALIDATION?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{set_tolerance_limit_departmental_budgets}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO AUTO SCHEDULE OCR?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{auto_schedule_ocr}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO USE AWS TEXTRAXT OR PAPER-AI AS YOUR OCR?" />
+                        <Select change="onSelectChangeFun" selectedKey="{use_aws_textract_or_paper_ai_for_ocr}" width="180px">
+                            <items>
+                                <core:Item text="OCR 1" key="OCR 1"></core:Item>
+                                <core:Item key="OCR 2" text="OCR 2"></core:Item>
+                            </items>
+                        </Select>
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO PROCESS INVOICE OR PO?" />
+                        <Select change="onSelectChangeFun" selectedKey="{process_invoice_or_po}" width="180px">
+                            <items>
+                                <core:Item key="INVOICE" text="INVOICE"></core:Item>
+                                <core:Item key="PO" text="PO"></core:Item>
+                            </items>
+                        </Select>
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO GET PAYMENT STATUS FROM ERP ?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{get_payment_status_from_erp}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO SYNC MASTER DATA?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{sync_master_data}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="IF INV IS DUE, HOW MANY DAYS PRIOR YOU WANT TO BE NOTIFIED BEFORE DUE DATE?" />
+                        <HBox >
+                            <Select change="onSelectChangeFun" selectedKey="{notification_days_before_due_date}">
+                                <items>
+                                    <core:Item text="1" key="1"></core:Item>
+                                    <core:Item text="2" key="2"></core:Item>
+                                    <core:Item text="3" key="3"></core:Item>
+                                    <core:Item text="4" key="4"></core:Item>
+                                    <core:Item text="5" key="5"></core:Item>
+                                    <core:Item text="6" key="6"></core:Item>
+                                    <core:Item text="7" key="7"></core:Item>
+                                    <core:Item text="8" key="8"></core:Item>
+                                    <core:Item text="9" key="9"></core:Item>
+                                    <core:Item text="10" key="10"></core:Item>
+
+                                </items>
+                            </Select>
+                            <Select >
+                                <items>
+                                    <core:Item text="Days"></core:Item>
+
+                                </items>
+                            </Select>
+                        </HBox>
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO AUTO TRIGGER APPROVAL FLOW IF THE INCOMING INVOICE IS ERROR FREE?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{auto_trigger_approval_if_error_free}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT TO ENABLE ACCURACY PARAMETERS ?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_accuracy_parameters}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="DO YOU WANT ENABLE USER ACTIVITY TRACKING ?" />
+                        <Switch customTextOn="Yes" customTextOff="No" state="{enable_user_activity_tracking}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="SELECT COUNTRY" />
+                        <Select change="onSelectChangeFun" selectedKey="{select_country}" width="180px">
+                            <items>
+                                <core:Item text="India" key="India"></core:Item>
+                                <core:Item text="Kuwait" key="Kuwait"></core:Item>
+                                <core:Item text="Saudi" key="Saudi"></core:Item>
+                                <core:Item text="UAE" key="UAE"></core:Item>
+                                <core:Item text="USA" key="USA"></core:Item>
+
+                            </items>
+                        </Select>
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="SET NOTIFICATION EMAIL ID" />
+                        <Input value="{set_notification_email_id}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="ENTER COMPANY GSTIN" />
+                        <Input value="{enter_company_gstin}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="SET OCR CENTRALIZED EMAIL ID" />
+                        <Input value="{set_ocr_centralized_email_id}" />
+                    </HBox>
+                    <HBox class="labelInputContainer">
+                        <Text text="UPLOAD COMPANY LOGO" />
+                        <HBox >
+                            <Input editable="false" textAlign="Center" value="{= ${filename} ? ${filename} : 'No file' }" />
+                            <unified:FileUploader id="fileupload1" maximumFileSize="1.00" buttonOnly="true" fileType= "png,jpeg" fileSizeExceed="onFileSizeExceeded" multiple="false" useMultipart="false" httpRequestMethod='Put' sendXHR= 'true' uploadComplete="handleUploadComplete" change="changefile" />
+                        </HBox>
+                    </HBox>
+                </items>
+            </VBox>
+
+
+        </content>
+    </Page>
+</mvc:View>

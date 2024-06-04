@@ -78,3 +78,14 @@ server:
             src: ../trackinvoices2/webapp
           - path: /resources/trackinvoices2
             src: ../trackinvoices2/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: overviewfs
+        paths:
+          - path: /resources/overviewfs
+            src: ../overviewfs/webapp
+          - path: /resources/overviewfs
+            src: ../overviewfs/webapp            
+         
+           

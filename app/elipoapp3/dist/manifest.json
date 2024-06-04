@@ -56,7 +56,7 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": true,
+        "flexEnabled": false,
         "dependencies": {
             "minUI5Version": "1.123.1",
             "libs": {
@@ -87,10 +87,17 @@
                 },
                 "trackinvoices2": {
                     "lazy": false
+                },
+                "overviewfs": {
+                    "lazy": false
                 }
             }
         },
         "componentUsages": {
+            "overviewFS": {
+                "name": "overviewfs",
+                "settings": {}
+            },
             "assignRole": {
                 "name": "assignrole",
                 "settings": {}
@@ -153,7 +160,7 @@
                 "viewPath": "elipoapp3.view",
                 "controlAggregation": "pages",
                 "controlId": "app",
-                "clearControlAggregation": false
+                "clearControlAggregation": true
             },
             "routes": [
                 {
@@ -168,7 +175,7 @@
                 "TargetView1": {
                     "viewType": "XML",
                     "transition": "slide",
-                    "clearControlAggregation": false,
+                    "clearControlAggregation": true,
                     "viewId": "View1",
                     "viewName": "View1"
                 }

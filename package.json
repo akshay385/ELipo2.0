@@ -11,7 +11,9 @@
     "@sap/xsenv": "^5.1.0",
     "@sap/xssec": "^3.6.1",
     "express": "^4",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "stream": "^0.0.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
@@ -31,7 +33,12 @@
     "watch-invoicecockpit": "cds watch --open invoicecockpit/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-trackinvoice": "cds watch --open trackinvoice/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-trackinvoices2": "cds watch --open trackinvoices2/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-supplier": "cds watch --open supplier/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-supplier": "cds watch --open supplier/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-masterelipo": "cds watch --open masterelipo/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-settingelipo": "cds watch --open settingelipo/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-overviewelipo": "cds watch --open overviewelipo/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-overviewfs": "cds watch --open overviewfs/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-elipo4": "cds watch --open elipo4/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "fiori": {
@@ -48,6 +55,11 @@
     "app/rules",
     "app/invoicecockpit",
     "app/trackinvoices2",
-    "app/supplier"
+    "app/supplier",
+    "app/masterelipo",
+    "app/settingelipo",
+    "app/overviewelipo",
+    "app/overviewfs",
+    "app/elipo4"
   ]
 }

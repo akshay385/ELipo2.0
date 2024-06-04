@@ -94,6 +94,26 @@ modules:
       - supplier.zip
       name: supplier
       target-path: resources/
+    - artifacts:
+      - masterelipo.zip
+      name: masterelipo
+      target-path: resources/
+    - artifacts:
+      - settingelipo.zip
+      name: settingelipo
+      target-path: resources/
+    - artifacts:
+      - overviewelipo.zip
+      name: overviewelipo
+      target-path: resources/
+    - artifacts:
+      - overviewfs.zip
+      name: overviewfs
+      target-path: resources/
+    - artifacts:
+      - elipo4.zip
+      name: elipo4
+      target-path: resources/
 - name: elipoapp3
   type: html5
   path: app/elipoapp3
@@ -157,6 +177,56 @@ modules:
 - name: supplier
   type: html5
   path: app/supplier
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: masterelipo
+  type: html5
+  path: app/masterelipo
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: settingelipo
+  type: html5
+  path: app/settingelipo
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: overviewelipo
+  type: html5
+  path: app/overviewelipo
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: overviewfs
+  type: html5
+  path: app/overviewfs
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: elipo4
+  type: html5
+  path: app/elipo4
   build-parameters:
     build-result: dist
     builder: custom

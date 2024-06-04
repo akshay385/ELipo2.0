@@ -1,0 +1,26 @@
+/* Enter your custom styles here */
+.inputClass *{
+    background: white !important;
+}
+
+.deleteIcon{
+    padding-top: 8px !important;
+}
+
+.lastColumn {
+    align-items: end !important;
+    justify-content: end !important;
+    padding-right: 50px !important;
+}
+
+/* .selectedColumnList *{
+    background: #a8d5ea !important;
+} */
+
+.selectedColumnList {
+    background-color: #e0f7fa !important;  /* Light cyan background */
+    color: #004d40 !important;             /* Dark teal text */
+    border-left: 4px solid #004d40;        /* Dark teal left border */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}

@@ -8,12 +8,12 @@ sap.ui.define([
         "use strict";
 
         return Controller.extend("elipoapp3.controller.View1", {
-            onInit: async function () {
+            onInit: function () {
                 debugger
             },
-            onAfterRendering: async function () {
+            onAfterRendering: function () {
                 debugger
-                this.byId("sidnav").setExpanded(false);
+                // this.byId("sidnav").setExpanded(false);ccccccccccccccc
 
                 // if( this.byId("invoiceCockpit").getComponent())
                 // this.byId("invoiceCockpit").getComponentInstance().destroy();
@@ -45,6 +45,8 @@ sap.ui.define([
                 let sideKey = oEvent.oSource.getSelectedKey();
                 let regex = /--([^-\s]+)$/;
                 let match = sideKey.match(regex);
+                if(match[1]=='_IDGenNavigationListItem2')
+                match[1]='overviewFS'
                 let extractedString = match ? match[1] : null;
                 if(extractedString != "collapseexpand"){
                 if (this.byId("invoiceCockpit").getComponentInstance())

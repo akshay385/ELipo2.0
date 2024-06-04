@@ -1,0 +1,49 @@
+<mvc:View xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core" controllerName="masterelipo.controller.MasterView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content >
+
+            <Table id="myTable" class="myTable" items="{/Company_code}">
+                <headerToolbar>
+                    <OverflowToolbar >
+                        <ToolbarSpacer />
+                          <core:Icon tooltip="Import new entries" class="buttoncss" src ="sap-icon://upload" press="onPress" />
+                        <core:Icon src="sap-icon://excel-attachment" press="onExcelExport"></core:Icon>
+                        <Select id="selectitems" selectedKey="Company_code" items="{/MasterSearchHelp}" change="onSelectChange">
+                            <items>
+                                <core:Item key="{masterkey}" text="{mastervalue}"></core:Item>
+                            </items>
+                            
+                        </Select>
+                        
+                        
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column styleClass="inputClass" hAlign="Center">
+                        <Text text="Code"/>
+                    </Column>
+                    <Column styleClass="inputClass">
+                        <Text text="Description"/>
+                    </Column>
+                    <Column styleClass="inputClass">
+                        <Text text="Tax Treatment"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Input textAlign="Center" value="{code}" editable="false" />
+                            <Input value="{description}" editable="false" />
+                            <Input value="{tax_treatment}" editable="false" />
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>

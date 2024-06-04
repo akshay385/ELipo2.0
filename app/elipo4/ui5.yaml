@@ -1,0 +1,89 @@
+specVersion: "2.5"
+metadata:
+  name: elipo4
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: firoritofiorifreestyle
+        ui5Theme: sap_horizon
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: assignrole
+        paths:
+          - path: /resources/assignrole
+            src: ../assignrole/webapp
+          - path: /resources/assignrole
+            src: ../assignrole/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: groups
+        paths:
+          - path: /resources/groups
+            src: ../groups/webapp
+          - path: /resources/groups
+            src: ../groups/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: invoicecockpit
+        paths:
+          - path: /resources/invoicecockpit
+            src: ../invoicecockpit/webapp
+          - path: /resources/invoicecockpit
+            src: ../invoicecockpit/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: rules
+        paths:
+          - path: /resources/rules
+            src: ../rules/webapp
+          - path: /resources/rules
+            src: ../rules/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: 
+        paths:
+          - path: /resources/supplier
+            src: ../supplier/webapp
+          - path: /resources/supplier
+            src: ../supplier/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: trackinvoices2
+        paths:
+          - path: /resources/trackinvoices2
+            src: ../trackinvoices2/webapp
+          - path: /resources/trackinvoices2
+            src: ../trackinvoices2/webapp
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: overviewfs
+        paths:
+          - path: /resources/overviewfs
+            src: ../overviewfs/webapp
+          - path: /resources/overviewfs
+            src: ../overviewfs/webapp            
