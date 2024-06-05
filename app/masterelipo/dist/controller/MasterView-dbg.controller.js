@@ -18,6 +18,7 @@ sap.ui.define([
                 setTimeout(() => {
                     // Get the Select control by its ID
                     var oSelect = this.byId("selectitems");
+                    debugger
 
                     // Ensure the Select control and its items are available
                     if (oSelect && oSelect.getItems().length > 0) {
@@ -32,9 +33,9 @@ sap.ui.define([
                             selectedItem: oFirstItem
                         });
                     }
-                }, 300);
+                }, 1000);
             },
-            onPress: function () {
+            onExcelImport: function () {
                 debugger
                 oBaseUri = this.getOwnerComponent().getManifestObject()._oBaseUri._string
                 if (!this.oDefaultDialog) {
@@ -78,7 +79,7 @@ sap.ui.define([
                                 } else {
                                     new sap.m.MessageToast.show("File uploaded successfully");
                                     // oExtensionAPI.refresh()
-                                    this.oParent.oParent.mAggregations.content[0].mAggregations.content[0].mBindingInfos.items.binding.refresh()
+                                    this.getParent().getParent().byId("myTable").mBindingInfos.items.binding.refresh()
                                     // this.byId("myTable").refresh()
                                     oUploadDialog && oUploadDialog.close()
                                 }
@@ -138,29 +139,12 @@ sap.ui.define([
             onSelectChange: async function (oEvent) {
                 debugger;
                 var myTable = this.byId("myTable")
-                oBaseUri = this.getOwnerComponent().getManifestObject()._oBaseUri._string
                 var seriveName = oEvent.getSource().getSelectedKey();
                 var oFunc = this.getView().getModel().bindContext("/getDynamicCol(...)");
-                oFunc.setParameter("sName", `${seriveName}`);
+                oFunc.setParameter("sName", seriveName);
                 await oFunc.execute()
                 var result = oFunc.getBoundContext().getValue().value;
-                // var result
-
-
-                // var settings = {
-                //     // "url": `/odata/v4/catalog/getDynamicCol(sName='${seriveName}')`,
-                //     "url": `/odata/v4/catalog/getDynamicCol(sName='${seriveName}')`,
-                //     "method": "GET",
-                // };
-
-                // await $.ajax(settings).done(function (response) {
-                //     console.log(response);
-                //     result = response.value
-                // });
-
                 result = JSON.parse(result);
-
-
 
                 //
                 myTable.destroyColumns()
@@ -181,6 +165,7 @@ sap.ui.define([
                 for (let i = 0; i < result.length; i++) {
                     debugger
                     myTable.addColumn(new sap.m.Column({
+                        styleClass: 'columnStyleClass',
                         hAlign: "Center",
                         header: new sap.m.Text({ text: `${formatCompanyCode(result[i])}` })
                     }));
@@ -224,7 +209,7 @@ sap.ui.define([
                                         }
                                     }),
                                     new sap.ui.core.Icon({
-                                        src: "sap-icon://delete", press: function (oEvent) {
+                                        src: "sap-icon://delete", color: "red", press: function (oEvent) {
                                             debugger
                                             var oSelectedItem = oEvent.getSource().getParent().getParent();
                                             var selectedContext = oSelectedItem.getBindingContext();

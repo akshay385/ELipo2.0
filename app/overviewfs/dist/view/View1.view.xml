@@ -39,7 +39,7 @@
 	</GenericTile>
 
 
-<GenericTile id="_IDGenGenericTile16" header="My Tasks" frameType="TwoByOne" subheader="Check My Tasks" backgroundImage="./image/cactus-plant-paper-clips-eyeglasses-spiral-notepad-near-laptop_23-2148178673.avif">
+<GenericTile id="_IDGenGenericTile16" header="My Tasks" frameType="TwoByOne" subheader="Check My Tasks" >
 	<layoutData>
 					<f:GridContainerItemLayoutData id="_IDGenGridContainerItemLayoutData16" minRows="2" columns="4" />
 				</layoutData>

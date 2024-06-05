@@ -90,6 +90,12 @@
         },
         "overviewfs": {
           "lazy": false
+        },
+        "masterelipo": {
+          "lazy": false
+        },
+        "settingelipo": {
+          "lazy": false
         }
       }
     },
@@ -121,6 +127,14 @@
       },
       "trackInvoices2": {
         "name": "trackinvoices2",
+        "settings": {}
+      },
+      "masterElipo": {
+        "name": "masterelipo",
+        "settings": {}
+      },
+      "settingElipo": {
+        "name": "settingelipo",
         "settings": {}
       }
     },

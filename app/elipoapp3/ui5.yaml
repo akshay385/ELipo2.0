@@ -86,6 +86,24 @@ server:
           - path: /resources/overviewfs
             src: ../overviewfs/webapp
           - path: /resources/overviewfs
-            src: ../overviewfs/webapp            
+            src: ../overviewfs/webapp 
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: settingelipo
+        paths:
+          - path: /resources/settingelipo
+            src: ../settingelipo/webapp
+          - path: /resources/settingelipo
+            src: ../settingelipo/webapp   
+    - name: fiori-tools-servestatic
+      afterMiddleware:  compression
+      configuration:
+        component: masterelipo
+        paths:
+          - path: /resources/masterelipo
+            src: ../masterelipo/webapp
+          - path: /resources/masterelipo
+            src: ../masterelipo/webapp                                  
          
            

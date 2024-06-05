@@ -2,24 +2,30 @@
 /* overview css */
 /*   F7F5EB DEF5E5 */
 /*     */
-#container-overviewfs---View1--_IDGenGenericTile1{
+*[id*="_IDGenGenericTile1"][role="button"]{
     background:#F8E8EE !important;
 }
-#container-overviewfs---View1--_IDGenGenericTile12{
+*[id*="_IDGenGenericTile12"][role="presentation"]{
     background: beige !important;
 }
-#container-overviewfs---View1--_IDGenGenericTile13{
+*[id*="_IDGenGenericTile13"][role="presentation"]{
     background: #1ebaff29 !important;
 }
-#container-overviewfs---View1--_IDGenGenericTile14{
+*[id*="_IDGenGenericTile14"][role="presentation"]{
     background:honeydew !important;
 }
-#container-overviewfs---View1--_IDGenGenericTile15{
+*[id*="_IDGenGenericTile15"][role="presentation"]{
     background: blanchedalmond !important;
 }
-#container-overviewfs---View1--page-cont{
+*[id*="_IDGenHBox2"]{
     padding-top: 20px !important;
 }
+*[id*="_IDGenGenericTile16"][role="presentation"]{
+    background-image: url("../image/cactus-plant-paper-clips-eyeglasses-spiral-notepad-near-laptop_23-2148178673.png") !important;
+    background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
 .sapMHBox{
     column-gap: 10px !important;
     padding-left: 20px !important;
@@ -98,7 +104,7 @@
 .sapUiTableVSbHeader,
 .sapUiTableRowSelectionHeaderCell,
 .sapUiTableHeaderDataCell{
-    background-color: gainsboro !important;
+    background-color: #d3d3d3   !important;
 }
 
 .sapUiFormCLElement{
@@ -108,16 +114,17 @@
 }
 
 .sapUxAPObjectPageFloatingFooter{
-    background-color: gainsboro !important;
+    background-color: #d3d3d3   !important;
 }
 
+.sapMBarTitleAlignAuto .sapMBarPH,
 .sapUxAPObjectPageLayout .sapUxAPObjectPageFooter .sapUxAPObjectPageFloatingFooter,
 .sapUxAPObjectPageNavigation,
 .sapUxAPAnchorBar,
 .sapFDynamicPageTitle,
 .sapMITH,
 .sapFDynamicPageTitle{
-    background-color:#00b6add4 !important;
+    background-color:#bae8e8 !important;
 } 
 
 /* other app colors */
@@ -133,7 +140,7 @@
     color: #999; /* Placeholder text color */
 }
 .sapTntSideNavigationSeparator{
-    background-color: white;
+    background-color: white !important;
 }
 .sapTntNLPopover,
 .sapTntNL,
@@ -145,7 +152,7 @@
 
 .sapUiSizeCompact .sapMMenu.sapUiMnu,
 .sapTntSideNavigation{
-    background: #92e4e0a3 !important;
+    background: #e3f6f5 !important;
 }
 
 .sapUiSizeCompact .sapMTB{

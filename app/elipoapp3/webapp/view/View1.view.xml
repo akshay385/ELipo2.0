@@ -10,7 +10,7 @@
         <tnt:NavigationList id="_IDGenNavigationList1" selectedItem="_IDGenNavigationListItem2" >
           <tnt:NavigationListItem id="collapseexpand" icon="sap-icon://expand" select="onCollapseExpandPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem2" text="Overview"  icon="sap-icon://customer-view" select="onNavPress"/>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem3" text="Master"  icon="sap-icon://master-task-triangle"/>
+          <tnt:NavigationListItem id="masterElipo" text="Master"  icon="sap-icon://master-task-triangle"/>
           <tnt:NavigationListItem id="Groups" text="Groups"  icon="sap-icon://group"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem5" select="false" text="Rules"  icon="sap-icon://validate">
             <tnt:NavigationListItem id="rules" text="View All Rules / Notification"/>
@@ -18,7 +18,7 @@
             <tnt:NavigationListItem id="_IDGenNavigationListItem8" text="Approved Rules"/>
             <tnt:NavigationListItem id="_IDGenNavigationListItem9" text="Notification Rules"/> -->
           </tnt:NavigationListItem>
-          <tnt:NavigationListItem id="_IDGenNavigationListItem10" select="false" text="Invoice" icon="sap-icon://receipt">
+          <tnt:NavigationListItem id="_IDGenNavigationListItem10"  select="false" text="Invoice" icon="sap-icon://receipt">
             <tnt:NavigationListItem id="_IDGenNavigationListItem11" text="Email"/>
             <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem12" text="Create Invoice"/> -->
             <tnt:NavigationListItem id="invoicecockpit" text="Invoice Cockpit"/>
@@ -39,9 +39,9 @@
         <tnt:fixedItem >
          <tnt:NavigationList id="_IDGenNavigationList2">
          <tnt:NavigationListItem id="assignRole" text="Assign Role" icon="sap-icon://role"/>
-         <tnt:NavigationListItem id="_IDGenNavigationListItem23" text="Setting" icon="sap-icon://settings">
-         <tnt:NavigationListItem id="_IDGenNavigationListItem24" text="Parameters" />
-         <tnt:NavigationListItem id="_IDGenNavigationListItem25" text="OCR Keyword" />
+         <tnt:NavigationListItem id="settingElipo" text="Setting" icon="sap-icon://settings">
+         <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem24" text="Parameters" />
+         <tnt:NavigationListItem id="_IDGenNavigationListItem25" text="OCR Keyword" /> -->
          </tnt:NavigationListItem>
         
       </tnt:NavigationList>

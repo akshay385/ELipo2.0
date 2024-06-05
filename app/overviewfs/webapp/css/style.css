@@ -6,8 +6,8 @@
 #container-overviewfs---View1--_IDGenGenericTile12{
     background: beige;
 }
-#container-overviewfs---View1--_IDGenGenericTile13{
-    background: #1ebaff29;
+*[id*="_IDGenGenericTile13"][role="presentation"]{
+    background: #1ebaff29 !important;
 }
 #container-overviewfs---View1--_IDGenGenericTile14{
     background:honeydew ;
@@ -87,3 +87,5 @@
     fill: #9400D3 !important; /* Use !important to override inline styles if necessary */
     stroke: none;
 }
+
+

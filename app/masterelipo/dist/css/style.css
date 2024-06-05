@@ -1,26 +1,68 @@
 /* Enter your custom styles here */
-.inputClass *{
+.inputClass * {
     background: white !important;
-}
-
-.deleteIcon{
+  }
+  
+  .deleteIcon {
     padding-top: 8px !important;
-}
-
-.lastColumn {
+  }
+  
+  .lastColumn {
+    width: 200px !important;
     align-items: end !important;
     justify-content: end !important;
-    padding-right: 50px !important;
-}
-
-/* .selectedColumnList *{
-    background: #a8d5ea !important;
-} */
-
-.selectedColumnList {
-    background-color: #e0f7fa !important;  /* Light cyan background */
-    color: #004d40 !important;             /* Dark teal text */
-    border-left: 4px solid #004d40;        /* Dark teal left border */
+    /* padding-right: 50px !important; */
+  }
+  
+  /* .selectedColumnList *{
+      background: #a8d5ea !important;
+  } */
+  
+  .selectedColumnList {
+    background-color: #6dcdb1 !important; /* Light cyan background */
+    color: #004d40 !important; /* Dark teal text */
+    border-left: 4px solid #004d40; /* Dark teal left border */
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
     transition: background-color 0.3s, color 0.3s; /* Smooth transition */
-}
+  }
+  
+  .columnStyleClass {
+    width: 200px !important;
+  }
+  
+  .myTable {
+    border-collapse: collapse !important;
+    margin: 2% 1% 1% 1%;
+    font-size: 0.9em;
+    width: unset !important;
+    min-width: 400px !important;
+    max-height: 70vh;
+    overflow: scroll;
+    scrollbar-width: thin;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .myTable .sapMTableTHead * {
+    /* background-color: #009879;
+    color: #ffffff; */
+    font-size: medium;
+    font-weight: 900 !important;
+  }
+  
+  .headerTitle {
+    padding-left: 4%;
+    padding-top: 3%;
+    font-weight: 900;
+    font-size: 40px;
+    color: #333;
+    text-align: left;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .headerVboxClass, 
+  *[id*="overflowJ"] {
+    /* background-color: white !important; */
+    background-color: #bae8e8 !important;
+  }
+  
