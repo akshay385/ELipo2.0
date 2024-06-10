@@ -1,12 +1,12 @@
 {
-  "ext/fragment/Rulestoggle.fragment.xml": 1716355052821,
-  "ext/controller/ObjpageController.controller.js": 1716355052821,
-  "manifest.json": 1717568201318,
-  "Component.js": 1716355052821,
-  "Component-preload.js": 1717568201691,
-  "Component-dbg.js": 1716355052821,
   "ext/controller/ObjpageController-dbg.controller.js": 1716355052821,
+  "manifest.json": 1717837806660,
+  "ext/controller/ObjpageController.controller.js": 1716355052821,
+  "Component.js": 1716355052821,
+  "Component-preload.js": 1717837806949,
+  "Component-dbg.js": 1716355052821,
   "i18n/i18n.properties": 1716795114430,
+  "ext/fragment/Rulestoggle.fragment.xml": 1716355052821,
   "css/style.css": 1716355052821,
   "index.html": 1716355052821
 }

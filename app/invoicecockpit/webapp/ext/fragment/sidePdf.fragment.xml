@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" >
+	 <PDFViewer
+            title="Invoice"
+            isTrustedSource="true"
+            id="pdfViewer"
+            source="{content}"
+            width="122%"
+            height="400px" />
+</core:FragmentDefinition>

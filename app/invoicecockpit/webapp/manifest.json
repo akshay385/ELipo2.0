@@ -210,6 +210,14 @@
                 },
                 "body": {
                   "sections": {
+                    "GeneratedFacet1": {
+                      "sideContent": {
+                        "template": "invoicecockpit.ext.fragment.sidePdf",
+                        "title": "custPdf",
+                        "type": "XMLFragment"
+                      },
+                      "type": "XMLFragment"
+                    },
                     "Ttachments": {
                       "template": "invoicecockpit.ext.fragment.Ttachments",
                       "position": {
@@ -218,6 +226,20 @@
                       },
                       "title": "Attachments",
                       "type": "XMLFragment"
+                    }
+                  }
+                },
+                "header": {
+                  "actions": {
+                    "hideshow": {
+                      "press": "invoicecockpit.ext.controller.Showhide.show",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Show / Hide",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "EditAction"
+                      }
                     }
                   }
                 }

@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^3.15.0",
+    "@sap-cloud-sdk/http-client": "^3.15.0",
     "@sap/cds": "^7",
     "@sap/cds-hana": "^2",
     "@sap/xsenv": "^5.1.0",
@@ -38,7 +40,14 @@
     "watch-settingelipo": "cds watch --open settingelipo/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-overviewelipo": "cds watch --open overviewelipo/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-overviewfs": "cds watch --open overviewfs/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-elipo4": "cds watch --open elipo4/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-elipo4": "cds watch --open elipo4/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-invoicesummaryreport": "cds watch --open invoicesummaryreport/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-chart": "cds watch --open chart/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-agingreport": "cds watch --open agingreport/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-aging": "cds watch --open aging/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-keyprocessanalytics": "cds watch --open keyprocessanalytics/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-productivityreport": "cds watch --open productivityreport/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-liabilityreportlist": "cds watch --open liabilityreportlist/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "fiori": {
@@ -46,7 +55,20 @@
     },
     "requires": {
       "db": "hana",
-      "auth": "dummy"
+      "auth": "dummy",
+      "destinations": true,
+      "DocInfoExt_dest": {
+        "kind": "odata-v2",
+        "csrf": true,
+        "csrfInBatch": true,
+        "credentials": {
+          "destination": "DocInfoExt"
+        },
+        "destinationOptions": {
+          "selectionStrategy": "alwaysProvider",
+          "jwt": null
+        }
+      }
     }
   },
   "sapux": [
@@ -60,6 +82,13 @@
     "app/settingelipo",
     "app/overviewelipo",
     "app/overviewfs",
-    "app/elipo4"
+    "app/elipo4",
+    "app/invoicesummaryreport",
+    "app/chart",
+    "app/agingreport",
+    "app/aging",
+    "app/keyprocessanalytics",
+    "app/productivityreport",
+    "app/liabilityreportlist"
   ]
 }

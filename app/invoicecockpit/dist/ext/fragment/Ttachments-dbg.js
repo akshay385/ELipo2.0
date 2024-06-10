@@ -7,6 +7,7 @@ sap.ui.define([
     var iddd;
     var that = this;
     var extractedNumber;
+    var extractedNumber2;
 
     return {
         onAfterItemAdded: function (oEvent) {
@@ -22,6 +23,7 @@ sap.ui.define([
             } else {
                 console.log("Number not found in URL");
             }
+            
 
             var _createEntity = async function (item) {
                 var data = {

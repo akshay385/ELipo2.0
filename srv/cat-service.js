@@ -2,8 +2,12 @@
 const { PassThrough } = require('stream');
 const XLSX = require('xlsx');
 const cds = require('@sap/cds');
+const FormData = require('form-data');
 
 module.exports = async function (params) {
+    let DocInfoExt_dest = await cds.connect.to("DocInfoExt_dest");
+    // let test =await DocInfoExt_dest.get("/document/jobs");
+    // console.log(test);  
     function reverseFormatCompanyCode(formattedCompanyCode) {
         // Replace spaces with underscores
         var originalCompanyCode = formattedCompanyCode.replace(/ /g, '_');
@@ -71,8 +75,24 @@ module.exports = async function (params) {
         console.log("ddddddddd");
         return req;
     });
-    this.on('postattach', async (req) => {
+    this.on('extract', async (req) => {
         debugger
+        // let innn = await SELECT.from(supplier);
+        let content =await SELECT`CONTENT`.from('CatalogService_invoiceCockpit_drafts').where`UUID = ${req.data.p}`;
+       
+        let options={clientId:"default",documentType:"invoice",schemaId:"32f35cd4-0571-47de-9815-82de84d98015",templateId:"ebbccbfc-e020-4ae4-bd39-6f9d5e7212d1"};
+        let option=JSON.stringify(options);
+        let form = new FormData();
+    form.append('options', option);
+    form.append('file',  content[0].CONTENT, {
+        filename: `${req.data.p}.pdf`, // Specify the filename
+        contentType: 'application/pdf' // Specify the content type
+    });
+    let test =await DocInfoExt_dest.post("/document/jobs",form);
+        console.log(option);
+    });
+    this.on('postattach', async (req) => {
+        // debugger
         // let regex = "/uuid=([0-9a-fA-F-]+)/";
         let match = req.data.p.match(/uuid=([0-9a-fA-F-]+)/);
         await DELETE.from('CATALOGSERVICE_SUPPLIERFILES_DRAFTS').where`FKEY = ${match[1]}`;

@@ -98,6 +98,16 @@
 /* overview css */
 
 /* other app colors */
+*[id*="overflowJ"] {
+    /* background-color: white !important; */
+    background-color: #bae8e8 !important;
+  }
+
+.sapMDialog{
+    background-color: white !important;
+}
+
+.sapUiSizeCompact .sapMListTblCell.sapMListTblHeaderCell,
 .sapUiMdcTable ,
 .sapMColumnHeader,
 .sapUiTableRowActionHeaderCell,

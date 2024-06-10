@@ -11,9 +11,17 @@ sap.ui.define([
             onInit: function () {
                 debugger
             },
-            onAfterRendering: function () {
+            onAfterRendering: async function () {
                 debugger
-                // this.byId("sidnav").setExpanded(false);ccccccccccccccc
+                this.byId("sidnav").setExpanded(false);
+                if (this.byId("invoiceCockpit").getComponentInstance())//test
+                this.byId("invoiceCockpit").getComponentInstance().destroy();//test
+                var ocustomerDetailContainer = await this.getOwnerComponent().createComponent({//test
+                    usage: "overviewFS", async: true, manifest: true//test
+                });//test
+
+                await this.byId("invoiceCockpit").setComponent(ocustomerDetailContainer);//test
+
 
                 // if( this.byId("invoiceCockpit").getComponent())
                 // this.byId("invoiceCockpit").getComponentInstance().destroy();

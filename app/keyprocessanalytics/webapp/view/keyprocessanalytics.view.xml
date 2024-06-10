@@ -1,0 +1,158 @@
+<mvc:View xmlns:feeds="sap.viz.ui5.controls.common.feeds" xmlns:layout="sap.ui.layout" controllerName="keyprocessanalytics.controller.keyprocessanalytics"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+         xmlns:data="sap.viz.ui5.data"
+    xmlns:controls="sap.viz.ui5.controls"
+    xmlns:smartchart="sap.ui.comp.smartchart"
+    xmlns:tnt="sap.tnt"
+    xmlns:microchart="sap.suite.ui.microchart"
+    xmlns="sap.m">
+    <Page id="page" >
+
+    <tnt:ToolHeader id="tool" class="toolhead">
+    <Button icon="sap-icon://menu2" id="b1" type="Transparent" tooltip="Menu">
+    <layoutData>
+    <OverflowToolbarLayoutData priority="NeverOverflow" id="toolbar"></OverflowToolbarLayoutData>
+    </layoutData>
+    </Button>
+    <Image src="./img/logo.png" id="img" decorative="false" press="onLogoPressed" tooltip="SAP Logo"></Image>
+    <Title text="Key Process Analytics Report" id="t" wrapping="false"></Title>
+    </tnt:ToolHeader>
+
+    
+    <layout:BlockLayout id="block1" background="Dashboard" visible="true">
+        <layout:content>
+            <layout:BlockLayoutRow id="row1">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cel1">
+                        <layout:content>
+                        <Text id="t1" text="Total Accounts Payable"></Text>
+                          <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="donut1" displayedSegments="3">
+                            <microchart:segments>
+                            <!-- <microchart:InteractiveDonutChartSegment label="Processed" id="seg1" binding="{/}" color="Good" value="{}" displayedValue="Rs.265325019M" /> -->
+                                <microchart:InteractiveDonutChartSegment label="Processed" id="seg1" color="Good" value="769.35" displayedValue="Rs.265325019M" />
+                                <microchart:InteractiveDonutChartSegment label="Current payable" id="seg2" color="Error" value="2.80" displayedValue="2.80M" />
+                                <microchart:InteractiveDonutChartSegment label="Overdue" id="seg3" color="Good" value="562.78" displayedValue="562.78M" />
+                            </microchart:segments>
+                        </microchart:InteractiveDonutChart>
+                        </layout:content>  
+                    </layout:BlockLayoutCell>
+                    <layout:BlockLayoutCell id="cel2">
+                        <layout:content>
+                        <Text id="t2" text="Total Liabilities"></Text>
+                         <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="donut2" displayedSegments="3">
+                            <microchart:segments>
+                                <microchart:InteractiveDonutChartSegment label="Current Liabilities" id="seg5" color="Error" value="2.80" displayedValue="2.80M" />
+                                <microchart:InteractiveDonutChartSegment label="Overdue" id="seg6" color="Good" value="562.78" displayedValue="562.78M" />
+                            </microchart:segments>
+                        </microchart:InteractiveDonutChart>
+                        </layout:content>  
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:content>
+    
+    </layout:BlockLayout>
+    <layout:BlockLayout id="block2" background="Dashboard" visible="true">
+        <layout:content>
+            <layout:BlockLayoutRow id="row2">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cel3">
+                        <layout:content>
+                        <Text id="t3" text="Total Accounts Payable"></Text>
+                        <controls:VizFrame width="80%" id="barchart" vizProperties="{plotArea: { drawingEffect: 'glossy'}, title:{ text:'Data analysis through Reports'},dataLabel:{visible:false,showTotal:true}}">
+                        <controls:layoutData>
+                        <FlexItemData growFactor="1" id="flex"/>
+                        </controls:layoutData>
+                        <controls:dataset>
+                         <data:FlattenedDataset data="{/key_process}" id="fd">
+                    <data:dimensions>
+                        <data:DimensionDefinition  name="YourDimension1" value="{dimension}" id="dim1"></data:DimensionDefinition>
+                    </data:dimensions>
+                    <data:measures>
+                        <data:MeasureDefinition range="10" name="Process" value="{measure}" id="ms1"></data:MeasureDefinition>
+                    </data:measures>
+                    <data:measures>
+                        <data:MeasureDefinition  name="Inprocess" value="{measure1}" id="ms2"></data:MeasureDefinition>
+                    </data:measures>
+                </data:FlattenedDataset>
+                        </controls:dataset>
+                        <controls:feeds>
+                        <!-- <feeds:FeedItem ></feeds:FeedItem> -->
+                            <feeds:FeedItem uid="categoryAxis" type="Dimension" values="YourDimension1" id="feed1"></feeds:FeedItem>
+                            <feeds:FeedItem uid="valueAxis"  type="Measure" values="Process" id="feed2"></feeds:FeedItem>
+                            <feeds:FeedItem uid="valueAxis" type="Measure" values="Inprocess" id="feed3"></feeds:FeedItem>
+                        </controls:feeds>
+                        </controls:VizFrame>
+                        </layout:content>  
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:content>
+    
+    </layout:BlockLayout>
+
+    <Text text="Top 5 Vendor Based Amount" id="t4"></Text>
+
+
+    <layout:BlockLayout id="block3" background="Dashboard" visible="true"> 
+        <layout:content>
+            <layout:BlockLayoutRow id="row3">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cel4" >
+                        <layout:content>
+                         <Text text="OCT-NOV-DEC" id="t5"></Text>
+                          <controls:VizFrame width="80%" id="barchart2" vizProperties="{plotArea: { drawingEffect: 'glossy'}, title:{ text:'Data analysis through Reports'},dataLabel:{visible:false,showTotal:true}}">
+                        <controls:layoutData>
+                        <FlexItemData growFactor="1" id="flex2"/>
+                        </controls:layoutData>
+                        <controls:dataset>
+                         <data:FlattenedDataset data="{/vendor_based_amt }" id="fd2">
+                    <data:dimensions>
+                        <data:DimensionDefinition  name="YourDimension1" value="{dimension}" id="dim2"></data:DimensionDefinition>
+                    </data:dimensions>
+                    <data:measures>
+                        <data:MeasureDefinition name="YourMeasure1" value="{measure}" id="ms3"></data:MeasureDefinition>
+                    </data:measures>
+                </data:FlattenedDataset>
+                        </controls:dataset>
+                        <controls:feeds>
+                        <!-- <feeds:FeedItem ></feeds:FeedItem> -->
+                            <feeds:FeedItem uid="categoryAxis" type="Dimension" values="YourDimension1" id="feed4"></feeds:FeedItem>
+                            <feeds:FeedItem uid="valueAxis"  type="Measure" values="YourMeasure1" id="feed5"></feeds:FeedItem>
+                        </controls:feeds>
+                        </controls:VizFrame>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                    <layout:BlockLayoutCell id="cel5" >
+                        <layout:content>
+                        <Text text="OCT-NOV-DEC" id="t6"></Text>
+                          <controls:VizFrame width="80%" id="barchart3" vizProperties="{plotArea: { drawingEffect: 'glossy'}, title:{ text:'Data analysis through Reports'},dataLabel:{visible:false,showTotal:true}}">
+                        <controls:layoutData>
+                        <FlexItemData growFactor="1" id="flex3"/>
+                        </controls:layoutData>
+                        <controls:dataset>
+                         <data:FlattenedDataset data="{/vendor_based_amt2 }" id="fd3">
+                    <data:dimensions>
+                        <data:DimensionDefinition  name="YourDimension1" value="{dimension}" id="dim3"></data:DimensionDefinition>
+                    </data:dimensions>
+                    <data:measures>
+                        <data:MeasureDefinition name="YourMeasure1" value="{measure}" id="ms4"></data:MeasureDefinition>
+                    </data:measures>
+                </data:FlattenedDataset>
+                        </controls:dataset>
+                        <controls:feeds>
+                        <!-- <feeds:FeedItem ></feeds:FeedItem> -->
+                            <feeds:FeedItem uid="categoryAxis" type="Dimension" values="YourDimension1" id="feed6"></feeds:FeedItem>
+                            <feeds:FeedItem uid="valueAxis"  type="Measure" values="YourMeasure1" id="feed7"></feeds:FeedItem>
+                        </controls:feeds>
+                        </controls:VizFrame>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:content>
+    </layout:BlockLayout>
+
+        <content />
+    </Page>
+</mvc:View>

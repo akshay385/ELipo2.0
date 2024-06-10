@@ -1,0 +1,96 @@
+<mvc:View xmlns:tnt="sap.tnt" xmlns:feeds="sap.viz.ui5.controls.common.feeds" xmlns:data="sap.viz.ui5.data" xmlns:controls="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout" controllerName="productivityreport.controller.productivityreport"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+
+    <tnt:ToolHeader id="tool" class="toolhead">
+<Button icon="sap-icon://menu2" id="b1" type="Transparent" tooltip="Menu">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow" id="toolbar"></OverflowToolbarLayoutData>
+</layoutData>
+</Button>
+<Image src="./img/logo.png" id="img" decorative="false" press="onLogoPressed" tooltip="SAP Logo"></Image>
+<Title text="Produtivity Report" id="t" wrapping="false"></Title>
+</tnt:ToolHeader>
+
+    <layout:BlockLayout id="block" background="Dashboard" visible="true">
+        <layout:content>
+            <layout:BlockLayoutRow id="row1">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cell1">
+                        <layout:content>
+                        <Text text="Productivity Report Overview" id="t1"></Text>
+                        <controls:VizFrame  id="idVizFrame" uiConfig="{applicationSet:'fiori'}" width="80%" vizType='line' vizProperties="{plotArea: { drawingEffect: 'normal'}, title:{ text:' '},dataLabel:{visible:true,showTotal:true}}">
+                            <controls:dataset>
+                                <data:FlattenedDataset id="data" data="{/linechart}">
+                                    <data:dimensions>
+                                        <data:DimensionDefinition name="dimen1" id="dim1" value="{dimension}"></data:DimensionDefinition>
+                                    </data:dimensions>
+                                    <data:measures>
+                                        <data:MeasureDefinition name="measure1" id="meas1"  value="{measure}"></data:MeasureDefinition>
+                                    </data:measures>
+                                    <data:measures>
+                                        <data:MeasureDefinition name="measure2" id="meas2"  value="{measure1}"></data:MeasureDefinition>
+                                    </data:measures>
+                                    <data:measures>
+                                        <data:MeasureDefinition name="measure3" id="meas3"  value="{measure2}"></data:MeasureDefinition>
+                                    </data:measures>
+                                    <data:measures>
+                                        <data:MeasureDefinition name="measure4" id="meas4"  value="{measure3}"></data:MeasureDefinition>
+                                    </data:measures>
+                                </data:FlattenedDataset>
+                            </controls:dataset>
+
+                            <controls:feeds>
+                            <feeds:FeedItem  id='valueAxisFeed' uid="valueAxis" type="Measure" values="measure1"></feeds:FeedItem>
+                            <feeds:FeedItem  id='valueAxisFeed1' uid="valueAxis" type="Measure" values="measure2"></feeds:FeedItem>
+                            <feeds:FeedItem  id='valueAxisFeed2' uid="valueAxis" type="Measure" values="measure3"></feeds:FeedItem>
+                            <feeds:FeedItem  id='valueAxisFeed3' uid="valueAxis" type="Measure" values="measure4"></feeds:FeedItem>
+                            <feeds:FeedItem  id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="dimen1"></feeds:FeedItem>
+                            </controls:feeds>
+                        </controls:VizFrame>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:content>
+    </layout:BlockLayout>
+    <layout:BlockLayout id="block1" background="Dashboard" visible="true">
+        <layout:content>
+            <layout:BlockLayoutRow id="row2">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cell2">
+                        <layout:content>
+                        <Text text="Productivity Report Overview" id="t2"></Text>
+                       <controls:VizFrame width="80%" id="barChart" vizProperties="{plotArea: { drawingEffect: 'glossy'}, title:{ text:' '}, dataLabel:{ visible:false, showTotal:true}, animation: { dataLoading: true, duration: 1000 }}">
+            <controls:layoutData>   
+                <FlexItemData growFactor="1" id="flex" />
+            </controls:layoutData>
+            <controls:dataset >
+                <data:FlattenedDataset data="{/productivity_bar}" id="fd">
+                    <data:dimensions>
+                        <data:DimensionDefinition  name="YourDimension1" value="{dimension}" id="dim2"></data:DimensionDefinition>
+                    </data:dimensions>
+                    <data:measures>
+                        <data:MeasureDefinition range="10" name="YourMeasure1" value="{measure}" id="ms1"></data:MeasureDefinition>
+                    </data:measures>
+                    <data:measures>
+                        <data:MeasureDefinition  name="YourMeasure2" value="{measure1}" id="ms2"></data:MeasureDefinition>
+                    </data:measures>
+                </data:FlattenedDataset>
+            </controls:dataset>
+            <controls:feeds>
+                <feeds:FeedItem uid="categoryAxis" type="Dimension" values="YourDimension1" id="feed1"></feeds:FeedItem>
+                <feeds:FeedItem uid="valueAxis"  type="Measure" values="YourMeasure1" id="feed2"></feeds:FeedItem>
+                <feeds:FeedItem uid="valueAxis" type="Measure" values="YourMeasure2" id="feed3"></feeds:FeedItem>
+            </controls:feeds>
+        </controls:VizFrame>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:content>
+    </layout:BlockLayout>
+        <content />
+    </Page>
+</mvc:View>

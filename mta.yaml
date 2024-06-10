@@ -9,6 +9,7 @@ modules:
   requires:
   - name: elipo3-db
   - name: uaa_elipo3
+  - name: dbgDest
   provides:
   - name: srv-api
     properties:
@@ -235,6 +236,11 @@ modules:
     - npm run build:cf
     supported-platforms: []
 resources:
+- name: dbgDest
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
 - name: elipo3-db
   type: com.sap.xs.hdi-container
   parameters:

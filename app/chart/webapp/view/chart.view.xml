@@ -1,0 +1,54 @@
+<mvc:View xmlns:tnt="sap.tnt" xmlns:microchart="sap.suite.ui.microchart" xmlns:layout="sap.ui.layout" controllerName="chart.controller.chart"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page">
+    
+    <tnt:ToolHeader id="tool" class="toolhead">
+<Button icon="sap-icon://menu2" id="b1" type="Transparent" tooltip="Menu">
+<layoutData>
+<OverflowToolbarLayoutData priority="NeverOverflow" id="toolbar"></OverflowToolbarLayoutData>
+</layoutData>
+</Button>
+<Image src="./img/logo.png" id="img" decorative="false" press="onLogoPressed" tooltip="SAP Logo"></Image>
+<Title text="Invoice Summary Report" id="t" wrapping="false"></Title>
+</tnt:ToolHeader>
+
+<Panel id='settingsPanel' class="panelStyle1" expandable="true" expanded="true" headerText="Input Criteria" stickyHeader="true" width="auto">
+    <layout:BlockLayout id="block" background="Dashboard" visible="true"> 
+        <layout:content>
+            <layout:BlockLayoutRow id="row1">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cell1">
+                        <Text text="Invoice Overview" id="t1" class="text"></Text>
+                        <layout:content>
+                            <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="don1" displayedSegments="5">
+                                <microchart:segments>
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="Rejected" id="seg1" color="Error" value="{ path: 'val1'}" displayedValue="{ path: 'val1'}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="New" id="seg2" color="Good" value="{ path: 'val2'}" displayedValue="{ path: 'val2'}" /> 
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="In Approval" id="seg3" color="Critical" value="{ path: 'val3'}" displayedValue="{ path: 'val3'}" /> 
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="Processed" id="seg4" color="Good" value="{ path: 'val4'}" displayedValue="{ path: 'val4'}" /> 
+                                </microchart:segments>
+                            </microchart:InteractiveDonutChart>
+                        </layout:content>   
+                    </layout:BlockLayoutCell>
+                    <layout:BlockLayoutCell id="cell2">
+                        <layout:content>
+                            <Text text="Total Accounts Payable" id="t2" textAlign="Right"></Text>
+                            <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="don2" displayedSegments="3">
+                                <microchart:segments>
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('2')}" label="Single Segment 1" id="seg1.1" color="Error" value="{ path: 'val1'}" displayedValue="{ path: 'val1'}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('2')}" label="Single Segment 2" id="seg1.2" color="Error" value="{ path: 'val2'}" displayedValue="{ path: 'val2'}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('2')}" label="Single Segment 3" id="seg1.3" color="Error" value="{ path: 'val3'}" displayedValue="{ path: 'val3'}" />
+                                </microchart:segments>
+                            </microchart:InteractiveDonutChart>   
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>  
+        </layout:content>
+    </layout:BlockLayout>
+</Panel>
+
+        <content />
+    </Page>
+</mvc:View>

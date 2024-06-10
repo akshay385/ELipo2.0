@@ -1,9 +1,9 @@
 {
-  "manifest.json": 1717568191207,
-  "i18n/i18n.properties": 1716355052817,
   "ext/controller/ListpageController.controller.js": 1716355052817,
+  "i18n/i18n.properties": 1716355052817,
+  "manifest.json": 1717837797437,
   "Component.js": 1716355052817,
-  "Component-preload.js": 1717568191507,
+  "Component-preload.js": 1717837797832,
   "ext/controller/ListpageController-dbg.controller.js": 1716355052817,
   "Component-dbg.js": 1716355052817,
   "css/style.css": 1716355052817,

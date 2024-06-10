@@ -1,0 +1,40 @@
+/* Enter your custom styles here */
+/* Enter your custom styles here */
+
+.tableCLass{
+    padding: 10px;
+    width: 110vw;
+    overflow: scroll;
+    scrollbar-width: none;
+   
+}
+
+/* .col
+{
+    color: aqua;
+   font-weight: 600;
+   border: 1px solid black;
+   padding: 8px;
+
+} */
+
+#container-invoicesummaryreport---invsumreport--idProductsTable-tblHeader *
+{
+    background-color: #009879 !important;
+    
+}
+
+
+.box{
+    padding-top : 20px
+}
+
+.button {
+   left: 90vw;
+}
+
+.t1 {
+    color: #ffffff !important;
+    font-size: 16px !important; /* Adjust the font size as needed */
+}
+
