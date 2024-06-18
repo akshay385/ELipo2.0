@@ -97,7 +97,7 @@
                     <layout:BlockLayoutCell id="cell3">
                         <layout:content>
                             <Panel id='settingsPanel2' class="comp" expandable="true" expanded="true" headerText="Top 5 Vendors By Amount" stickyHeader="true" width="auto">
-                                <Table class="table2" width="105%" id="tablecomp2" items="{path: '/List'}">
+                                <Table class="table2" width="105%" id="tablecomp2" items="{path: '/key_process_list'}">
                                     <columns>
                                         <Column width="5em" styleClass="col" id="col1.11">
                                                 <Text text="Vendor Code" id="t3.1" />
@@ -118,11 +118,11 @@
                                     <items>
                                         <ColumnListItem vAlign="Middle" id="cli.2">
                                             <cells>
-                                                    <ObjectIdentifier id="o1.21" title="{Vendor_Code}" />
-                                                    <ObjectIdentifier id="o2.22" title="{Vendor_name}" />
-                                                    <ObjectIdentifier id="o3.23" title="{Source_of_Supply}" />
-                                                    <ObjectIdentifier id="o7.26" title="{Amount}" />
-                                                    <ObjectIdentifier id="o8.27" title="{currency}" />
+                                                    <ObjectIdentifier id="o1.21" title="{vendor_no}" />
+                                                    <ObjectIdentifier id="o2.22" title="{vendor_name}" />
+                                                    <ObjectIdentifier id="o3.23" title="{currency}" />
+                                                    <ObjectIdentifier id="o7.26" title="{amount}" />
+                                                    <ObjectIdentifier id="o8.27" title="{source_of_supply}" />
                                             </cells>
                                         </ColumnListItem>
                                     </items>
