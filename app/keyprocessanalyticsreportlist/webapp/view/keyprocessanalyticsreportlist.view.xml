@@ -1,0 +1,143 @@
+<mvc:View controllerName="keyprocessanalyticsreportlist.controller.keyprocessanalyticsreportlist"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+
+<tnt:ToolHeader id="tool" class="tool" >
+    <Button icon="sap-icon://menu2" id="b1" type="Transparent" tooltip="Menu">
+    <layoutData>
+    <OverflowToolbarLayoutData priority="NeverOverflow" id="toolbar"></OverflowToolbarLayoutData>
+    </layoutData>
+    </Button>
+    <Image  src="./img/logo.png" id="img" decorative="false" tooltip="SAP Logo"></Image>
+    <Title text="Key Process Analytics Report" id="t" wrapping="false"></Title>
+    </tnt:ToolHeader>
+
+
+    <layout:BlockLayout id="block" background="Dashboard" visible="true">
+        <layout:content>
+            <layout:BlockLayoutRow id="row1">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cell1" visible="true">
+                        <layout:content>
+                            <Panel id='settingsPanel' class="comp" expandable="true" expanded="true" headerText="Processed/In-Processing Invoices" stickyHeader="true" width="auto">
+                            <Table class="table1" width="105%" id="tablecomp" items="{path: '/key_process_analytics_processed'}">
+                                <columns>
+                                    <Column width="5em" styleClass="col" id="col1">
+                                        <Text text="PROGRESS" id="t1"></Text>
+                                    </Column>
+                                    <Column width="5em" styleClass="col" id="col2">
+                                        <Text text="PO" id="t2"></Text>
+                                    </Column>
+                                    <Column width="5em" styleClass="col" id="col3">
+                                        <Text text="NPO" id="t3"></Text>
+                                    </Column>
+                                    <Column width="5em" styleClass="col" id="col4">
+                                        <Text text="NONE" id="t4"></Text>
+                                    </Column>
+                                    <Column width="5em" styleClass="col" id="col5">
+                                        <Text text="All" id="t5"></Text>
+                                    </Column>
+                                </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle" id="cli">
+                                            <cells>
+                                                    <ObjectIdentifier id="o1" title="{Progress}" />
+                                                    <ObjectIdentifier id="o2" title="{PO}" />
+                                                    <ObjectIdentifier id="o3" title="{NPO}" />
+                                                    <ObjectIdentifier id="o4" title="{None}" />
+                                                    <ObjectIdentifier id="o5" title="{al}" /> 
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                            </Table>
+                            </Panel>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                    <layout:BlockLayoutCell id="cell2">
+                        <layout:content>
+                            <Panel id='settingsPanel1' class="comp" expandable="true" expanded="true" headerText="Total Liabilities" stickyHeader="true" width="auto">
+                                <Table class="table2" width="105%" id="tablecomp1" items="{path: '/Total_liabilities'}">
+                                    <columns>
+                                        <Column width="5em" styleClass="col" id="col1.1">
+                                            <Text text="Liabilities" id="t1.1"></Text>
+                                        </Column>
+                                        <Column width="5em" styleClass="col" id="col1.2">
+                                            <Text text="PO" id="t1.2"></Text>
+                                        </Column>
+                                        <Column width="5em" styleClass="col" id="col1.3">
+                                            <Text text="NPO" id="t1.3"></Text>
+                                        </Column>
+                                        <Column width="5em" styleClass="col" id="col1.4">
+                                            <Text text="NONE" id="t1.4"></Text>
+                                        </Column>
+                                        <Column width="5em" styleClass="col" id="col1.5">
+                                            <Text text="Total Liabilities" id="t1.5"></Text>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem  vAlign="Middle" id="cli1">
+                                            <cells>
+                                                    <ObjectIdentifier id="o1.1" title="{Liabilities}" />
+                                                    <ObjectIdentifier id="o2.1" title="{PO}" />
+                                                    <ObjectIdentifier id="o3.1" title="{NPO}" />
+                                                    <ObjectIdentifier id="o4.1" title="{None}" />
+                                                    <ObjectIdentifier id="o5.1" title="{Tot_Liabilities}" /> 
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </Panel>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+            <layout:BlockLayoutRow id="row2">
+                <layout:content>
+                    <layout:BlockLayoutCell id="cell3">
+                        <layout:content>
+                            <Panel id='settingsPanel2' class="comp" expandable="true" expanded="true" headerText="Top 5 Vendors By Amount" stickyHeader="true" width="auto">
+                                <Table class="table2" width="105%" id="tablecomp2" items="{path: '/List'}">
+                                    <columns>
+                                        <Column width="5em" styleClass="col" id="col1.11">
+                                                <Text text="Vendor Code" id="t3.1" />
+                                            </Column>
+                                        <Column width="5em" styleClass="col" id="col1.12">
+                                                <Text text="Vendor Name" id="t3.12" />
+                                            </Column>
+                                        <Column width="5em" styleClass="col" id="col1.13">
+                                                <Text text="Source Of Supply" id="t3.13" />
+                                            </Column>
+                                        <Column width="5em" styleClass="col" id="col1.14">
+                                                <Text text="Amount" id="t3.14" />
+                                            </Column>
+                                        <Column width="5em" styleClass="col" id="col1.15">
+                                                <Text text="Currency" id="t3.15" />
+                                            </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle" id="cli.2">
+                                            <cells>
+                                                    <ObjectIdentifier id="o1.21" title="{Vendor_Code}" />
+                                                    <ObjectIdentifier id="o2.22" title="{Vendor_name}" />
+                                                    <ObjectIdentifier id="o3.23" title="{Source_of_Supply}" />
+                                                    <ObjectIdentifier id="o7.26" title="{Amount}" />
+                                                    <ObjectIdentifier id="o8.27" title="{currency}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </Panel>
+                        </layout:content>
+                    </layout:BlockLayoutCell>
+                </layout:content>
+            </layout:BlockLayoutRow>
+        </layout:content>
+    </layout:BlockLayout>
+
+
+
+
+        <content />
+    </Page>
+</mvc:View>

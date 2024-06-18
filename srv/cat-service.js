@@ -3,11 +3,21 @@ const { PassThrough } = require('stream');
 const XLSX = require('xlsx');
 const cds = require('@sap/cds');
 const FormData = require('form-data');
+const axios = require('axios');
+// const { Blob } = require('blob');
+// const Blob = require('fetch-blob').Blob;
+
 
 module.exports = async function (params) {
+    let {
+        invoiceCockpit, invoiceCockpitItems,rulesChild,approversChild
+    } = this.entities;
     let DocInfoExt_dest = await cds.connect.to("DocInfoExt_dest");
+
+    var vcap = JSON.parse(process.env.VCAP_SERVICES);
+
     // let test =await DocInfoExt_dest.get("/document/jobs");
-    // console.log(test);  
+
     function reverseFormatCompanyCode(formattedCompanyCode) {
         // Replace spaces with underscores
         var originalCompanyCode = formattedCompanyCode.replace(/ /g, '_');
@@ -20,7 +30,9 @@ module.exports = async function (params) {
 
     var rawdata = await cds.db.run(`SELECT COLUMN_NAME FROM TABLE_COLUMNS where TABLE_NAME= 'ELIPODB_TAX_CODE' ;`)
 
-
+    this.before('CREATE','approvalWorkFlow',async (req)=>{
+        debugger
+    });
     this.before('CREATE', 'invoiceCockpit', async (req) => {
         debugger
         let inn = await SELECT.from('elipodb_conditionsSh').where`RELATEDTO = 'InvoiceNo'`;
@@ -38,6 +50,82 @@ module.exports = async function (params) {
         await UPDATE`elipodb_conditionsSh`.where`UUID = ${k}`.with({ SH: inNo });
         console.log("hhhhhh");
         return req;
+    });
+    this.on('READ',approversChild.drafts,async (req,next)=>{
+        debugger
+        if(req.data.uuid){
+           let sel1 = await SELECT.from(approversChild.drafts).where({uuid : req.data.uuid})
+           let newApp= sel1.filter(fil => fil.level == null);
+           await cds.update(approversChild.drafts).set({level : sel1.length.toString()}).where({uuidc1 : newApp[0].uuidc1});
+        }
+        return next();
+    });
+    this.on('READ', rulesChild.drafts, async (req,next) => {
+        debugger
+        if(req.data.uuidc1){
+            if(req.data.criteria){
+                if(req.data.criteria == 'Default'){
+                let con = 'Default';
+                await cds.update(rulesChild.drafts)
+                .set({value1:null,condition:null,value2:null,concatCondition:null ,concatCondition:con}) 
+                .where({ uuidc1 : req.data.uuidc1});
+                }else {
+                await cds.update(rulesChild.drafts)
+                .set({value1:null,condition:null,value2:null,concatCondition:null }) 
+                .where({ uuidc1 : req.data.uuidc1});
+                }
+            }else if(req.data.condition){
+                await cds.update(rulesChild.drafts)
+                .set({value1:null,value2:null,concatCondition:null }) 
+                .where({ uuidc1 : req.data.uuidc1});
+            }else if(req.data.value1){
+                var sel1 = await SELECT.from(rulesChild.drafts).where({uuidc1 : req.data.uuidc1});
+                console.log(sel1);
+                let con = sel1[0].criteria+" "+sel1[0].condition+" "+sel1[0].value1;
+                await cds.update(rulesChild.drafts)
+                .set({concatCondition:con }) 
+                .where({ uuidc1 : req.data.uuidc1});
+            }else if(req.data.value2){
+                var sel1 = await SELECT.from(rulesChild.drafts).where({uuidc1 : req.data.uuidc1});
+                let con = sel1[0].criteria+" "+sel1[0].condition+" "+sel1[0].value1+" "+"&"+" "+sel1[0].value2;
+                await cds.update(rulesChild.drafts)
+                .set({concatCondition:con }) 
+                .where({ uuidc1 : req.data.uuidc1});
+            }
+        }
+        return next();
+    });
+
+    this.after('CREATE', 'invoiceCockpit', async (req) => {
+        debugger
+        // let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});  
+        try {
+            debugger
+       let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});     
+        } catch (error) {
+            debugger
+        }
+        try {
+        let b = await DELETE.from(invoiceCockpitItems.drafts).where({invoiceNo : req.uuid});    
+        } catch (error) {
+            debugger
+        }
+        
+    });
+    this.after('UPDATE', 'invoiceCockpit', async (req) => {
+        debugger
+        // let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});  
+        try {
+            debugger
+       let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});     
+        } catch (error) {
+            debugger
+        }
+        try {
+        let b = await DELETE.from(invoiceCockpitItems.drafts).where({invoiceNo : req.uuid});    
+        } catch (error) {
+            debugger
+        }
     });
     this.before('CREATE', 'supplier', async (req) => {
         debugger
@@ -64,8 +152,12 @@ module.exports = async function (params) {
     })
     this.before('UPDATE', 'invoiceCockpit', async (req) => {
         debugger
+        console.log("before update invoice")
         req.data.status = 'Draft';
         await DELETE.from('CATALOGSERVICE_FILES_DRAFTS').where`FKEY = ${req.data.uuid}`;
+        // await DELETE.from('CatalogService_invoiceCockpit_drafts').where`UUID = ${req.data.uuid}`;
+        // await DELETE.from('CATALOGSERVICE_INVOICECOCKPITITEMS_DRAFTS').where`FKEY = ${req.data.uuid}`;
+        
         console.log("ddddddddd");
         return req;
     });
@@ -76,27 +168,186 @@ module.exports = async function (params) {
         return req;
     });
     this.on('extract', async (req) => {
+
         debugger
-        // let innn = await SELECT.from(supplier);
-        let content =await SELECT`CONTENT`.from('CatalogService_invoiceCockpit_drafts').where`UUID = ${req.data.p}`;
-       
-        let options={clientId:"default",documentType:"invoice",schemaId:"32f35cd4-0571-47de-9815-82de84d98015",templateId:"ebbccbfc-e020-4ae4-bd39-6f9d5e7212d1"};
-        let option=JSON.stringify(options);
-        let form = new FormData();
-    form.append('options', option);
-    form.append('file',  content[0].CONTENT, {
-        filename: `${req.data.p}.pdf`, // Specify the filename
-        contentType: 'application/pdf' // Specify the content type
+
+        try {
+            // let innn = await SELECT.from(supplier);
+            var vcap = JSON.parse(process.env.VCAP_SERVICES);
+            var docinfodest;
+
+            if (vcap['document-information-extraction-trial'] && Array.isArray(vcap['document-information-extraction-trial'])) {
+                // Iterate over the services to find the required destination
+                vcap['document-information-extraction-trial'].forEach((dest) => {
+                    // if (dest.name && dest.name === "default_document-information-extraction-trial") { //uncomment for deployment
+                    docinfodest = dest;
+                    // }//uncomment for deployment
+                });
+
+                if (docinfodest) {
+                    console.log('Destination found:', docinfodest);
+
+                    // Access the credentials
+                    let { clientid, clientsecret, url } = docinfodest.credentials.uaa;
+                    let requestUrl = docinfodest.credentials.url + docinfodest.credentials.swagger + "document/jobs";
+                    url += "/oauth/token";
+                    console.log(`Client ID: ${clientid}`);
+                    console.log(`Client Secret: ${clientsecret}`);
+                    console.log(`Token url: ${url}`);
+                    console.log(`Request url: ${requestUrl}`);
+                    const basicAuth = Buffer.from(`${clientid}:${clientsecret}`).toString('base64');
+
+                    // Perform the GET request
+                    const accessToken = await axios.get(url, {
+                        headers: {
+                            'Authorization': `Basic ${basicAuth}`,
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        params: {
+                            grant_type: 'client_credentials' // Or another type of grant as required
+                        }
+                    });
+
+
+
+
+
+
+                    const content = await SELECT`content`.from(invoiceCockpit.drafts).where({ uuid: `${req.data.p}` });
+                    // let content1 = await SELECT`CONTENT`.from('CatalogService_invoiceCockpit_drafts').where`UUID = ${req.data.p}`;
+
+                    if (!content[0] || !content[0].content) {
+                        throw new Error('Content not found for the specified UUID');
+                    }
+
+                    let options = { clientId: "default", documentType: "invoice", schemaId: "32f35cd4-0571-47de-9815-82de84d98015", templateId: "ebbccbfc-e020-4ae4-bd39-6f9d5e7212d1" };
+                    let option = JSON.stringify(options);
+                    let form = new FormData();
+
+
+                    form.append('options', option);
+                    let cont = content[0].content;
+                    // let buff = Buffer.from(cont,'binary'); // Assuming CONTENT is base64 encoded
+
+                    // const blob = new Blob([buff], { type: 'application/pdf' });
+                    // Append buffer directly
+
+                    form.append('file', cont, 'demo.pdf');
+
+                    console.log("before dest call")
+                    let formHeaders = form.getHeaders();
+
+
+
+
+                    const config = {
+                        method: 'post',
+                        maxBodyLength: Infinity,
+                        url: requestUrl,
+                        headers: {
+                            'Authorization': `Bearer ${accessToken.data.access_token}`,
+                            ...formHeaders
+                        },
+                        data: form
+                    };
+
+                    // const response = await axios.request(config);//uncomment for document extraction
+                    requestUrl += `/${response.data.id}`;
+                    console.log(response.data.id);
+                    async function checkStatus(requestUrl, accessToken) {
+                        return new Promise((resolve, reject) => {
+                            const interval = setInterval(async () => {
+                                try {
+                                    const response = await axios.get(requestUrl, {
+                                        headers: {
+                                            'Authorization': `Bearer ${accessToken.data.access_token}`
+                                        },
+                                    });
+                                    const status = response.data.status; // Adjust based on your response structure
+
+                                    console.log('Checking status:', status);
+
+                                    if (status === 'DONE') { // Replace 'desiredStatus' with the actual status you're looking for
+                                        let resultH = response.data.extraction.headerFields.reduce((acc, field) => {
+                                            acc[field.name] = field.value;
+                                            return acc;
+                                        }, {});
+                                        let LineItems = [];
+                                        var drafttest = await SELECT.from(invoiceCockpit.drafts).where({ uuid: req.data.p });
+                                        if (response.data.extraction.lineItems) {
+                                            response.data.extraction.lineItems.forEach(async element => {
+                                                let resultI = element.reduce((acc, field) => {
+                                                    acc[field.name] = field.value;
+                                                    return acc;
+                                                }, {});
+
+                                                resultI = { DraftAdministrativeData_DraftUUID: drafttest[0].DraftAdministrativeData_DraftUUID, invoiceNo: `${req.data.p}`, ...resultI }
+                                                console.log(resultI);
+                                                LineItems.push(resultI);
+                                            });
+                                            resultH = { invtoitems: LineItems, ...resultH }
+                                            // await INSERT (LineItems) .into ('CATALOGSERVICE_INVOICECOCKPITITEMS_DRAFTS');
+                                            // await INSERT.into (invoiceCockpitItems.drafts) .entries (
+                                            //     LineItems
+                                            //  )
+                                        }
+
+
+
+
+                                        await UPDATE(invoiceCockpit.drafts, req.data.p).with(resultH);
+                                        resolve(status);
+                                        // setTimeout(() => { resolve(status); }, 500);
+                                        clearInterval(interval);
+
+
+                                    }
+                                } catch (error) {
+                                    debugger
+                                    reject(error);
+                                    clearInterval(interval);
+                                    
+                                }
+                            }, 3000); // 3000 milliseconds = 3 seconds
+
+                        });
+                    }
+                    const status = await checkStatus(requestUrl, accessToken);
+
+                } else {
+                    console.log('Destination not found.');
+                }
+            } else {
+                console.log('Destination service not configured properly.');
+            }
+
+
+        } catch (error) {
+            console.error('Error:', error);
+            req.error(500, 'Failed to send form data');
+        }
     });
-    let test =await DocInfoExt_dest.post("/document/jobs",form);
-        console.log(option);
-    });
+
+    console.log("after dest call")
     this.on('postattach', async (req) => {
         // debugger
         // let regex = "/uuid=([0-9a-fA-F-]+)/";
         let match = req.data.p.match(/uuid=([0-9a-fA-F-]+)/);
         await DELETE.from('CATALOGSERVICE_SUPPLIERFILES_DRAFTS').where`FKEY = ${match[1]}`;
         await DELETE.from('CATALOGSERVICE_FILES_DRAFTS').where`FKEY = ${match[1]}`;
+        debugger
+        // let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});  
+        try {
+            debugger
+       let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:match[1]});     
+        } catch (error) {
+            debugger
+        }
+        try {
+        let b = await DELETE.from(invoiceCockpitItems.drafts).where({invoiceNo :match[1]});    
+        } catch (error) {
+            debugger
+        }
     });
 
     this.before('CREATE', 'Files.drafts', async (req) => {

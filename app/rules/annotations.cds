@@ -296,7 +296,7 @@ annotate service.approversChildMembers with {
                 {
                     $Type : 'Common.ValueListParameterInOut',
                     LocalDataProperty : memberName,
-                    ValueListProperty : 'name',
+                    ValueListProperty : 'emailId',
                 },
                 {
                     $Type : 'Common.ValueListParameterOut',
@@ -498,4 +498,36 @@ annotate service.emailNotification with {
 };
 annotate service.emailNotification with {
     mailBody @Common.FieldControl : #Mandatory
+};
+annotate service.rulesChild with {
+    value1 @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'value1Sh',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : value1,
+                    ValueListProperty : 'sh',
+                },
+                {
+                    $Type : 'Common.ValueListParameterIn',
+                    ValueListProperty : 'relatedTo',
+                    LocalDataProperty : criteria,
+                },
+            ],
+            Label : 'value1',
+        },
+        Common.ValueListWithFixedValues : false
+)};
+annotate service.value1Sh with {
+    sh @Common.Text : {
+            $value : description,
+            ![@UI.TextArrangement] : #TextLast,
+        }
+};
+annotate service.assignRole with {
+    emailId @Common.Text : {
+            $value : name,
+            ![@UI.TextArrangement] : #TextFirst,
+        }
 };

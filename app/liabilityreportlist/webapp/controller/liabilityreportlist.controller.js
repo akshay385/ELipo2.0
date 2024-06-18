@@ -155,7 +155,7 @@ function (Controller) {
                 busy1.open();
                 var oFilter1 = new sap.ui.model.Filter({
                     filters: [
-                        new sap.ui.model.Filter("Vendor_no", sap.ui.model.FilterOperator.Contains, combo1),
+                        new sap.ui.model.Filter("vendor_no", sap.ui.model.FilterOperator.Contains, combo1),
 
                     ],
                     and: false

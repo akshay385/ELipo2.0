@@ -36,3 +36,5 @@ using from './keyprocessanalytics/annotations';
 using from './productivityreport/annotations';
 
 using from './liabilityreportlist/annotations';
+
+using from './keyprocessanalyticsreportlist/annotations';

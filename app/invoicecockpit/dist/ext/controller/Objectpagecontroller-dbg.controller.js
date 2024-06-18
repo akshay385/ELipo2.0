@@ -1,7 +1,7 @@
 sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExtension) {
 	'use strict';
-
-
+	
+	var oevent;
 	return ControllerExtension.extend('invoicecockpit.ext.controller.Objectpagecontroller', {
 		// this section allows to extend lifecycle hooks or hooks provided by Fiori elements
 		override: {
@@ -38,7 +38,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			routing: {
 				onAfterBinding: async function (mParamaters) {
 					debugger
+					
 					if (mParamaters) {
+						 oevent = mParamaters;
 						let baseUrl = mParamaters.oModel.getServiceUrl();
 						let invoicePdf = baseUrl + mParamaters.sPath.substring(1) + "/content";
 						$.ajax({
@@ -48,15 +50,30 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 								debugger
 								if (!res) {
 									let oDialog = new sap.m.Dialog({
-										title:"Upload Invoice Pdf.",
-										endButton:new sap.m.Button({
-											text:"Confirm",
-											type:"Emphasized",
-											press:function(){
+										title: "Upload Invoice Pdf.",
+										endButton: new sap.m.Button({
+											text: "Confirm",
+											type: "Emphasized",
+											press: function (oEvent) {
 												debugger
-												oDialog.getContent()[0].checkFileReadable().then(function() {
-													oDialog.getContent()[0].upload();
-												}, function(error) {
+												
+												oDialog.getContent()[0].checkFileReadable().then(async function (oEvent) {
+													await oDialog.getContent()[0].upload();
+
+													setTimeout(async()=>{
+														let funcname = 'extract';
+													let oFunction = mParamaters.getModel().bindContext(`/${funcname}(...)`);
+													console.log();
+													const uuidRegex = /uuid=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/;
+													let match = oevent.getPath().match(uuidRegex);
+													oFunction.setParameter('p',match[1]);
+													await oFunction.execute();
+													const oContext = oFunction.getBoundContext();
+													var result = oContext.getValue();
+
+													},1000);
+													
+												}, function (error) {
 													debugger
 													MessageToast.show("The file cannot be read. It may have changed.");
 												})
@@ -64,7 +81,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 											}
 										})
 									})
-									oDialog.addContent(new sap.ui.unified.FileUploader({ fileType:['pdf'],httpRequestMethod: sap.ui.unified.FileUploaderHttpRequestMethod.Put, sendXHR: true, useMultipart:false, uploadUrl: invoicePdf }));
+									oDialog.addContent(new sap.ui.unified.FileUploader({ fileType: ['pdf'], httpRequestMethod: sap.ui.unified.FileUploaderHttpRequestMethod.Put, sendXHR: true, useMultipart: false, uploadUrl: invoicePdf }));
 									oDialog.open();
 								}
 							}

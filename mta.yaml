@@ -10,6 +10,7 @@ modules:
   - name: elipo3-db
   - name: uaa_elipo3
   - name: dbgDest
+  - name: default_document-information-extraction-trial
   provides:
   - name: srv-api
     properties:
@@ -114,6 +115,10 @@ modules:
     - artifacts:
       - elipo4.zip
       name: elipo4
+      target-path: resources/
+    - artifacts:
+      - keyprocessanalyticsreportlist.zip
+      name: keyprocessanalyticsreportlist
       target-path: resources/
 - name: elipoapp3
   type: html5
@@ -235,12 +240,27 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: keyprocessanalyticsreportlist
+  type: html5
+  path: app/keyprocessanalyticsreportlist
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: dbgDest
   type: org.cloudfoundry.managed-service
   parameters:
     service: destination
     service-plan: lite
+- name: default_document-information-extraction-trial
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: document-information-extraction-trial
+    service-plan: blocks_of_100
 - name: elipo3-db
   type: com.sap.xs.hdi-container
   parameters:

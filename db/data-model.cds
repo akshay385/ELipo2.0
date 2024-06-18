@@ -106,10 +106,10 @@ entity supplier : managed {
 }
 
 entity approvalWorkFlow : managed {
-    key uuid           : UUID;
+    //  uuid           : UUID;
+        key invoiceNo      : String;
+        key level          : String;
         invoiceuuid    : UUID;
-        invoiceNo      : String;
-        level          : String;
         status         : String;
         approversmails : String;
         members        : String;
@@ -211,12 +211,13 @@ entity invoiceCockpit : managed {
         supplieruserid      : String;
         section             : String;
         criticality         : Int16;
+        workflowId          :String;
 
         @Core.MediaType  : mediaType
         content             : LargeBinary;
 
         @Core.IsMediaType: true
-        mediaType           : String;
+        mediaType           : String default 'application/pdf';
         apProcessor         : String;
         fileName            : String;
         size                : Integer;
@@ -288,6 +289,12 @@ entity approvalTypeSh {
 }
 
 entity conditionsSh {
+    key uuid        : UUID;
+        relatedTo   : String;
+        sh          : String;
+        description : String;
+}
+entity value1Sh {
     key uuid        : UUID;
         relatedTo   : String;
         sh          : String;

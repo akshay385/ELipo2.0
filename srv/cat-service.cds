@@ -470,9 +470,30 @@ service CatalogService {
     entity approvalTypeSh        as projection on my.approvalTypeSh;
     entity criteriaSh            as projection on my.criteriaSh;
     entity conditionsSh          as projection on my.conditionsSh;
+    entity value1Sh          as projection on my.value1Sh;
     entity approversChildMembers as projection on my.approversChildMembers;
     entity approversChildGroups  as projection on my.approversChildGroups;
+    @Common.SideEffects  : {
+        $Type : 'Common.SideEffectsType',
+        SourceProperties : [
+            'value1','condition','criteria','value2'
+        ],
+        TargetProperties : [
+            'concatCondition','value1','condition','criteria'
+        ],
+        
+    }
     entity rulesChild            as projection on my.rulesChild;
+      @Common.SideEffects  : {
+        $Type : 'Common.SideEffectsType',
+        SourceProperties : [
+            'apptoappg/uuidc2','apptoappm/uuidc2'
+        ],
+        TargetProperties : [
+            'level'
+        ],
+        
+    }
     entity approversChild        as projection on my.approversChild;
 
     @odata.draft.enabled
@@ -596,5 +617,17 @@ service CatalogService {
         vm.vendor_no,
         ic.companyCode;
 
-    
+    entity key_process_list as 
+    select from my.Vendor_master as vm
+    join my.invoiceCockpit as ic 
+    on ic.supplierName = vm.vendor_name
+    {
+        vm.vendor_no as vendor_no : String,
+        vm.vendor_name as vendor_name : String,
+        vm.currency as currency : String,
+        ic.amount as amount : String,
+        vm.source_of_supply as source_of_supply : String
+    }
+
 }
+

@@ -1,12 +1,12 @@
 {
-  "ext/controller/ObjpageController-dbg.controller.js": 1716355052821,
-  "manifest.json": 1717837806660,
-  "ext/controller/ObjpageController.controller.js": 1716355052821,
-  "Component.js": 1716355052821,
-  "Component-preload.js": 1717837806949,
-  "Component-dbg.js": 1716355052821,
-  "i18n/i18n.properties": 1716795114430,
-  "ext/fragment/Rulestoggle.fragment.xml": 1716355052821,
-  "css/style.css": 1716355052821,
-  "index.html": 1716355052821
+  "manifest.json": 1718226120992,
+  "Component.js": 1718013878814,
+  "ext/controller/ObjpageController.controller.js": 1718013878814,
+  "i18n/i18n.properties": 1718013878814,
+  "Component-preload.js": 1718226121265,
+  "ext/controller/ObjpageController-dbg.controller.js": 1718013878814,
+  "Component-dbg.js": 1718013878814,
+  "ext/fragment/Rulestoggle.fragment.xml": 1718013878814,
+  "css/style.css": 1718013878814,
+  "index.html": 1718013878814
 }
