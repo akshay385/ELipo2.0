@@ -1,6 +1,7 @@
 # Getting Started
 
-Welcome to your new project.
+Welcome to our Elipo 2.0
+
 
 It contains these folders and files, following our recommended project layout:
 
@@ -23,3 +24,7 @@ File or Folder | Purpose
 ## Learn More
 
 Learn more at https://cap.cloud.sap/docs/get-started/.
+
+## For Queries Contact
+- DBG
+- which was solely done by Elipo Lead(DBG) and his team,
