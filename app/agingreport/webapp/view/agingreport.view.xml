@@ -20,7 +20,7 @@
                                             <layout:BlockLayoutCell id="cell1">
                                                 <layout:content>
                                     <Panel id='settingsPanel' class="comp" expandable="true" expanded="true" headerText="Aging Overview based on Comp Code" stickyHeader="true" width="auto" >
-                                    <Table class="table1" width="105%" id="tablecomp" items="{path: '/Aging_Overview_Comp_Code'}">
+                                    <Table class="table1" width="105%" id="tablecomp" >
                                         <columns>
                                             <Column width="5em" styleClass="col" id="col1">
                                                 <Text text="CoCd 1000" id="t3" />
@@ -41,11 +41,29 @@
                                         <items>
                                             <ColumnListItem vAlign="Middle" id="cli">
                                                 <cells>
-                                                    <ObjectIdentifier id="o1" title="{CoCd}" />
-                                                    <ObjectIdentifier id="o2" title="{Day1}" />
-                                                    <ObjectIdentifier id="o3" title="{Day2}" />
-                                                    <ObjectIdentifier id="o4" title="{Day3}" />
-                                                    <ObjectIdentifier id="o5" title="{Day4}" />
+                                                    <ObjectIdentifier id="o1" title="PO" />
+                                                    <ObjectIdentifier id="o2" title="{/Aging_Overview_Comp_code('key1')/PO_0_30_Days}" />
+                                                    <ObjectIdentifier id="o3" title="{/Aging_Overview_Comp_code('key1')/PO_31_60_Days}" />
+                                                    <ObjectIdentifier id="o4" title="{/Aging_Overview_Comp_code('key1')/PO_61_90_Days}" />
+                                                    <ObjectIdentifier id="o5" title="{/Aging_Overview_Comp_code('key1')/PO_GT_91_Days}" />
+                                                </cells>
+                                            </ColumnListItem>
+                                            <ColumnListItem vAlign="Middle" id="cl2">
+                                                <cells>
+                                                    <ObjectIdentifier id="o12" title="NPO" />
+                                                    <ObjectIdentifier id="o22" title="{/Aging_Overview_Comp_code('key1')/NPO_0_30_Days}" />
+                                                    <ObjectIdentifier id="o32" title="{/Aging_Overview_Comp_code('key1')/NPO_31_60_Days}" />
+                                                    <ObjectIdentifier id="o33" title="{/Aging_Overview_Comp_code('key1')/NPO_61_90_Days}" />
+                                                    <ObjectIdentifier id="o34" title="{/Aging_Overview_Comp_code('key1')/NPO_GT_91_Days}" />
+                                                </cells>
+                                            </ColumnListItem>
+                                            <ColumnListItem vAlign="Middle" id="cl3">
+                                                <cells>
+                                                    <ObjectIdentifier id="o13" title="All" />
+                                                    <ObjectIdentifier id="o23" title="{=parseFloat(${/Aging_Overview_Comp_code('key1')/PO_0_30_Days}) + parseFloat(${/Aging_Overview_Comp_code('key1')/NPO_0_30_Days})}" />
+                                                    <ObjectIdentifier id="o24" title="{=parseFloat(${/Aging_Overview_Comp_code('key1')/PO_31_60_Days}) + parseFloat(${/Aging_Overview_Comp_code('key1')/NPO_31_60_Days})}" />
+                                                    <ObjectIdentifier id="o25" title="{=parseFloat(${/Aging_Overview_Comp_code('key1')/PO_61_90_Days}) + parseFloat(${/Aging_Overview_Comp_code('key1')/NPO_61_90_Days})}" />
+                                                    <ObjectIdentifier id="o36" title="{=parseFloat(${/Aging_Overview_Comp_code('key1')/PO_GT_91_Days}) + parseFloat(${/Aging_Overview_Comp_code('key1')/NPO_GT_91_Days})}" />
                                                 </cells>
                                             </ColumnListItem>
                                         </items>
@@ -78,11 +96,11 @@
                                         <items>
                                             <ColumnListItem vAlign="Middle" id="cli1">
                                                 <cells>
-                                                    <ObjectIdentifier id="o1.1" title="{Vendor_No}" />
-                                                    <ObjectIdentifier id="o2.1" title="{Day1}" />
-                                                    <ObjectIdentifier id="o3.1" title="{Day2}" />
-                                                    <ObjectIdentifier id="o4.1" title="{Day3}" />
-                                                    <ObjectIdentifier id="o5.1" title="{Day4}" />
+                                                    <ObjectIdentifier id="o1.1" title="{vendor_no}" />
+                                                    <ObjectIdentifier id="o2.1" title="{v0_30Days}" />
+                                                    <ObjectIdentifier id="o3.1" title="{v31_60Days}" />
+                                                    <ObjectIdentifier id="o4.1" title="{v61_90Days}" />
+                                                    <ObjectIdentifier id="o5.1" title="{vGT_91Days}" />
                                                 </cells>
                                             </ColumnListItem>
                                         </items>
@@ -135,15 +153,15 @@
                                         <items>
                                             <ColumnListItem vAlign="Middle" id="cli.2">
                                                 <cells>
-                                                    <ObjectIdentifier id="o1.2" title="{vendor}" />
+                                                    <ObjectIdentifier id="o1.2" title="{vendor_name}" />
                                                     <ObjectIdentifier id="o2.2" title="{invoice_no}" />
-                                                    <ObjectIdentifier id="o3.2" title="{Date}" />
+                                                    <ObjectIdentifier id="o3.2" title="{invoice_date}" />
                                                     <ObjectIdentifier id="o4.2" title="{Amt_Due}" />
                                                     <ObjectIdentifier id="o6.2" title="{days_outstanding}" />
-                                                    <ObjectIdentifier id="o7.2" title="{Day1}" />
-                                                    <ObjectIdentifier id="o8.2" title="{Day2}" />
-                                                    <ObjectIdentifier id="o9.2" title="{Day3}" />
-                                                    <ObjectIdentifier id="o10.2" title="{Day4}" />
+                                                    <ObjectIdentifier id="o7.2" title="{v30Days}" />
+                                                    <ObjectIdentifier id="o8.2" title="{v31_60Days}" />
+                                                    <ObjectIdentifier id="o9.2" title="{v61_90Days}" />
+                                                    <ObjectIdentifier id="o10.2" title="{vGT_91Days}" />
                                                 </cells>
                                             </ColumnListItem>
                                         </items>

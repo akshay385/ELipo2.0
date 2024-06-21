@@ -28,14 +28,14 @@
                                     <FlexItemData growFactor="1" id="flex" />
                                 </controls:layoutData>
                                 <controls:dataset>
-                                    <data:FlattenedDataset data="{/age}" id="fd">
+                                    <data:FlattenedDataset data="{aging_overview>/}" id="fd">
                                         <data:dimensions>
-                                            <data:DimensionDefinition name="Dimension1" value="{dimension}" id="dim1"></data:DimensionDefinition>
+                                            <data:DimensionDefinition name="Dimension1" value="{aging_overview>dimension}" id="dim1"></data:DimensionDefinition>
                                         </data:dimensions>
                                         <data:measures>
-                                            <data:MeasureDefinition name="PO" value="{measure}" id="ms1"></data:MeasureDefinition>
-                                            <data:MeasureDefinition name="NPO" value="{measure1}" id="ms3"></data:MeasureDefinition>
-                                            <data:MeasureDefinition name="NONE" value="{none}" id="none"></data:MeasureDefinition>
+                                            <data:MeasureDefinition name="PO" value="{aging_overview>measure}" id="ms1"></data:MeasureDefinition>
+                                            <data:MeasureDefinition name="NPO" value="{aging_overview>measure1}" id="ms3"></data:MeasureDefinition>
+                                            <data:MeasureDefinition name="NONE" value="{aging_overview>none}" id="none"></data:MeasureDefinition>
                                         </data:measures>
                                     </data:FlattenedDataset>
                                 </controls:dataset>
@@ -56,7 +56,7 @@
                                     <FlexItemData growFactor="1" id="flex1" />
                                 </controls:layoutData>
                                 <controls:dataset>
-                                    <data:FlattenedDataset data="{/age1}" id="fd1">
+                                    <data:FlattenedDataset data="{aging_overview_vendor>/}" id="fd1">
                                         <data:dimensions>
                                             <data:DimensionDefinition name="Dimension1" value="{dimension}" id="dim2"></data:DimensionDefinition>
                                         </data:dimensions>

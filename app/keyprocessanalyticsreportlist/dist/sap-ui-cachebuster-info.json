@@ -1,0 +1,22 @@
+{
+  "index.html": 1718785396759,
+  "manifest.json": 1718962666568,
+  "controller/keyprocessanalyticsreportlist.controller.js": 1718785396759,
+  "controller/App.controller.js": 1718785396759,
+  "model/models.js": 1718785396759,
+  "Component.js": 1718785396759,
+  "Component-dbg.js": 1718785396759,
+  "Component.js.map": 1718962666834,
+  "controller/App-dbg.controller.js": 1718785396759,
+  "controller/App.controller.js.map": 1718962666835,
+  "model/models-dbg.js": 1718785396759,
+  "model/models.js.map": 1718962666833,
+  "controller/keyprocessanalyticsreportlist-dbg.controller.js": 1718785396759,
+  "controller/keyprocessanalyticsreportlist.controller.js.map": 1718962666832,
+  "Component-preload.js": 1718962667163,
+  "Component-preload.js.map": 1718962667163,
+  "view/keyprocessanalyticsreportlist.view.xml": 1718952917593,
+  "view/App.view.xml": 1718785396759,
+  "css/style.css": 1718785396759,
+  "i18n/i18n.properties": 1718785396759
+}

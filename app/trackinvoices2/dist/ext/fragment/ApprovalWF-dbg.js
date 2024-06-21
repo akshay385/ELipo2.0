@@ -35,6 +35,7 @@ sap.ui.define([
             pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"120px"}).setHeader(new sap.m.Text({text:"Groups"})));
             pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"120px"}).setHeader(new sap.m.Text({text:"Members"})));
             pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"70px"}).setHeader(new sap.m.Text({text:"Status"})));
+            pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"100pxpx"}).setHeader(new sap.m.Text({text:"Action By"})));
             
             data.forEach(data => {
                 let oItem = new sap.m.ColumnListItem();
@@ -42,6 +43,7 @@ sap.ui.define([
                 oItem.addCell(new sap.m.Text({text:`${data.groups}`}));
                 oItem.addCell(new sap.m.Text({text:`${data.members}`}));
                 oItem.addCell(new sap.m.Text({text:`${data.status}`}));
+                oItem.addCell(new sap.m.Text({text:`${data.actionBy}`}));
                 pop.mAggregations.content[0].addItem(oItem);
             });
         }

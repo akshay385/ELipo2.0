@@ -148,7 +148,7 @@ sap.ui.define([
             for (const level of matchedRuleKey.rulptoapp) {
                 debugger;
                 let levels = level.level.toString();
-                levels += ".0";
+                // levels += ".0";
                 let statusval = null;
                 let approversmailss = "";
                 let memberss = "";
@@ -221,7 +221,13 @@ sap.ui.define([
                 }
             });
             }
-            
+            try {
+                
+            } catch (error) {
+                
+            }
+
+
         }
     };
 });

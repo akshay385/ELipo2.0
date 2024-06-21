@@ -38,3 +38,5 @@ using from './productivityreport/annotations';
 using from './liabilityreportlist/annotations';
 
 using from './keyprocessanalyticsreportlist/annotations';
+
+using from './productivityreportlist/annotations';

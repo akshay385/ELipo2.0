@@ -23,10 +23,11 @@
                         <layout:content>
                             <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="don1" displayedSegments="5">
                                 <microchart:segments>
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="Rejected" id="seg1" color="Error" value="{ path: 'val1'}" displayedValue="{ path: 'val1'}" />
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="New" id="seg2" color="Good" value="{ path: 'val2'}" displayedValue="{ path: 'val2'}" /> 
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="In Approval" id="seg3" color="Critical" value="{ path: 'val3'}" displayedValue="{ path: 'val3'}" /> 
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('1')}" label="Processed" id="seg4" color="Good" value="{ path: 'val4'}" displayedValue="{ path: 'val4'}" /> 
+                                     <microchart:InteractiveDonutChartSegment binding="{/donutchart1('Draft')}" label="Draft" id="seg0" color="Error" value="{/donutchart1('Draft')/totalAmount}" displayedValue="{/donutchart1('Draft')/totalAmount}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('Rejected')}" label="Rejected" id="seg1" color="Error" value="{/donutchart1('Rejected')/totalAmount}" displayedValue="{/donutchart1('Rejected')/totalAmount}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('New')}" label="New" id="seg2" color="Good" value="{/donutchart1('New')/totalAmount}" displayedValue="{/donutchart1('New')/totalAmount}" /> 
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('In Approval')}" label="In Approval" id="seg3" color="Critical" value="{/donutchart1('In%20Approval')/totalAmount}" displayedValue="{/donutchart1('In%20Approval')/totalAmount}" /> 
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('Submitted to ERP')}" label="Submitted to ERP" id="seg4" color="Good" value="{/donutchart1('Submitted%20to%20ERP')/totalAmount}" displayedValue="{/donutchart1('Submitted%20to%20ERP')/totalAmount}" /> 
                                 </microchart:segments>
                             </microchart:InteractiveDonutChart>
                         </layout:content>   
@@ -36,9 +37,9 @@
                             <Text text="Total Accounts Payable" id="t2" textAlign="Right"></Text>
                             <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="don2" displayedSegments="3">
                                 <microchart:segments>
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('2')}" label="Single Segment 1" id="seg1.1" color="Error" value="{ path: 'val1'}" displayedValue="{ path: 'val1'}" />
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('2')}" label="Single Segment 2" id="seg1.2" color="Error" value="{ path: 'val2'}" displayedValue="{ path: 'val2'}" />
-                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart1('2')}" label="Single Segment 3" id="seg1.3" color="Error" value="{ path: 'val3'}" displayedValue="{ path: 'val3'}" />
+                                   <microchart:InteractiveDonutChartSegment binding="{/donutchart2('demo')}" label="Single Segment 1" id="seg1.1" color="Error" value="{/donutchart2('demo')/processed}" displayedValue="{/donutchart2('demo')/processed}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart2('demo')}" label="Single Segment 2" id="seg1.2" color="Error" value="{/donutchart2('demo')/currentPayableAMount}" displayedValue="{/donutchart2('demo')/currentPayableAMount}" />
+                                    <microchart:InteractiveDonutChartSegment binding="{/donutchart2('demo')}" label="Single Segment 3" id="seg1.3" color="Error" value="{/donutchart2('demo')/overDueAmount}" displayedValue="{/donutchart2('demo')/overDueAmount}" />
                                 </microchart:segments>
                             </microchart:InteractiveDonutChart>   
                         </layout:content>

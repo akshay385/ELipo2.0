@@ -8,15 +8,17 @@
   "dependencies": {
     "@sap-cloud-sdk/connectivity": "^3.15.0",
     "@sap-cloud-sdk/http-client": "^3.15.0",
-    "@sap/cds": "^7",
+    "@sap/cds": "^7.9.2",
     "@sap/cds-hana": "^2",
     "@sap/xsenv": "^5.1.0",
     "@sap/xssec": "^3.6.1",
     "axios": "^1.7.2",
     "blob": "^0.1.0",
     "blob-polyfill": "^7.0.20220408",
+    "cors": "^2.8.5",
     "express": "^4",
     "fetch-blob": "^4.0.0",
+    "form-data": "^4.0.0",
     "passport": "^0.7.0",
     "stream": "^0.0.2",
     "xlsx": "^0.18.5"
@@ -52,7 +54,8 @@
     "watch-keyprocessanalytics": "cds watch --open keyprocessanalytics/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-productivityreport": "cds watch --open productivityreport/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-liabilityreportlist": "cds watch --open liabilityreportlist/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-keyprocessanalyticsreportlist": "cds watch --open keyprocessanalyticsreportlist/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-keyprocessanalyticsreportlist": "cds watch --open keyprocessanalyticsreportlist/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-productivityreportlist": "cds watch --open productivityreportlist/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "fiori": {
@@ -62,18 +65,19 @@
       "db": "hana",
       "auth": "dummy",
       "destinations": true,
-      "DocInfoExt_dest": {
+      "BpaDest": {
         "kind": "odata-v2",
         "csrf": true,
         "csrfInBatch": true,
         "credentials": {
-          "destination": "DocInfoExt"
+            "destination": "bpaDest",
+            "requestTimeout": 120000
         },
         "destinationOptions": {
-          "selectionStrategy": "alwaysProvider",
-          "jwt": null
+            "selectionStrategy": "alwaysProvider",
+            "jwt": null
         }
-      }
+    }
     }
   },
   "sapux": [
@@ -95,6 +99,7 @@
     "app/keyprocessanalytics",
     "app/productivityreport",
     "app/liabilityreportlist",
-    "app/keyprocessanalyticsreportlist"
+    "app/keyprocessanalyticsreportlist",
+    "app/productivityreportlist"
   ]
 }

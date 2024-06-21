@@ -6,7 +6,7 @@
     
     <tnt:sideContent>
       
-        <tnt:SideNavigation id="sidnav" itemSelect="onNavPress">    
+        <tnt:SideNavigation id="sidnav" expanded="false" itemSelect="onNavPress">    
         <tnt:NavigationList id="_IDGenNavigationList1" selectedItem="_IDGenNavigationListItem2" >
           <tnt:NavigationListItem id="collapseexpand" icon="sap-icon://expand" select="onCollapseExpandPress"/>
           <tnt:NavigationListItem id="_IDGenNavigationListItem2" text="Overview"  icon="sap-icon://customer-view" select="onNavPress"/>
@@ -22,7 +22,7 @@
             <tnt:NavigationListItem id="_IDGenNavigationListItem11" text="Email"/>
             <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem12" text="Create Invoice"/> -->
             <tnt:NavigationListItem id="invoicecockpit" text="Invoice Cockpit"/>
-            <tnt:NavigationListItem id="_IDGenNavigationListItem14" text="My Inbox"/>
+            <tnt:NavigationListItem id="myinbox" text="My Inbox"/>
             <tnt:NavigationListItem id="trackInvoices2" text="Track Invoices"/>
             <!-- <tnt:NavigationListItem id="_IDGenNavigationListItem16" text="Comments Template"/>
             <tnt:NavigationListItem id="_IDGenNavigationListItem17" text="Supplier Enquires"/>
@@ -53,6 +53,12 @@
        <!-- <NavContainer id="_IDGenNavContainer1" > -->
        <!-- <Page id="1"> -->
           <core:ComponentContainer id="invoiceCockpit" propagateModel="true" height="100%"></core:ComponentContainer>
+            <!-- <core:HTML id="iframee" content='&lt;iframe id="myIframe" width="100%" height="100%" src="https://da7813aatrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=68f71694-64a1-475c-8fde-351c93f23d8a#WorkflowTask-DisplayMyInbox?sap-ui-app-id-hint=saas_approuter_com.sap.spa.inbox&amp;/detail/NA/e5372cc6-2ef8-11ef-8b8e-eeee0a99f414/TaskCollection" frameborder="0" allowFullScreen="true"&gt;&lt;/iframe&gt;' ></core:HTML> -->
+             <core:HTML id="iframee" visible="false" content='
+                &lt;iframe id="myIframe" width="100%" height="100%" frameborder="0" src="https://da7813aatrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=68f71694-64a1-475c-8fde-351c93f23d8a#WorkflowTask-DisplayMyInbox?sap-ui-app-id-hint=saas_approuter_com.sap.spa.inbox&amp;/detail/NA/e5372cc6-2ef8-11ef-8b8e-eeee0a99f414/TaskCollection" allowfullscreen&gt;&lt;/iframe&gt;
+            '></core:HTML>
+            
+            <!-- <core:HTML ></core:HTML> -->
        		<!-- <ScrollContainer
 						id="page1"
 						horizontal="true"

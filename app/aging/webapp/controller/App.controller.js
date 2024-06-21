@@ -7,6 +7,10 @@ sap.ui.define(
   
       return BaseController.extend("aging.controller.App", {
         onInit: function() {
+        },
+        onAfterRendering : function(oEvent)
+        {
+          debugger;
         }
       });
     }

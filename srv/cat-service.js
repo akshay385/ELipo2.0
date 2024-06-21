@@ -10,11 +10,11 @@ const axios = require('axios');
 
 module.exports = async function (params) {
     let {
-        invoiceCockpit, invoiceCockpitItems,rulesChild,approversChild
+        invoiceCockpit, invoiceCockpitItems,rulesChild,approversChild,Files,supplierFiles
     } = this.entities;
-    let DocInfoExt_dest = await cds.connect.to("DocInfoExt_dest");
+    let BpaDest = await cds.connect.to("BpaDest");
 
-    var vcap = JSON.parse(process.env.VCAP_SERVICES);
+    // var vcap = JSON.parse(process.env.VCAP_SERVICES);
 
     // let test =await DocInfoExt_dest.get("/document/jobs");
 
@@ -28,7 +28,7 @@ module.exports = async function (params) {
         return originalCompanyCode;
     }
 
-    var rawdata = await cds.db.run(`SELECT COLUMN_NAME FROM TABLE_COLUMNS where TABLE_NAME= 'ELIPODB_TAX_CODE' ;`)
+    // var rawdata = await cds.db.run(`SELECT COLUMN_NAME FROM TABLE_COLUMNS where TABLE_NAME= 'ELIPODB_TAX_CODE' ;`)
 
     this.before('CREATE','approvalWorkFlow',async (req)=>{
         debugger
@@ -95,6 +95,29 @@ module.exports = async function (params) {
         }
         return next();
     });
+    this.after('CREATE', 'approvalWorkFlow', async (req) => {
+        debugger
+        if(req.level == '1'){
+        let BpaDest = await cds.connect.to("BpaDest");
+        let body = {
+            "definitionId": "us10.da7813aatrial.elipoapproval.elipoapproval",
+            "context": {
+                "invoiceuuid": req.invoiceuuid,
+                "emails": req.approversmails,
+                "invoiceno": req.invoiceNo,
+                "level": 1
+            }
+        };
+        let stringBody = JSON.stringify(body);
+        try {
+            var response = await BpaDest.post('/workflow/rest/v1/workflow-instances', stringBody);
+            let updateData={workflowId:response.id,status:"In Approval",editable:true};
+            await UPDATE(invoiceCockpit, req.invoiceuuid).with(updateData);
+        } catch (error) {
+            debugger
+        }
+    }
+    });
 
     this.after('CREATE', 'invoiceCockpit', async (req) => {
         debugger
@@ -102,6 +125,12 @@ module.exports = async function (params) {
         try {
             debugger
        let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});     
+        } catch (error) {
+            debugger
+        }
+        try {
+            debugger
+       let a =  await DELETE.from(Files.drafts).where({fkey:req.uuid});     
         } catch (error) {
             debugger
         }
@@ -118,6 +147,12 @@ module.exports = async function (params) {
         try {
             debugger
        let a =  await DELETE.from(invoiceCockpit.drafts).where({uuid:req.uuid});     
+        } catch (error) {
+            debugger
+        }
+        try {
+            debugger
+       let a =  await DELETE.from(Files.drafts).where({fkey:req.uuid});     
         } catch (error) {
             debugger
         }
@@ -220,7 +255,7 @@ module.exports = async function (params) {
                         throw new Error('Content not found for the specified UUID');
                     }
 
-                    let options = { clientId: "default", documentType: "invoice", schemaId: "32f35cd4-0571-47de-9815-82de84d98015", templateId: "ebbccbfc-e020-4ae4-bd39-6f9d5e7212d1" };
+                    let options = { clientId: "default", documentType: "invoice", schemaId: "f3395f73-946c-49a3-97e4-2fc197c9cff8", templateId: "2a40f027-20f7-4957-9385-b3d89a8605bc" };
                     let option = JSON.stringify(options);
                     let form = new FormData();
 
@@ -329,6 +364,11 @@ module.exports = async function (params) {
     });
 
     console.log("after dest call")
+    this.on('showFooterInv', async (req) => {
+        debugger
+        let bool = await SELECT.from(invoiceCockpit).where`uuid = ${req.data.p}`;
+        return bool[0].editable;
+    });
     this.on('postattach', async (req) => {
         // debugger
         // let regex = "/uuid=([0-9a-fA-F-]+)/";

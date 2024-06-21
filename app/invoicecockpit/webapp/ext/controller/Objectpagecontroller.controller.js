@@ -66,6 +66,20 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				onAfterBinding: async function (mParamaters) {
 					debugger
 					
+					let extractedhref = mParamaters.sPath;
+					let funcnamee = 'showFooterInv';
+					let oFunctionn = mParamaters.getModel().bindContext(`/${funcnamee}(...)`);
+					
+					
+					const uuidRegex = /uuid=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/;
+					let matchh = extractedhref.match(uuidRegex);
+					await oFunctionn.setParameter('p', matchh[1]);
+					await oFunctionn.execute();
+					const oContextt = oFunctionn.getBoundContext();
+					var resultt = oContextt.getValue();
+					
+					this.base.getView().getContent()[0].getFooter().setVisible(!resultt.value);
+
 					if (mParamaters) {
 						oevent = mParamaters;
 						let baseUrl = mParamaters.oModel.getServiceUrl();

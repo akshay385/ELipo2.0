@@ -11,6 +11,7 @@ modules:
   - name: uaa_elipo3
   - name: dbgDest
   - name: default_document-information-extraction-trial
+  - name: elipo3-destination-service
   provides:
   - name: srv-api
     properties:
@@ -119,6 +120,10 @@ modules:
     - artifacts:
       - keyprocessanalyticsreportlist.zip
       name: keyprocessanalyticsreportlist
+      target-path: resources/
+    - artifacts:
+      - productivityreportlist.zip
+      name: productivityreportlist
       target-path: resources/
 - name: elipoapp3
   type: html5
@@ -250,6 +255,16 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: productivityreportlist
+  type: html5
+  path: app/productivityreportlist
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: dbgDest
   type: org.cloudfoundry.managed-service
@@ -266,6 +281,11 @@ resources:
   parameters:
     service: hana
     service-plan: hdi-shared
+- name: TLP_Connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite    
 - name: elipo3-destination-service
   type: org.cloudfoundry.managed-service
   parameters:

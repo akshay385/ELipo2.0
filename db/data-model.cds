@@ -114,6 +114,7 @@ entity approvalWorkFlow : managed {
         approversmails : String;
         members        : String;
         groups         : String;
+        actionBy :            String;
 
 }
 
@@ -606,101 +607,110 @@ entity Setting {
         filename                                 : String;
 }
 
-entity donutchart1{
-key id : String;
-val1 : Integer;
-val2 : Integer;
-val3 : Integer;
-val4 : Integer;
-}
+// entity donutchart1{
+// key id : String;
+// val1 : Integer;
+// val2 : Integer;
+// val3 : Integer;
+// val4 : Integer;
+// }
 
 //Aging Report list
-entity Aging_Overview_Comp_Code
-{
-    key CoCd : String;
-    Day1 : String;
-    Day2 : String;
-    Day3 : String;
-    Day4 : String;
-}
+// entity Aging_Overview_Comp_Code
+// {
+//     key CoCd : String;
+//     Day1 : String;
+//     Day2 : String;
+//     Day3 : String;
+//     Day4 : String;
+// }
 
-entity Aging_Overview_Vendor
-{
-    key Vendor_No : String;
-    Day1 : String;
-    Day2 : String;
-    Day3 : String;
-    Day4 : String;
-}
+// entity Aging_Overview_Vendor
+// {
+//     key Vendor_No : String;
+//     Day1 : String;
+//     Day2 : String;
+//     Day3 : String;
+//     Day4 : String;
+// }
 
-entity vendor {
-    key vendor : String;
-    invoice_no : String;
-    Date : String;
-    Amt_Due : String;
-    days_outstanding : String;
-    Day1 : String;
-    Day2 : String;
-    Day3 : String;
-    Day4 : String
-}
+// entity vendor {
+//     key vendor : String;
+//     invoice_no : String;
+//     Date : String;
+//     Amt_Due : String;
+//     days_outstanding : String;
+//     Day1 : String;
+//     Day2 : String;
+//     Day3 : String;
+//     Day4 : String
+// }
 
-//aging report chart
+// //aging report chart
 
-entity age {
-    key ID        : UUID;
-        dimension : String;
-        measure   : Integer;
-        measure1 : Integer;
-        none : Integer;
-}
-entity age1 {
-    key ID        : UUID;
-        dimension : String;
-        measure   : Integer;
-        measure1 : Integer;
-        none : Integer;
-        dimension2 : String;
-}
+// entity age {
+//     key ID        : UUID;
+//         dimension : String;
+//         measure   : Integer;
+//         measure1 : Integer;
+//         none : Integer;
+// }
+// entity age1 {
+//     key ID        : UUID;
+//         dimension : String;
+//         measure   : Integer;
+//         measure1 : Integer;
+//         none : Integer;
+//         dimension2 : String;
+// }
 
-//key process analyticsv report
-entity key_process
-{
-   key ID : UUID;
-    dimension : String;
-    measure : Integer;
-    measure1 : Integer;
-}
+// //key process analyticsv report
+// entity key_process
+// {
+//    key ID : UUID;
+//     dimension : String;
+//     measure : Integer;
+//     measure1 : Integer;
+// }
 
-entity vendor_based_amt 
-{
-     key ID : UUID;
-    dimension : String;
-    measure : Integer;
-}
-entity vendor_based_amt2
-{
-     key ID : UUID;
-    dimension : String;
-    measure : Integer;
-}
+// entity vendor_based_amt 
+// {
+//      key ID : UUID;
+//     dimension : String;
+//     measure : Integer;
+// }
+// entity vendor_based_amt2
+// {
+//      key ID : UUID;
+//     dimension : String;
+//     measure : Integer;
+// }
 
-//produtivity report
+// //produtivity report
 
-entity linechart
-{
-    key id : String;
-    dimension : String;
-    measure : Integer;
-    measure1 : Integer;
-    measure2 : Integer;
-    measure3 : Integer;
-}
+// entity linechart
+// {
+//     key id : String;
+//     dimension : String;
+//     measure : Integer;
+//     measure1 : Integer;
+//     measure2 : Integer;
+//     measure3 : Integer;
+// }
 
-entity productivity_bar
-{
-    key id : String;
-    dimension : String;
-    measure : Integer;
-    measure1 : Integer;
+// entity productivity_bar
+// {
+//     key id : String;
+//     dimension : String;
+//     measure : Integer;
+//     measure1 : Integer;
+// }
+
+
+entity invoiceComments:managed{
+  key idd : UUID;
+  key invoiceNo : String;
+  user :String;
+  Comments : LargeString; 
+  status:String;
 }
