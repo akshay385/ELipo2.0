@@ -987,5 +987,50 @@ on ic.invoiceNo = aw.invoiceNo
         }
 function get_agingdata(ID:String) returns String;
 
+// key process analytics report donutchart1
+// entity donutchart3 as select from my.invoiceCockpit as ic
+// inner join my.approvalWorkFlow as aw 
+// on ic.invoiceNo = aw.invoiceNo
+// {
+//      key 'key3' as demoKey :           String,
+//       count(
+//         case
+//             when aw.status = 'Approved' or 'Rejected' 
+//             then 1
+//             else null
+//         end
+//     ) as Processed : String,
+//    COUNT(
+//     CASE
+//         WHEN DAYS_BETWEEN(ic.baselineDate, CURRENT_DATE) > 0
+//         AND (ic.status = 'New' OR ic.status = 'Draft' OR ic.status = 'In Approval')
+//         THEN 1
+//         ELSE NULL
+//     END
+// ) AS overdue : String,
+
+// cast (
+//     count (
+//         case 
+//             when 
+//             (
+//                 DAYS_BETWEEN(
+//                     ic.baselineDate, CURRENT_DATE
+//                 ) > 0
+//             )
+//             and (
+//                 ic.status IN ('New', 'Draft', 'In Approval')
+//             )
+//             then 
+//                 1
+//             else 
+//                 null
+//         end
+//     ) as String
+// ) as over_due : String
+
+// current liabilities and overdue is left
+// }
+
 }
 

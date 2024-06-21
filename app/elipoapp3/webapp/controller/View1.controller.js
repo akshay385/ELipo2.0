@@ -69,8 +69,7 @@ var initfn;
             },
             async onNavPress(oEvent) {
                 debugger
-                if (this.byId("invoiceCockpit").getComponentInstance())
-                    this.byId("invoiceCockpit").getComponentInstance().destroy();
+                
                 // var ocustomerDetailContainer = this.getOwnerComponent().createComponent({
                 //     usage: "screen1", async: true, manifest: true
                 // });
@@ -84,6 +83,11 @@ var initfn;
                 let sideKey = oEvent.oSource.getSelectedKey();
                 let regex = /--([^-\s]+)$/;
                 let match = sideKey.match(regex);
+                let colexp = match[1];
+                if(colexp != 'collapseexpand'){
+                if (this.byId("invoiceCockpit").getComponentInstance())
+                    this.byId("invoiceCockpit").getComponentInstance().destroy();
+                }
                 if(match[1]=='_IDGenNavigationListItem2')
                 match[1]='overviewFS'
 

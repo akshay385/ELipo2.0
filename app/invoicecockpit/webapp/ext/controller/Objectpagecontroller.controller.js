@@ -65,9 +65,12 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			routing: {
 				onAfterBinding: async function (mParamaters) {
 					debugger
-					
+					if(mParamaters){
 					let extractedhref = mParamaters.sPath;
-					let funcnamee = 'showFooterInv';
+					const regex1 = /IsActiveEntity\s*=\s*(true|false)/;
+					const match1 = extractedhref.match(regex1);
+					if(match1[1] == true){
+						let funcnamee = 'showFooterInv';
 					let oFunctionn = mParamaters.getModel().bindContext(`/${funcnamee}(...)`);
 					
 					
@@ -79,7 +82,9 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var resultt = oContextt.getValue();
 					
 					this.base.getView().getContent()[0].getFooter().setVisible(!resultt.value);
-
+					}
+					
+					}
 					if (mParamaters) {
 						oevent = mParamaters;
 						let baseUrl = mParamaters.oModel.getServiceUrl();
@@ -107,7 +112,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 															title: "Processing Invoice",
 															text: "Please wait while your invoice is being processed. This may take a few moments...",customIcon:base64loader,busyIndicatorSize:"Large",customIconRotationSpeed:0,customIconHeight:"100px",customIconWidth:"100px"
 														});
-														processDialog.open();
+														// processDialog.open();//uncomment during dep
 														let funcname = 'extract';
 														let oFunction = mParamaters.getModel().bindContext(`/${funcname}(...)`);
 														console.log();
@@ -133,7 +138,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 										})
 									})
 									oDialog.addContent(new sap.ui.unified.FileUploader({ fileType: ['pdf'], httpRequestMethod: sap.ui.unified.FileUploaderHttpRequestMethod.Put, sendXHR: true, useMultipart: false, uploadUrl: invoicePdf }));
-									oDialog.open();
+									// oDialog.open();//uncomment for deployment
 								}
 							}
 

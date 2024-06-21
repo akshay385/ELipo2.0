@@ -29,9 +29,9 @@
                           <microchart:InteractiveDonutChart selectionChanged="onselectchange" id="donut1" displayedSegments="3">
                             <microchart:segments>
                             <!-- <microchart:InteractiveDonutChartSegment label="Processed" id="seg1" binding="{/}" color="Good" value="{}" displayedValue="Rs.265325019M" /> -->
-                                <microchart:InteractiveDonutChartSegment label="Processed" id="seg1" color="Good" value="769.35" displayedValue="Rs.265325019M" />
-                                <microchart:InteractiveDonutChartSegment label="Current payable" id="seg2" color="Error" value="2.80" displayedValue="2.80M" />
-                                <microchart:InteractiveDonutChartSegment label="Overdue" id="seg3" color="Good" value="562.78" displayedValue="562.78M" />
+                                <microchart:InteractiveDonutChartSegment binding="{/progress('key2')/PO_Processed}" label="Processed" id="seg1" color="Good" value="{/progress('key2')/PO_Processed}" displayedValue="{/progress('key2')/PO_Processed}" />
+                                <microchart:InteractiveDonutChartSegment binding="" label="Current payable" id="seg2" color="Error" value="2.80" displayedValue="2.80M" />
+                                <microchart:InteractiveDonutChartSegment binding="" label="Overdue" id="seg3" color="Good" value="562.78" displayedValue="562.78M" />
                             </microchart:segments>
                         </microchart:InteractiveDonutChart>
                         </layout:content>  
