@@ -41,7 +41,7 @@ service CatalogService {
                                 status = 'In Approval'
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -55,7 +55,7 @@ service CatalogService {
                                 status = 'Draft'
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -81,7 +81,7 @@ service CatalogService {
                                 status = 'New'
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -107,7 +107,7 @@ service CatalogService {
                                 status = 'Rejected'
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -133,7 +133,7 @@ service CatalogService {
                                 status = 'Submitted to ERP'
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -159,7 +159,7 @@ service CatalogService {
                                 status = 'Approved'
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -184,7 +184,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -230,7 +230,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -276,7 +276,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -286,8 +286,8 @@ service CatalogService {
                             when
                                 (
                                     DAYS_BETWEEN(
-                                        baselineDate, CURRENT_DATE
-                                    ) < 0
+                                        CURRENT_DATE, CURRENT_DATE
+                                    ) = 0
                                 )
                                 and (
                                     status    = 'New'
@@ -296,7 +296,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -327,8 +327,8 @@ service CatalogService {
                             when
                                 (
                                     DAYS_BETWEEN(
-                                        baselineDate, CURRENT_DATE
-                                    ) < 0
+                                        CURRENT_DATE, CURRENT_DATE
+                                    ) = 0
                                 )
                                 and (
                                     status    = 'New'
@@ -405,7 +405,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                             else
                                 0
@@ -666,7 +666,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                         end
                     ) as                      Decimal(15, 2)
@@ -689,7 +689,7 @@ service CatalogService {
                                 )
                             then
                                 cast(
-                                    amount as Decimal(15, 2)
+                                    totalDiscountAmount as Decimal(15, 2)
                                 )
                         end
                     ) as                      Decimal(15, 2)
@@ -958,6 +958,20 @@ on ic.invoiceNo = aw.invoiceNo
     ) as NPO_InProcess : String,
     count(
         case
+            when (aw.status = 'Approved' or aw.status = 'Rejected') and ic.DocumentType = 'None'
+            then 1
+            else null
+        end
+    ) as None_Processed : String,
+    count(
+        case
+            when aw.status = 'Pending for Approval' and ic.DocumentType = 'None'
+            then 1
+            else null
+        end
+    ) as None_InProcess : String,
+    count(
+        case
             when aw.status = 'Approved' or aw.status = 'Rejected'
             then 1
             else null
@@ -974,63 +988,74 @@ on ic.invoiceNo = aw.invoiceNo
 
 
 //top 5 vendors by amount 
-   entity key_process_list         as
-        select from my.Vendor_master as vm
-        join my.invoiceCockpit as ic
-            on ic.supplierName = vm.vendor_name
-        {
-            vm.vendor_no        as vendor_no        : String,
-            vm.vendor_name      as vendor_name      : String,
-            vm.currency         as currency         : String,
-            ic.amount           as amount           : String,
-            vm.source_of_supply as source_of_supply : String
-        }
+//    entity key_process_list         as
+//         select from my.Vendor_master as vm
+//         join my.invoiceCockpit as ic
+//             on ic.supplierName = vm.vendor_name
+//         {
+//             vm.vendor_no        as vendor_no        : String,
+//             vm.vendor_name      as vendor_name      : String,
+//             vm.currency         as currency         : String,
+//             ic.amount           as amount           : String,
+//             vm.source_of_supply as source_of_supply : String
+//         }
+
+entity key_process_list as
+select from my.Vendor_master as vm
+inner join my.invoiceCockpit as ic on ic.supplierName = vm.vendor_name
+{
+    vm.vendor_no as vendor_no : String,
+    vm.vendor_name as vendor_name : String,
+    vm.currency as currency : String,
+    ic.amount as total_amount : String, 
+    vm.source_of_supply as source_of_supply : String
+}
+group by
+    vm.vendor_no,
+    vm.vendor_name,
+    vm.currency,
+    vm.source_of_supply,
+    ic.amount
+order by total_amount desc
+limit 5;
+
+
 function get_agingdata(ID:String) returns String;
 
 // key process analytics report donutchart1
-// entity donutchart3 as select from my.invoiceCockpit as ic
-// inner join my.approvalWorkFlow as aw 
-// on ic.invoiceNo = aw.invoiceNo
-// {
-//      key 'key3' as demoKey :           String,
-//       count(
-//         case
-//             when aw.status = 'Approved' or 'Rejected' 
-//             then 1
-//             else null
-//         end
-//     ) as Processed : String,
-//    COUNT(
-//     CASE
-//         WHEN DAYS_BETWEEN(ic.baselineDate, CURRENT_DATE) > 0
-//         AND (ic.status = 'New' OR ic.status = 'Draft' OR ic.status = 'In Approval')
-//         THEN 1
-//         ELSE NULL
-//     END
-// ) AS overdue : String,
+entity donutchart3 as select from my.invoiceCockpit as ic
+inner join my.approvalWorkFlow as aw 
+on ic.invoiceNo = aw.invoiceNo
+{
+    key 'key3' as demoKey : String,
+    
+    count(
+        case
+            when aw.status = 'Approved' or aw.status = 'Rejected' 
+            then 1
+            else null
+        end
+    ) as Processed : String,
 
-// cast (
-//     count (
-//         case 
-//             when 
-//             (
-//                 DAYS_BETWEEN(
-//                     ic.baselineDate, CURRENT_DATE
-//                 ) > 0
-//             )
-//             and (
-//                 ic.status IN ('New', 'Draft', 'In Approval')
-//             )
-//             then 
-//                 1
-//             else 
-//                 null
-//         end
-//     ) as String
-// ) as over_due : String
+    COUNT(
+        CASE
+            WHEN DAYS_BETWEEN(ic.baselineDate, CURRENT_DATE) > 0
+            AND (ic.status = 'New' OR ic.status = 'Draft' OR ic.status = 'In Approval')
+            THEN 1
+            ELSE null
+        END
+    ) AS overdue : String,
 
-// current liabilities and overdue is left
-// }
-
+    CAST(
+        COUNT(
+            CASE
+                WHEN DAYS_BETWEEN(CURRENT_DATE, ic.baselineDate) > 0
+                AND (ic.status = 'New' OR ic.status = 'Draft' OR ic.status = 'In Approval')
+                THEN 1
+                ELSE NULL
+            END
+        ) AS String
+    ) AS currentPayable : String
+};
 }
 

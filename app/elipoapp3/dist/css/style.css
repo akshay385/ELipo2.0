@@ -2,6 +2,13 @@
 /* overview css */
 /*   F7F5EB DEF5E5 */
 /*     */
+
+/* Container for the iframe */
+/* Container for the iframe */
+#myIframe{
+    height: calc(100% + 55px) !important;
+}
+
 *[id*="_IDGenGenericTile1"][role="button"]{
     background:#F8E8EE !important;
 }
@@ -100,7 +107,7 @@
 /* other app colors */
 *[id*="overflowJ"] {
     /* background-color: white !important; */
-    background-color: #bae8e8 !important;
+    background:linear-gradient(to right, #EEF1FF 0%, #EEF1FF 0%, #c5cfff 15%, #c5cfff 100%) !important;
   }
 
 .sapMDialog{
@@ -134,7 +141,7 @@
 .sapFDynamicPageTitle,
 .sapMITH,
 .sapFDynamicPageTitle{
-    background-color:#bae8e8 !important;
+    background:linear-gradient(to right, #EEF1FF 0%, #EEF1FF 0%, #c5cfff 15%, #c5cfff 100%) !important;
 } 
 
 /* other app colors */
@@ -162,10 +169,13 @@
 
 .sapUiSizeCompact .sapMMenu.sapUiMnu,
 .sapTntSideNavigation{
-    background: #e3f6f5 !important;
+    background: #EEF1FF  !important;
 }
 
 .sapUiSizeCompact .sapMTB{
     background-color: inherit !important;
 }
 
+.sapTntNLCollapsed .sapTntNLI:not(.sapTntNLIDisabled):not(.sapTntNLIActive) [tabindex]:hover{
+    background-color: #c5cfff99;
+}

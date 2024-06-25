@@ -125,6 +125,7 @@ annotate service.rulesChild with @(
             $Type : 'UI.DataField',
             Value : concatCondition,
             Label : 'concatCondition',
+            ![@UI.Hidden],
         },]
 );
 annotate service.rulesParent with @(

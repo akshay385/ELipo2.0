@@ -67,17 +67,14 @@
       "destinations": true,
       "BpaDest": {
         "kind": "odata-v2",
-        "csrf": true,
-        "csrfInBatch": true,
         "credentials": {
-            "destination": "bpaDest",
-            "requestTimeout": 120000
+          "destination": "bpaDest"
         },
         "destinationOptions": {
-            "selectionStrategy": "alwaysProvider",
-            "jwt": null
+          "selectionStrategy": "alwaysProvider",
+          "jwt": null
         }
-    }
+      }
     }
   },
   "sapux": [

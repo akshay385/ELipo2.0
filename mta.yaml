@@ -12,6 +12,7 @@ modules:
   - name: dbgDest
   - name: default_document-information-extraction-trial
   - name: elipo3-destination-service
+  - name: TLP_Connectivity
   provides:
   - name: srv-api
     properties:
@@ -124,6 +125,22 @@ modules:
     - artifacts:
       - productivityreportlist.zip
       name: productivityreportlist
+      target-path: resources/
+    - artifacts:
+      - invoicesummaryreport.zip
+      name: invoicesummaryreport
+      target-path: resources/
+    - artifacts:
+      - chart.zip
+      name: chart
+      target-path: resources/
+    - artifacts:
+      - liabilityreportlist.zip
+      name: liabilityreportlist
+      target-path: resources/
+    - artifacts:
+      - agingreport.zip
+      name: agingreport
       target-path: resources/
 - name: elipoapp3
   type: html5
@@ -265,6 +282,46 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: invoicesummaryreport
+  type: html5
+  path: app/invoicesummaryreport
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: chart
+  type: html5
+  path: app/chart
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: liabilityreportlist
+  type: html5
+  path: app/liabilityreportlist
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: agingreport
+  type: html5
+  path: app/agingreport
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
 resources:
 - name: dbgDest
   type: org.cloudfoundry.managed-service
@@ -285,7 +342,7 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     service: destination
-    service-plan: lite    
+    service-plan: lite
 - name: elipo3-destination-service
   type: org.cloudfoundry.managed-service
   parameters:

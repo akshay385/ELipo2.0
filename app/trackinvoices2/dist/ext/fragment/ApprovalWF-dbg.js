@@ -35,7 +35,7 @@ sap.ui.define([
             pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"120px"}).setHeader(new sap.m.Text({text:"Groups"})));
             pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"120px"}).setHeader(new sap.m.Text({text:"Members"})));
             pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"70px"}).setHeader(new sap.m.Text({text:"Status"})));
-            pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"100pxpx"}).setHeader(new sap.m.Text({text:"Action By"})));
+            pop.mAggregations.content[0].addColumn(new sap.m.Column({width:"100px"}).setHeader(new sap.m.Text({text:"Action By"})));
             
             data.forEach(data => {
                 let oItem = new sap.m.ColumnListItem();

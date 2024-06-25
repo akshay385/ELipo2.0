@@ -218,6 +218,11 @@
                                     "tableSettings": {
                                         "type": "GridTable"
                                     }
+                                },
+                                "rulptoapp/@com.sap.vocabularies.UI.v1.LineItem#_": {
+                                    "tableSettings": {
+                                        "type": "GridTable"
+                                    }
                                 }
                             },
                             "content": {

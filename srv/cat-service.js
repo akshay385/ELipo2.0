@@ -12,8 +12,9 @@ module.exports = async function (params) {
     let {
         invoiceCockpit, invoiceCockpitItems,rulesChild,approversChild,Files,supplierFiles
     } = this.entities;
-    let BpaDest = await cds.connect.to("BpaDest");
-
+    var BpaDest = await cds.connect.to("BpaDest");
+    // var response = await BpaDest.get('/workflow/rest/v1/workflow-instances' );
+    // console.log(response);
     // var vcap = JSON.parse(process.env.VCAP_SERVICES);
 
     // let test =await DocInfoExt_dest.get("/document/jobs");
@@ -98,7 +99,7 @@ module.exports = async function (params) {
     this.after('CREATE', 'approvalWorkFlow', async (req) => {
         debugger
         if(req.level == '1'){
-        let BpaDest = await cds.connect.to("BpaDest");
+        // let BpaDest = await cds.connect.to("BpaDest");
         let body = {
             "definitionId": "us10.da7813aatrial.elipoapproval.elipoapproval",
             "context": {
@@ -106,12 +107,13 @@ module.exports = async function (params) {
                 "emails": req.approversmails,
                 "invoiceno": req.invoiceNo,
                 "level": 1
-            }
+            
+        }
         };
         let stringBody = JSON.stringify(body);
         try {
-            var response = await BpaDest.post('/workflow/rest/v1/workflow-instances', stringBody);
-            let updateData={workflowId:response.id,status:"In Approval",editable:true};
+            var response = await BpaDest.post('/workflow/rest/v1/workflow-instances', body);//uncomment before deployment
+            let updateData={workflowId:response.id,status:"In Approval",editable:true,criticality:2};//uncomment string
             await UPDATE(invoiceCockpit, req.invoiceuuid).with(updateData);
         } catch (error) {
             debugger
@@ -188,6 +190,7 @@ module.exports = async function (params) {
     this.before('UPDATE', 'invoiceCockpit', async (req) => {
         debugger
         console.log("before update invoice")
+        if(req.data.status != 'Rejected' && req.data.status != 'Submitted to ERP')
         req.data.status = 'Draft';
         await DELETE.from('CATALOGSERVICE_FILES_DRAFTS').where`FKEY = ${req.data.uuid}`;
         // await DELETE.from('CatalogService_invoiceCockpit_drafts').where`UUID = ${req.data.uuid}`;
@@ -214,9 +217,9 @@ module.exports = async function (params) {
             if (vcap['document-information-extraction-trial'] && Array.isArray(vcap['document-information-extraction-trial'])) {
                 // Iterate over the services to find the required destination
                 vcap['document-information-extraction-trial'].forEach((dest) => {
-                    // if (dest.name && dest.name === "default_document-information-extraction-trial") { //uncomment for deployment
+                    if (dest.name && dest.name === "default_document-information-extraction-trial") { //uncomment for deployment
                     docinfodest = dest;
-                    // }//uncomment for deployment
+                    }//uncomment for deployment
                 });
 
                 if (docinfodest) {
@@ -286,7 +289,7 @@ module.exports = async function (params) {
                         data: form
                     };
 
-                    // const response = await axios.request(config);//uncomment for document extraction
+                    const response = await axios.request(config);//uncomment for document extraction
                     requestUrl += `/${response.data.id}`;
                     console.log(response.data.id);
                     async function checkStatus(requestUrl, accessToken) {

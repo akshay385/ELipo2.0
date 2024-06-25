@@ -3,9 +3,10 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel',
 	'sap/ui/export/library',
 	'sap/ui/export/Spreadsheet',
-	'sap/m/MessageToast'
+	'sap/m/MessageToast',
+    'sap/ushell/Container'
 ],
-function (Controller,exportLibrary,Spreadsheet) {
+function (Controller,Container,exportLibrary,Spreadsheet) {
     "use strict";
     var EdmType = sap.ui.export.EdmType
     return Controller.extend("invoicesummaryreport.controller.invsumreport", {
@@ -36,6 +37,10 @@ function (Controller,exportLibrary,Spreadsheet) {
         butt : async function(oEvent)
         {
             debugger;
+            const Navigation = await sap.ushell.Container.getServiceAsync("Navigation");
+            const sHref = await Navigation.navigate({
+                target:{semanticObject:"chart",action:"display"}
+            });
         },
 
         createColumnConfig: function() {

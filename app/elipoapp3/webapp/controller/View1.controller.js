@@ -7,6 +7,7 @@ sap.ui.define([
     function (Controller) {
         "use strict";
 var initfn;
+var expandedValue;
         return Controller.extend("elipoapp3.controller.View1", {
             onInit: function () {
                 debugger 
@@ -15,6 +16,7 @@ var initfn;
                 
                 // this.loadIframeContent();
             },
+            
             // loadIframeContent: function() {
             //     // Get iframe container and iframe element
             //     var oIframeContainer = this.byId("myIframe");
@@ -37,8 +39,10 @@ var initfn;
             // },
             onAfterRendering: async function () {
                 debugger
+                this.byId("sidnav").setExpanded(expandedValue);
                 if(initfn){
                 this.byId("sidnav").setExpanded(false);
+                expandedValue = false;
                 if (this.byId("invoiceCockpit").getComponentInstance())//test
                 this.byId("invoiceCockpit").getComponentInstance().destroy();//test
                 this.byId("iframee").setVisible(false);
@@ -64,7 +68,7 @@ var initfn;
                 debugger
                 const oSideNavigation = this.byId("sidnav"),
                     bExpanded = oSideNavigation.getExpanded();
-
+                expandedValue = !bExpanded;
                 oSideNavigation.setExpanded(!bExpanded);
             },
             async onNavPress(oEvent) {
@@ -78,12 +82,16 @@ var initfn;
 
 
                 debugger
-                this.byId("invoiceCockpit").setVisible(true);
-                this.byId("iframee").setVisible(false);
                 let sideKey = oEvent.oSource.getSelectedKey();
                 let regex = /--([^-\s]+)$/;
                 let match = sideKey.match(regex);
                 let colexp = match[1];
+                if(colexp != 'collapseexpand'){
+                    this.byId("invoiceCockpit").setVisible(true);
+                this.byId("iframee").setVisible(false);
+                }
+                
+                
                 if(colexp != 'collapseexpand'){
                 if (this.byId("invoiceCockpit").getComponentInstance())
                     this.byId("invoiceCockpit").getComponentInstance().destroy();

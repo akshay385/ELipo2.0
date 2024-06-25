@@ -18,23 +18,24 @@
 
 } */
 
-#container-invoicesummaryreport---invsumreport--idProductsTable-tblHeader *
+/* #container-invoicesummaryreport---invsumreport--idProductsTable-tblHeader *
 {
     background-color: #009879 !important;
     
-}
+} */
 
 
-.box{
+/* .box{
     padding-top : 20px
-}
+} */
 
 .button {
    left: 90vw;
 }
 
-.t1 {
-    color: #ffffff !important;
-    font-size: 16px !important; /* Adjust the font size as needed */
-}
+/* .t1 { */
+    /* background-color: #009879 !important; */
+    /* color: #ffffff !important; */
+    /* font-size: 16px !important; Adjust the font size as needed */
+/* } */
 

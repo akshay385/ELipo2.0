@@ -10,7 +10,7 @@
         </layoutData>
     </Button>
     <Image src="./img/logo.png" id="img" decorative="false" tooltip="SAP Logo"></Image>
-    <Title text="Report" id="t" wrapping="false"></Title>
+    <Title text="Invoice Summary Report" id="t" wrapping="false"></Title>
 </tnt:ToolHeader>
 
 

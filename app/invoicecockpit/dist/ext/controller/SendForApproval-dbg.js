@@ -227,6 +227,10 @@ sap.ui.define([
                 
             }
 
+            let s = setTimeout(()=>{
+                window.history.back();
+            },1000);
+           
 
         }
     };
