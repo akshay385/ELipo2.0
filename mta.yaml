@@ -118,30 +118,6 @@ modules:
       - elipo4.zip
       name: elipo4
       target-path: resources/
-    - artifacts:
-      - keyprocessanalyticsreportlist.zip
-      name: keyprocessanalyticsreportlist
-      target-path: resources/
-    - artifacts:
-      - productivityreportlist.zip
-      name: productivityreportlist
-      target-path: resources/
-    - artifacts:
-      - invoicesummaryreport.zip
-      name: invoicesummaryreport
-      target-path: resources/
-    - artifacts:
-      - chart.zip
-      name: chart
-      target-path: resources/
-    - artifacts:
-      - liabilityreportlist.zip
-      name: liabilityreportlist
-      target-path: resources/
-    - artifacts:
-      - agingreport.zip
-      name: agingreport
-      target-path: resources/
 - name: elipoapp3
   type: html5
   path: app/elipoapp3
@@ -255,66 +231,6 @@ modules:
 - name: elipo4
   type: html5
   path: app/elipo4
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: keyprocessanalyticsreportlist
-  type: html5
-  path: app/keyprocessanalyticsreportlist
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: productivityreportlist
-  type: html5
-  path: app/productivityreportlist
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: invoicesummaryreport
-  type: html5
-  path: app/invoicesummaryreport
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: chart
-  type: html5
-  path: app/chart
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: liabilityreportlist
-  type: html5
-  path: app/liabilityreportlist
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: agingreport
-  type: html5
-  path: app/agingreport
   build-parameters:
     build-result: dist
     builder: custom

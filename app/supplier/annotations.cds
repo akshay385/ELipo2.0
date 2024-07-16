@@ -242,7 +242,7 @@ annotate service.supplier with @(
                         {
                             Sign : #I,
                             Option : #EQ,
-                            Low : 'Draft',
+                            Low : 'SDraft',
                         },
                     ],
                 },],
@@ -296,7 +296,12 @@ annotate service.supplier with @(
                         {
                             Sign : #I,
                             Option : #EQ,
-                            Low : 'Submitted',
+                            Low : 'New',
+                        },
+                        {
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Draft',
                         },
                     ],
                 },],

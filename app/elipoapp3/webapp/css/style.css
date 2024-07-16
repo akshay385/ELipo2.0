@@ -5,6 +5,10 @@
 
 /* Container for the iframe */
 /* Container for the iframe */
+.disablenav{
+pointer-events: none; /* Disables click, hover, etc. */
+    opacity: 0.5;
+}
 #myIframe{
     height: calc(100% + 55px) !important;
 }

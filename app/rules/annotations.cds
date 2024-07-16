@@ -145,6 +145,7 @@ annotate service.approversChild with @(
             $Type : 'UI.DataField',
             Value : level,
             Label : 'Approver Level',
+
         },{
             $Type : 'UI.DataField',
             Value : apptoappg.groupName,
@@ -531,4 +532,22 @@ annotate service.assignRole with {
             $value : name,
             ![@UI.TextArrangement] : #TextFirst,
         }
+};
+annotate service.rulesChild with {
+    value1 @Common.FieldControl : #Mandatory
+};
+annotate service.rulesChild with {
+    condition @Common.FieldControl : #Mandatory
+};
+annotate service.rulesChild with {
+    criteria @Common.FieldControl : #Mandatory
+};
+annotate service.rulesParent with {
+    escalateTo @Common.FieldControl : #Mandatory
+};
+annotate service.rulesParent with {
+    dueDays @Common.FieldControl : #Mandatory
+};
+annotate service.approversChild with {
+    level @Common.FieldControl : #ReadOnly
 };

@@ -8,7 +8,7 @@ sap.ui.define([
             debugger
             var baseUrl = oEvent.oSource.getModel().getServiceUrl();
             let oButton = oEvent.getSource();
-            if(sap.ui.getCore().byId("popover1"))
+            if(sap.ui.getCore().byId("popover1")) 
             sap.ui.getCore().byId("popover1").destroy();
 
             if(oEvent.oSource.getText() == "New" ||oEvent.oSource.getText() == "Draft" ){

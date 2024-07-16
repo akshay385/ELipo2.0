@@ -14,11 +14,15 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				// you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
 				debugger
 				var oModel = this.base.getExtensionAPI().getModel();
+				
 			},
-			onAfterRendering: async function () {
+			onAfterRendering: async function (oEvent) {
 				debugger
 				var objectPage = this.getView().getContent()[0];
+				var items = oEvent.oSource.mAggregations.sections[2].mAggregations._grid;
+				var test = this.base.getView().mAggregations.content;
 
+				set
 				objectPage.attachSectionChange(function (oEvent) {
 					debugger
 					var items = oEvent.oSource.mAggregations.sections[2].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items;
@@ -26,9 +30,13 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					for (var i = 0; i < items.length; i++) {
 						if (edit == false) {
 							items[i].setVisibleRemove(true);
+							items[i].setEnabledEdit(true);
+							items[i].setVisibleEdit(true);
 						}
 						else {
 							items[i].setVisibleRemove(false);
+							items[i].setEnabledEdit(false);
+							items[i].setVisibleEdit(false);
 						}
 					}
 				})
@@ -36,7 +44,37 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 			},
 			editFlow: {
+				onAfterEdit : async function(oEvent)
+				{
+					debugger
+					var upload1 = this.getView().getContent()[0].getSections()[2];
+					var files1 = upload1.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.getItems();
 
+					for(let a = 0; a < files1.length; a++)
+					{
+						files1[a].setVisibleRemove(true);
+						files1[a].setEnabledRemove(true);
+						files1[a].setVisibleEdit(true);
+						files1[a].setEnabledEdit(true);
+					}
+					upload1.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mBindingInfos.items.binding.refresh();
+				},
+				onAfterDiscard : async function(oEvent)
+				{
+					debugger
+					var upload = this.getView().getContent()[0].getSections()[2];
+					var files = upload.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.getItems();
+
+					for(let a = 0; a < files.length; a++)
+					{
+						files[a].setVisibleRemove(false);
+						files[a].setEnabledRemove(false);
+						files[a].setVisibleEdit(false);
+						files[a].setEnabledEdit(false);
+					}
+					upload.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mBindingInfos.items.binding.refresh();
+
+				},
 				onBeforeDiscard: async function (oEvent) {
 					debugger
 					let extractedNumber = oEvent.context.sPath
@@ -48,6 +86,18 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					const oContext = oFunction.getBoundContext();
 					var result = oContext.getValue();
 				},
+				// onAfterSave:function (oEvent) {
+				// 	debugger
+				// 	var uploadset = this.getView().getContent()[0].getSections()[2];
+
+				// 	var items = uploadset.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.getItems();
+
+				// 	for (let i = 0; i < items.length; i++) {
+				// 		items[i].setVisibleRemove(true);
+						
+				// 	}
+					
+				// }
 				onAfterSave:function (oEvent) {
 					debugger
 					var uploadset = this.getView().getContent()[0].getSections()[2];
@@ -55,15 +105,27 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					var items = uploadset.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.getItems();
 
 					for (let i = 0; i < items.length; i++) {
-						items[i].setVisibleRemove(true);
-						
+						items[i].setVisibleRemove(false);
+						items[i].setEnabledRemove(false);
+						items[i].setVisibleEdit(false);
+						items[i].setEnabledEdit(false);
 					}
+
+					uploadset.mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mBindingInfos.items.binding.refresh();
 					
 				}
 			},
 
 			routing: {
 				onAfterBinding: async function (mParamaters) {
+					debugger
+					if(sap.ui.getCore().byId("application-elipo3-display-component---View1--sidnav"))
+				 sap.ui.getCore().byId("application-elipo3-display-component---View1--sidnav").addStyleClass('disablenav');
+					var uploadItems = this.base.getView().mAggregations.content[0].mAggregations.sections[2].mAggregations._grid.mAggregations.content[0].mAggregations._grid.mAggregations.content[0].mAggregations.content.mAggregations.items;
+					for(let a = 0; a <uploadItems.length ; a++)
+					{
+
+					}
 					debugger
 					if(mParamaters){
 					let extractedhref = mParamaters.sPath;

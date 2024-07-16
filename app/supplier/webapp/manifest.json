@@ -185,6 +185,14 @@
               "content": {
                 "body": {
                   "sections": {
+                    "GeneratedFacet1": {
+                      "sideContent": {
+                        "template": "invoicecockpit.ext.fragment.sidePdf",
+                        "title": "custPdf",
+                        "type": "XMLFragment"
+                      },
+                      "type": "XMLFragment"
+                    },
                     "Attachments": {
                       "template": "supplier.ext.fragment.Attachments",
                       "position": {
@@ -203,6 +211,20 @@
                       "visible": true,
                       "enabled": true,
                       "text": "Send for Approval"
+                    }
+                  }
+                },
+                "header": {
+                  "actions": {
+                    "showhide": {
+                      "press": "supplier.ext.controller.Showhide.show",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Show / Hide",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "EditAction"
+                      }
                     }
                   }
                 }

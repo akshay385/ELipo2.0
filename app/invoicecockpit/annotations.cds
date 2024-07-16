@@ -20,8 +20,18 @@ annotate service.invoiceCockpit with @(
             },
             {
                 $Type : 'UI.DataField',
+                Value : gstin,
+                Label : 'GST IN',
+            },
+            {
+                $Type : 'UI.DataField',
                 Value : refPoNum,
-                Label : 'Ref PO Num',
+                Label : 'Ref PO No.',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : RefInvoiceNo,
+                Label : 'Ref Invoice No.',
             },
             {
                 $Type : 'UI.DataField',
@@ -101,7 +111,7 @@ annotate service.invoiceCockpit with @(
             {
                 $Type : 'UI.DataField',
                 Value : tcs,
-                Label : 'TCS Amount',
+                Label : 'GSTINmount',
             },
         ],
     },

@@ -21,7 +21,7 @@ entity supplierFiles : managed {
 }
 
 entity supplierItems {
-    key Itemid      : UUID;
+      key Itemid      : UUID;
         invoiceNo   : UUID;
         invoiceNoS  : String;
         Item        : String;
@@ -44,22 +44,24 @@ entity supplierItems {
 }
 
 entity supplier : managed {
-    key uuid                : UUID;
+     key uuid                : UUID;
         invoiceNo           : String default ' ';
         RefInvoiceNo        : String;
         supplierName        : String;
-        status              : String;
+        status              : String default'Draft';
         editable            : Boolean;
         comments            : LargeString;
         supplieruserid      : String;
         section             : String;
         criticality         : Int16;
+        workflowId          :String;
 
         @Core.MediaType  : mediaType
         content             : LargeBinary;
 
         @Core.IsMediaType: true
-        mediaType           : String;
+        mediaType           : String default 'application/pdf';
+        apProcessor         : String;
         fileName            : String;
         size                : Integer;
         url                 : String;
@@ -132,8 +134,7 @@ entity Files : managed {
         url       : String;
         filtoinv  : Association to one invoiceCockpit
                         on filtoinv.uuid = fkey;
-        filtosup  : Association to one supplier
-                        on filtosup.uuid = fkey;
+        
 }
 
 entity internalOrderSh {
@@ -308,7 +309,7 @@ entity criteriaSh {
 
 entity rulesParent {
     key uuid         : UUID;
-        approvalType : String;
+        approvalType : String default 'Series';
         comments     : LargeString;
         active       : Boolean;
         dueDays      : Int16;

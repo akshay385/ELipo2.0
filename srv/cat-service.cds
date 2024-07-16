@@ -476,6 +476,7 @@ service CatalogService {
 
     @Common.SideEffects: {
         $Type           : 'Common.SideEffectsType',
+        
         SourceProperties: [
             'value1',
             'condition',
@@ -486,8 +487,9 @@ service CatalogService {
             'concatCondition',
             'value1',
             'condition',
-            'criteria'
-        ],
+            'criteria',
+            '*'
+        ]
 
     }
     entity rulesChild               as projection on my.rulesChild;
@@ -504,6 +506,18 @@ service CatalogService {
     entity approversChild           as projection on my.approversChild;
 
     @odata.draft.enabled
+    @Common.SideEffects  : {
+        $Type : 'Common.SideEffectsType',
+        SourceProperties : [
+            'approvalType','dueDays'
+        ],
+        TargetProperties : [
+            'dueDays',
+        ],
+     TargetEntities : [
+         rulptoapp
+     ],
+    }
     entity rulesParent              as projection on my.rulesParent;
 
     entity members                  as projection on my.members;
@@ -521,6 +535,7 @@ service CatalogService {
     function postattach(p : String)        returns String;
     function showFooterInv(p : String)        returns Boolean;
     function extract(p : String)           returns String;
+    function extractS(p : String)           returns String;
     function deleteDrafts(p : String)      returns String;
     /***********Master******************************/
     entity MasterSearchHelp         as projection on my.MasterSearchHelp;

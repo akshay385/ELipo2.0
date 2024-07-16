@@ -254,6 +254,9 @@
                 "sap.ui.controllerExtensions": {
                     "sap.fe.templates.ObjectPage.ObjectPageController#invoicecockpit::invoiceCockpitObjectPage": {
                         "controllerName": "invoicecockpit.ext.controller.Objectpagecontroller"
+                    },
+                    "sap.fe.templates.ListReport.ListReportController#invoicecockpit::invoiceCockpitList": {
+                        "controllerName": "invoicecockpit.ext.controller.ListreportController"
                     }
                 }
             }
