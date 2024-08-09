@@ -13,9 +13,9 @@ module.exports = async function (params) {
     let {
         invoiceCockpit, invoiceCockpitItems,supplierItems,supplier, rulesChild, value1Sh, approversChild, Files, supplierFiles, rulesParent
     } = this.entities;
-    // var BpaDest = await cds.connect.to("BpaDest");
-    // var response = await BpaDest.get('/workflow/rest/v1/workflow-instances' );
-    // console.log(response);
+    var BpaDest = await cds.connect.to("BpaDest");
+    var response = await BpaDest.get('/workflow/rest/v1/workflow-instances' );
+    console.log(response);
     // var vcap = JSON.parse(process.env.VCAP_SERVICES);
 
     // let test =await DocInfoExt_dest.get("/document/jobs");
